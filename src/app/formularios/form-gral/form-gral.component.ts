@@ -8,22 +8,22 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class FormGralComponent implements OnInit {
   eCerrar: boolean;
-  prueba: any;
+  opciones: boolean;
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     this.eCerrar = true;
-    this.activatedRoute.params.subscribe((params) => {
-      console.log('PARAM: ', params)
-      this.prueba = params;
-    })
+    this.opciones = false;
   }
 
   ngOnInit() {
   }
   cerrar() {
     this.eCerrar = !this.eCerrar
-    console.log('URL: ', this.prueba)
+    console.log('URL: ', this.activatedRoute.parent)
     // let url = this.router.url.split('(');
     // console.log('lll: ', url[0])
     this.router.navigate([{ outlets: { modal: null } }], { relativeTo: this.activatedRoute.parent })
+  }
+  cambioOpciones() {
+    this.opciones = !this.opciones
   }
 }
