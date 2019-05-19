@@ -25,6 +25,10 @@ import { FichaEventosComponent } from './eventos/ficha-eventos/ficha-eventos.com
 import { CalendarioEventosComponent } from './eventos/calendario-eventos/calendario-eventos.component';
 import { ListaEventosComponent } from './eventos/lista-eventos/lista-eventos.component';
 import { MapaEventosComponent } from './eventos/mapa-eventos/mapa-eventos.component';
+import { FormRegistroComponent } from './formularios/form-registro/form-registro.component';
+import { GralBandasComponent } from './bandas/gral-bandas/gral-bandas.component';
+import { GralSalasComponent } from './salas/gral-salas/gral-salas.component';
+import { GralEventosComponent } from './eventos/gral-eventos/gral-eventos.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +53,11 @@ import { MapaEventosComponent } from './eventos/mapa-eventos/mapa-eventos.compon
     FichaEventosComponent,
     CalendarioEventosComponent,
     ListaEventosComponent,
-    MapaEventosComponent
+    MapaEventosComponent,
+    FormRegistroComponent,
+    GralBandasComponent,
+    GralSalasComponent,
+    GralEventosComponent
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-gral',
@@ -6,10 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form-gral.component.css']
 })
 export class FormGralComponent implements OnInit {
-
-  constructor() { }
+  eCerrar: boolean;
+  constructor(private router: Router) {
+    this.eCerrar = true;
+  }
 
   ngOnInit() {
   }
-
+  cerrar() {
+    this.eCerrar = !this.eCerrar
+    this.router.navigate(["/"])
+  }
 }

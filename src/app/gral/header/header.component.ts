@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,11 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   abiertoCerrado: boolean;
-  constructor() {
+  url: string;
+  constructor(private router: Router) {
     this.abiertoCerrado = false;
   }
-
   ngOnInit() {
+    console.log('router:', this.router)
+  }
+
+  mostrarBurger() {
+    console.log('ENTRA')
+    this.abiertoCerrado = !this.abiertoCerrado;
   }
   abrirCerrar() {
     console.log('ENTRA');

@@ -3,24 +3,24 @@
   <nav class="mb-1 navbar navbar-expand-lg navbar-dark default-color">
     <a class="navbar-brand" href="#">AquíHayMúsica</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" aria-expanded="false"
-      aria-label="Toggle navigation">
+      aria-label="Toggle navigation" (click)='mostrarBurger()'>
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarSupportedContent-333">
+    <div class="collapse navbar-collapse" [ngClass]="{show: abiertoCerrado}">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item" [ngClass]="{active: false}">
-          <a class="nav-link" href="#">Eventos
+          <a class="nav-link" [routerLink]="['/eventos']">Eventos
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Salas</a>
+          <a class="nav-link" [routerLink]="['/salas']">Salas</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Grupos</a>
+          <a class="nav-link" [routerLink]="['/bandas']">Grupos</a>
         </li>
       </ul>
       <ul class="navbar-nav ml-auto nav-flex-icons">
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown boton">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-flag"> Es </i>
           </a>
@@ -29,12 +29,14 @@
             <a class="dropdown-item" href="#">Inglés</a>
           </div>
         </li>
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown boton">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-user"> Usuario 1 </i>
           </a>
           <div class="dropdown-menu dropdown-menu-right dropdown-default">
-            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#modalLogin">Login / Registro</a>
+            <a class="dropdown-item" [routerLink]="[{ outlets: { loginAux: ['login'] } }]">Login
+              /
+              Registro</a>
             <a class="dropdown-item" href="#">Salir</a>
           </div>
         </li>
