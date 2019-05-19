@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-form-gral',
@@ -8,14 +8,22 @@ import { Router } from '@angular/router';
 })
 export class FormGralComponent implements OnInit {
   eCerrar: boolean;
-  constructor(private router: Router) {
+  prueba: any;
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
     this.eCerrar = true;
+    this.activatedRoute.params.subscribe((params) => {
+      console.log('PARAM: ', params)
+      this.prueba = params;
+    })
   }
 
   ngOnInit() {
   }
   cerrar() {
     this.eCerrar = !this.eCerrar
-    this.router.navigate(["/"])
+    console.log('URL: ', this.prueba)
+    // let url = this.router.url.split('(');
+    // console.log('lll: ', url[0])
+    this.router.navigate([{ outlets: { modal: null } }], { relativeTo: this.activatedRoute.parent })
   }
 }
