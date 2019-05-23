@@ -15,7 +15,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {
     console.log('router:', this.router)
   }
-
+  abrir() {
+    console.log('ENTRA ENTRA');
+    this.router.navigate([{ outlets: { modal: 'formIn/login' } }], { skipLocationChange: true })
+  }
   mostrarBurger() {
     console.log('ENTRA')
     this.abiertoCerrado = !this.abiertoCerrado;

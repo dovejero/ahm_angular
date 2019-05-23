@@ -3,8 +3,8 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 *ngIf="!opciones" class="modal-title text-dark" (click)="cambioOpciones()">Login</h5>
-        <h5 *ngIf="opciones" class="modal-title text-dark" (click)="cambioOpciones()">Registro</h5>
+        <h5 *ngIf="!opciones" class="modal-title text-dark">Login</h5>
+        <h5 *ngIf="opciones" class="modal-title text-dark">Registro</h5>
         <button type="button" class="close" (click)='cerrar()'>
           <span>&times;</span>
         </button>
@@ -14,8 +14,10 @@
       </div>
       <div class="modal-footer">
 
-        <a *ngIf="opciones" [routerLink]="['login']" (click)="cambioOpciones()">Login</a>
-        <a *ngIf="!opciones" [routerLink]="['registro']" (click)="cambioOpciones()">Registro</a>
+        <!-- <a *ngIf="opciones" [routerLink]="['login']" (click)="cambioOpciones()">Login</a>
+        <a *ngIf="!opciones" [routerLink]="['registro']" (click)="cambioOpciones()">Registro</a> -->
+        <h5 *ngIf="opciones" class="modal-title text-dark" (click)="cambioOpcionesLogin()">Login</h5>
+        <h5 *ngIf="!opciones" class="modal-title text-dark" (click)="cambioOpcionesRegistro()">Registro</h5>
       </div>
     </div>
   </div>
