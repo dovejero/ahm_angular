@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,22 +9,26 @@ import { Router } from '@angular/router';
 export class HeaderComponent implements OnInit {
   abiertoCerrado: boolean;
   url: string;
+  idioma: string;
+  @Output() cambioIdioma = new EventEmitter();
   constructor(private router: Router) {
     this.abiertoCerrado = false;
   }
   ngOnInit() {
+    this.idioma = 'ES'
     console.log('router:', this.router)
   }
   abrir() {
-    console.log('ENTRA ENTRA');
     this.router.navigate([{ outlets: { modal: 'formIn/login' } }], { skipLocationChange: true })
   }
   mostrarBurger() {
-    console.log('ENTRA')
     this.abiertoCerrado = !this.abiertoCerrado;
   }
   abrirCerrar() {
-    console.log('ENTRA');
     this.abiertoCerrado = !this.abiertoCerrado;
+  }
+  cambiarIdioma(pIdioma: string) {
+    this.idioma = pIdioma.toUpperCase();
+    this.cambioIdioma.emit(pIdioma);
   }
 }

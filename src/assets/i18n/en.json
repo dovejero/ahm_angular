@@ -1,0 +1,12 @@
+{
+    "nav": {
+        "navEng": "English",
+        "navEsp": "Spanish",
+        "eventos": "Events",
+        "salas": "Spaces",
+        "grupos": "Groups",
+        "usuario": "User",
+        "login": "Log in/Sign in",
+        "salir": "Log Out"
+    }
+}
