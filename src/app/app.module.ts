@@ -34,6 +34,7 @@ import { GralEventosComponent } from './eventos/gral-eventos/gral-eventos.compon
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { FormUserComponent } from './formularios/form-user/form-user.component';
 
 
 
@@ -64,7 +65,8 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     FormRegistroComponent,
     GralBandasComponent,
     GralSalasComponent,
-    GralEventosComponent
+    GralEventosComponent,
+    FormUserComponent
   ],
   imports: [
     BrowserModule,

@@ -3,23 +3,28 @@
 </div> -->
 <div class="modal-body text-dark">
   <div class="container">
-
-    <div class="col-12 col-12">
-      <form method="POST" action="https://bootsnipp.com/login" accept-charset="UTF-8" role="form" id="loginform"
-        class="form-signin"><input name="_token" type="hidden" value="jsRWgegKO4ELtdKBap9byiV2mfSY9XSaEvbxweFe">
-        <h5 class="sign-up-title" style="color:dimgray; text-align: center">{{'formulario.titlogin' | translate}}</h5>
-
+    <div>
+      <form novalidate [formGroup]="formulario" (ngSubmit)='tratarSubmit()'>
+        <h5 class="titulo">{{'formulario.titlogin' | translate}}</h5>
         <hr>
-        <input class="form-control email-title" [placeholder]="'formulario.usuario' | translate" name="email"
-          type="text">
-        <input class="form-control" [placeholder]="'formulario.pass' | translate" name="password" type="password"
-          value="">
-        <a class="pull-right">{{'formulario.olvido' | translate}}</a>
+        <div class="form-group">
+          <input type="text" class="form-control form-control-sm" formControlName="usuario"
+            [placeholder]="'formulario.usuario' | translate">
+          <small *ngIf="formulario.controls['usuario'].errors && control" id="errorNombre"
+            class="form-text text-muted">{{'formulario.valusuario' | translate}}</small>
+        </div>
+        <div class="form-group">
+          <input type="password" class="form-control form-control-sm" formControlName="password"
+            [placeholder]="'formulario.pass' | translate">
+          <small *ngIf="formulario.controls['password'].errors && control" id="errorNombre"
+            class="form-text text-muted">{{'formulario.valpassword' | translate}}</small>
+        </div>
+        <!-- <a class="">{{'formulario.olvido' | translate}}</a> -->
         <div class="checkbox">
           <label><input name="remember" type="checkbox" value="Remember Me">
             {{'formulario.recordar'| translate}}</label>
         </div>
-        <input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
+        <input class="btn btn-lg btn-success btn-block" type="submit" [value]="'formulario.login' | translate">
       </form>
     </div>
 

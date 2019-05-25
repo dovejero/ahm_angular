@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-login',
@@ -6,10 +7,38 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./form-login.component.css']
 })
 export class FormLoginComponent implements OnInit {
-
-  constructor() { }
+  formulario: FormGroup;
+  control: boolean;
+  constructor() {
+    this.control = false;
+    this.formulario = new FormGroup({
+      usuario: new FormControl('', [
+        Validators.required
+      ]),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.pattern(/^(?=.*\d).{4,8}$/)
+      ])
+    })
+  }
 
   ngOnInit() {
   }
+  tratarSubmit() {
+    console.log(this.formulario.valid);
+    if (!this.formulario.valid) {
+      this.control = true;
+    } else {
+      this.control = false;
+      this.tratarLogin();
+    }
+  }
+  tratarLogin() {
+    console.log('FORMULARIO: ', this.formulario);
 
+    // TO DO
+    // Validación en servicio con el servidor. 
+    // Error si no es correcto encima del botón acceder eje error usu y pass
+    // Cerrar ventana al logarse. Poner nombre usu en el nav. 
+  }
 }
