@@ -30,6 +30,13 @@ import { GralBandasComponent } from './bandas/gral-bandas/gral-bandas.component'
 import { GralSalasComponent } from './salas/gral-salas/gral-salas.component';
 import { GralEventosComponent } from './eventos/gral-eventos/gral-eventos.component';
 
+// Importación modulo traducción
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,9 +70,24 @@ import { GralEventosComponent } from './eventos/gral-eventos/gral-eventos.compon
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: createTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+//Exportar función traducción
+
+export function createTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
+
+}

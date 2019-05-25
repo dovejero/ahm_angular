@@ -1,0 +1,24 @@
+{
+    "nav": {
+        "navEng": "English",
+        "navEsp": "Spanish",
+        "eventos": "Events",
+        "salas": "Spaces",
+        "grupos": "Groups",
+        "usuario": "User",
+        "login": "Login/Signin",
+        "salir": "Log Out"
+    },
+    "modal": {
+        "login": "Login",
+        "registro": "SignIn"
+    },
+    "formulario": {
+        "titlogin": "Hola de nuevo puedes validarte ",
+        "usuario": "Usuario",
+        "pass": "Contraseña",
+        "olvido": "Olvidaste la contraseña?",
+        "recordar": "Recordar",
+        "login": "Acceder"
+    }
+}
