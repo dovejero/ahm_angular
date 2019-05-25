@@ -6,7 +6,19 @@
         "salas": "Spaces",
         "grupos": "Groups",
         "usuario": "User",
-        "login": "Log in/Sign in",
+        "login": "Login/Signin",
         "salir": "Log Out"
+    },
+    "modal": {
+        "login": "Login",
+        "registro": "SignIn"
+    },
+    "formulario": {
+        "titlogin": "Hola de nuevo puedes validarte ",
+        "usuario": "Usuario",
+        "pass": "Contraseña",
+        "olvido": "Olvidaste la contraseña?",
+        "recordar": "Recordar",
+        "login": "Acceder"
     }
 }

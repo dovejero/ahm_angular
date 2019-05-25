@@ -12,5 +12,13 @@
     "modal": {
         "login": "Login",
         "registro": "Registro"
+    },
+    "formulario": {
+        "titlogin": "Hola de nuevo! puedes validarte ",
+        "usuario": "Usuario",
+        "pass": "Contraseña",
+        "olvido": "Olvidaste la contraseña?",
+        "recordar": "Recordar",
+        "login": "Acceder"
     }
 }
