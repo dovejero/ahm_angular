@@ -2,3 +2,9 @@
 .boton{
     cursor: pointer;
 }
+small{
+    color: red!important;
+}
+.prueba{
+    color: red!important;
+}

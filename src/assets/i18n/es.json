@@ -1,6 +1,6 @@
 {
     "nav": {
-        "navEng": "Ingles",
+        "navEng": "Inglés",
         "navEsp": "Español",
         "eventos": "Eventos",
         "salas": "Salas",
@@ -12,17 +12,27 @@
     "modal": {
         "login": "Login",
         "registro": "Registro",
-        "cuenta": "Tienes ya una cuenta?",
-        "registrar": "Aun no estás registrado?"
+        "cuenta": "¿Tienes ya una cuenta?",
+        "registrar": "¿Aun no estás registrado?"
     },
     "formulario": {
-        "titlogin": "Hola de nuevo! accedemos? ",
+        "titlogin": "Hola de nuevo! ¿Accedemos? ",
         "usuario": "Usuario",
         "pass": "Contraseña",
         "olvido": "Olvidaste la contraseña?",
         "recordar": "Recordar",
         "login": "Acceder",
         "valpassword": "Password entre 4 y 8 carácteres y uno de ellos numérico",
-        "valusuario": "Usuario obligatorio"
+        "valusuario": "Usuario obligatorio",
+        "valmail": "Formato email no válido",
+        "valrepite": "Los campos de contraseña no coinciden",
+        "titregistro": "¿Comenzamos el registro?",
+        "reppass": "Repetir contraseña",
+        "roluser": "Usuario",
+        "rolbanda": "Grupo",
+        "rolsala": "Sala",
+        "rol": "Selecciona Rol de registro.",
+        "mail": "Email",
+        "registro": "Registro"
     }
 }
