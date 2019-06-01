@@ -69,6 +69,8 @@ export class FormRegistroComponent implements OnInit {
 
     console.log('FORMULARIO: ', this.formulario.value.rolradio);
     this.opc0 = false;
+
+    //si valida el alta de usuario y no coincide con ninguno dado de alta pase al siguiente paso. Puede saltarse estos pasos. Por defecto estará desactivado el perfil si no complimenta los campos de registro.
     switch (this.formulario.value.rolradio) {
       case 'user':
         this.opc1 = true;

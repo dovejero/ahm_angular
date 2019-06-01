@@ -33,6 +33,23 @@
         "rolsala": "Sala",
         "rol": "Selecciona Rol de registro.",
         "mail": "Email",
-        "registro": "Registro"
+        "registro": "Registro",
+        "nombre": "Nombre",
+        "icono": "Icono",
+        "imagen": "Imagen",
+        "bio": "Bio",
+        "componentes": "Nº de Componentes",
+        "estilo": "Estilo",
+        "provincia": "Provincia",
+        "localidad": "Localidad",
+        "redes": "Redes",
+        "comentario": "Comentarios",
+        "multiple": "Selección múltiple",
+        "siguiente": "Siguiente",
+        "atras": "Atrás",
+        "infobanda": "Info Banda",
+        "ubicacion": "Ubicación",
+        "redessoc": "Redes Sociales",
+        "enviar": "Enviar"
     }
 }

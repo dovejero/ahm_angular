@@ -1,12 +1,61 @@
-<h1>Formulario Banda</h1>
+<!-- pasarlo a título con un outlet -->
+<!-- desactivar el botón de login cuando ya se acceda a este registro -->
+<!-- <h5>Formulario Banda</h5> -->
 
-<div class="modal-body text-dark">
-  <div class="progress">
-    <div class="progress-bar" role="progressbar" style="width: 33%" aria-valuenow="15" aria-valuemin="0"
-      aria-valuemax="100">Registro 1</div>
-    <div class="progress-bar bg-success" role="progressbar" style="width: 33%" aria-valuenow="30" aria-valuemin="0"
-      aria-valuemax="100">Registro 2</div>
-    <div class="progress-bar bg-info" role="progressbar" style="width: 34%" aria-valuenow="20" aria-valuemin="0"
-      aria-valuemax="100">Registro 3</div>
+<div class="text-dark">
+  <div class="progress btn-group btn-group-toggle" data-toggle="buttons">
+    <label [ngClass]="{active: opc0}" class="btn btn-secondary active progress-bar" role="progressbar"
+      style="width: 33%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" (click)="cambioOpcion(0)">
+      <input type="radio" name="options" id="option1" autocomplete="off" checked> {{'formulario.infobanda' | translate}}
+    </label>
+    <label [ngClass]="{active: opc1}" class="btn btn-secondary progress-bar" role="progressbar" style="width: 33%"
+      aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" (click)="cambioOpcion(1)">
+      <input type="radio" name="options" id="option2" autocomplete="off"> {{'formulario.ubicacion' | translate}}
+    </label>
+    <label [ngClass]="{active: opc2}" class="btn btn-secondary progress-bar" role="progressbar" style="width: 33%"
+      aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" (click)="cambioOpcion(2)">
+      <input type="radio" name="options" id="option3" autocomplete="off"> {{'formulario.redessoc' | translate}}
+    </label>
   </div>
-</div>
+  <hr>
+  <div>
+    <form novalidate [formGroup]="formulario" (ngSubmit)='tratarSubmit()'>
+      <div class="form-row">
+
+        <div class="form-group col-12">
+          <input type="text" class="form-control form-control-sm" formControlName="nombre"
+            [placeholder]="'formulario.nombre' | translate">
+          <small *ngIf="formulario.controls['nombre'].errors && control" id="errorNombre"
+            class="form-text text-muted">{{'formulario.valusuario' | translate}}</small>
+        </div>
+        <div class="form-group col-4" style="background-color: red; height: 20px">ICONO</div>
+        <div class="form-group col-8" style="background-color: green; height: 20px">FOTO</div>
+        <!-- imagenes logo e imagen de grupo -->
+        <div class="form-group col-12">
+          <textarea rows="4" class="form-control form-control-sm" formControlName="bio"
+            [placeholder]="'formulario.bio' | translate">
+        </textarea>
+          <small *ngIf="formulario.controls['bio'].errors && control" id="errorBio"
+            class="form-text text-muted">{{'formulario.valmail' | translate}}</small>
+        </div>
+        <div class="form-group col-6">
+          <input type="number" class="form-control form-control-sm" formControlName="componentes"
+            [placeholder]="'formulario.componentes' | translate">
+        </div>
+        <div class="form-group col-6">
+          <select class="custom-select" multiple>
+            <option selected>{{'formulario.multiple' | translate}}</option>
+            <option value="1">ROCK</option>
+            <option value="2">POP</option>
+            <option value="3">SKA</option>
+          </select>
+        </div>
+
+      </div>
+      <a *ngIf="opc0 || opc1" class="btn btn-success active float-right" role="button" aria-pressed="true"
+        (click)="adelante()">{{'formulario.siguiente' | translate}}</a>
+      <a *ngIf="opc1 || opc2" class="btn btn-warning active float-left" role="button" aria-pressed="true"
+        (click)="atras()">{{'formulario.atras' | translate}}</a>
+      <input *ngIf="opc2" class="btn btn-primary float-right" type="submit" [value]="'formulario.enviar' | translate">
+    </form>
+  </div>

@@ -8,7 +8,7 @@
       <div class="form-group">
         <input type="text" class="form-control form-control-sm" formControlName="usuario"
           [placeholder]="'formulario.usuario' | translate">
-        <small *ngIf="formulario.controls['usuario'].errors && control" id="errorNombre"
+        <small *ngIf="formulario.controls['usuario'].errors && control" id="errorUsuario"
           class="form-text text-muted">{{'formulario.valusuario' | translate}}</small>
       </div>
       <div class="form-group">
@@ -20,7 +20,7 @@
       <div class="form-group">
         <input type="password" class="form-control form-control-sm" formControlName="password"
           [placeholder]="'formulario.pass' | translate">
-        <small *ngIf="formulario.controls['password'].errors && control" id="errorNombre"
+        <small *ngIf="formulario.controls['password'].errors && control" id="errorPassword"
           class="form-text text-muted">{{'formulario.valpassword' | translate}}</small>
       </div>
       <div class="form-group">
