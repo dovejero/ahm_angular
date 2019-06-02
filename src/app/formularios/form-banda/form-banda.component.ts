@@ -9,15 +9,14 @@ export class FormBandaComponent implements OnInit {
 
   formulario: FormGroup;
   control: boolean;
-  opc0: boolean;
-  opc1: boolean;
-  opc2: boolean;
-  i: number;
+  visible: string[];
+  steps: boolean[];
+  posicion: number;
   constructor() {
-    this.i = 0
-    this.opc0 = true;
-    this.opc1 = false;
-    this.opc2 = false;
+
+    this.posicion = 0
+    this.steps = [true, false, false]
+    this.visible = ['block', 'none', 'none']
     this.control = false;
     this.formulario = new FormGroup({
       nombre: new FormControl('', [
@@ -34,27 +33,37 @@ export class FormBandaComponent implements OnInit {
 
   ngOnInit() {
   }
+  cambioSteps(valor) {
+    for (let el = 0; el < this.steps.length; el++) {
+      this.steps[el] = false;
+      if (el == this.steps.length - 1) {
+        this.steps[valor] = true;
+      }
+    }
+  }
+  cambioDisplay(valor) {
+    for (let el = 0; el < this.visible.length; el++) {
+      this.visible[el] = 'none';
+      if (el == this.steps.length - 1) {
+        this.visible[valor] = 'block';
+      }
+    }
+  }
   cambioOpcion(valor) {
-    this.opc0 = false
-    this.opc1 = false
-    this.opc2 = false
-    this.i = valor;
-    eval("this.opc" + this.i + "=" + true);
+    this.cambioSteps(valor);
+    this.cambioDisplay(valor);
+    this.posicion = valor;
   }
   adelante() {
-    this.opc0 = false
-    this.opc1 = false
-    this.opc2 = false
-    this.i += 1
-    eval("this.opc" + this.i + "=" + true);
-    console.log("I ", this.i, " this.opc0 ", this.opc0, " this.opc1 ", this.opc1, " this.opc2 ", this.opc2)
+    this.posicion += 1;
+    this.cambioSteps(this.posicion);
+    this.cambioDisplay(this.posicion);
   }
   atras() {
-    this.opc0 = false
-    this.opc1 = false
-    this.opc2 = false
-    this.i -= 1
-    eval("this.opc" + this.i + "=" + true);
+    this.posicion -= 1;
+    this.cambioSteps(this.posicion);
+    this.cambioDisplay(this.posicion);
+
   }
   tratarSubmit() {
     // console.log(this.formulario.valid);
@@ -73,15 +82,12 @@ export class FormBandaComponent implements OnInit {
     // Quitar opción de abajo de volver a login cuando registre 
 
     // console.log('FORMULARIO: ', this.formulario.value.rolradio);
-    this.opc0 = false;
 
     //si valida el alta de usuario y no coincide con ninguno dado de alta pase al siguiente paso. Puede saltarse estos pasos. Por defecto estará desactivado el perfil si no complimenta los campos de registro.
     switch (this.formulario.value.rolradio) {
       case 'user':
-        this.opc1 = true;
         break;
       case 'banda':
-        this.opc2 = true;
         break;
       case 'sala':
         break;
