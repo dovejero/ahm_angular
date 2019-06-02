@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import * as $ from 'jquery';
 @Component({
   selector: 'app-form-banda',
   templateUrl: './form-banda.component.html',
@@ -12,22 +13,44 @@ export class FormBandaComponent implements OnInit {
   visible: string[];
   steps: boolean[];
   posicion: number;
-  constructor() {
+  localizacion: any;
+  provinciaArray: string[];
+  localidadArray: string[];
+  latitud: number;
+  longitud: number;
+  latlng: any;
+  habilitado: boolean;
 
-    this.posicion = 0
+  prueba: string;
+  constructor() {
+    this.latlng = {};
+    this.localizacion = {}
+    this.provinciaArray = [];
+    this.localidadArray = [];
+    this.latitud = null;
+    this.longitud = null;
+    this.habilitado = true;
+    this.posicion = 0;
     this.steps = [true, false, false]
     this.visible = ['block', 'none', 'none']
     this.control = false;
     this.formulario = new FormGroup({
       nombre: new FormControl('', [
-        Validators.required
       ]),
       bio: new FormControl('', [
-        Validators.required,
-        Validators.pattern(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
       ]),
       componentes: new FormControl('', [
-      ])
+      ]),
+      tipo: new FormControl('', [
+      ]),
+      provincia: new FormControl('', [
+      ]),
+      localidad: new FormControl('', [
+      ]),
+      lat: new FormControl('', [
+      ]),
+      lng: new FormControl('', [
+      ]),
     })
   }
 
@@ -53,20 +76,82 @@ export class FormBandaComponent implements OnInit {
     this.cambioSteps(valor);
     this.cambioDisplay(valor);
     this.posicion = valor;
+    if (this.posicion == 1) {
+      this.datosLocalizacion();
+    }
   }
   adelante() {
     this.posicion += 1;
+    if (this.posicion == 1) {
+      this.datosLocalizacion();
+    }
+    // console.log('Datos', this.provinciaArray);
     this.cambioSteps(this.posicion);
     this.cambioDisplay(this.posicion);
   }
   atras() {
     this.posicion -= 1;
+    if (this.posicion == 1) {
+      this.datosLocalizacion();
+    }
     this.cambioSteps(this.posicion);
     this.cambioDisplay(this.posicion);
 
   }
+  datosLocalizacion() {
+    this.localizacion = {
+      "Almería": [
+        {
+          "poblacion": "Abla",
+          "Latitud": 37.14114,
+          "Longitud": -2.780104
+        },
+        {
+          "poblacion": "Abrucena",
+          "Latitud": 37.13305,
+          "Longitud": -2.797098
+        }],
+      "Madrid": [
+        {
+          "poblacion": "Fuenlabrada",
+          "Latitud": 37.14114,
+          "Longitud": -2.780104
+        },
+        {
+          "poblacion": "Leganés",
+          "Latitud": 37.13305,
+          "Longitud": -2.797098
+        }]
+    }
+    this.provinciaArray = [];
+    let provincia = Object.keys(this.localizacion);
+    for (let prop of provincia) {
+      this.provinciaArray.push(prop)
+    }
+  }
+  datosUbicacion(provincia) {
+    // console.log(provincia.target.value);
+    for (let item in this.localizacion) {
+      if (item == provincia.target.value) {
+        this.localidadArray = this.localizacion[item]
+      }
+    }
+    this.habilitado = false;
+  }
+  datosLocalidad(plocalidad) {
+    function local(dato) {
+      return dato.poblacion == plocalidad.target.value;
+    }
+    let valor = this.localidadArray.find(local);
+    let newValor = JSON.stringify(valor);
+    let objeto = JSON.parse(newValor);
+    this.latitud = parseFloat(objeto.Latitud);
+    this.longitud = parseFloat(objeto.Longitud);
+    this.latlng = { lat: this.latitud, lng: this.longitud }
+
+  }
   tratarSubmit() {
-    // console.log(this.formulario.valid);
+    console.log(this.formulario.value);
     if (!this.formulario.valid) {
       this.control = true;
     } else {

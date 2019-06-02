@@ -21,48 +21,77 @@
   <hr>
   <div>
     <form novalidate [formGroup]="formulario" (ngSubmit)='tratarSubmit()'>
-      <div class="form-row">
-        <div class="form-group col-12">
-          <input type="text" class="form-control form-control-sm" formControlName="nombre"
-            [placeholder]="'formulario.nombre' | translate">
-          <small *ngIf="formulario.controls['nombre'].errors && control" id="errorNombre"
-            class="form-text text-muted">{{'formulario.valusuario' | translate}}</small>
-        </div>
-        <div class="form-group col-4" style="background-color: red; height: 20px">ICONO</div>
-        <div class="form-group col-8" style="background-color: green; height: 20px">FOTO</div>
-        <!-- imagenes logo e imagen de grupo -->
-        <div class="form-group col-12">
-          <textarea rows="4" class="form-control form-control-sm" formControlName="bio"
-            [placeholder]="'formulario.bio' | translate">
-        </textarea>
-          <small *ngIf="formulario.controls['bio'].errors && control" id="errorBio"
-            class="form-text text-muted">{{'formulario.valmail' | translate}}</small>
-        </div>
-        <div class="form-group col-6">
-          <input type="number" class="form-control form-control-sm" formControlName="componentes"
-            [placeholder]="'formulario.componentes' | translate">
-        </div>
-        <div class="form-group col-6">
-          <select class="custom-select" multiple>
-            <option selected>{{'formulario.multiple' | translate}}</option>
-            <option value="1">ROCK</option>
-            <option value="2">POP</option>
-            <option value="3">SKA</option>
-          </select>
-        </div>
-        {{visible[1]}}
-        <div [style.display]="visible[1]">
-          <h1>prueba 1</h1>
-        </div>
-        <div [style.display]="visible[2]">
-          <h1>prueba 2</h1>
+      <div class="col-12" [style.display]="visible[0]">
+        <div class="form-row">
+          <div class="form-group col-12">
+            <input type="text" class="form-control form-control-sm" formControlName="nombre"
+              [placeholder]="'formulario.nombre' | translate">
+            <small *ngIf="formulario.controls['nombre'].errors && control" id="errorNombre"
+              class="form-text text-muted">{{'formulario.valusuario' | translate}}</small>
+          </div>
+          <div class="form-group col-4" style="background-color: red; height: 20px">ICONO</div>
+          <div class="form-group col-8" style="background-color: green; height: 20px">FOTO</div>
+          <!-- imagenes logo e imagen de grupo -->
+          <div class="form-group col-12">
+            <textarea rows="4" class="form-control form-control-sm" formControlName="bio"
+              [placeholder]="'formulario.bio' | translate">
+            </textarea>
+            <small *ngIf="formulario.controls['bio'].errors && control" id="errorBio"
+              class="form-text text-muted">{{'formulario.valmail' | translate}}</small>
+          </div>
+          <div class="form-group col-6">
+            <input type="number" class="form-control form-control-sm" formControlName="componentes"
+              [placeholder]="'formulario.componentes' | translate">
+          </div>
+          <div class="form-group col-6">
+            <select class="custom-select" multiple formControlName="tipo">
+              <option selected>{{'formulario.multiple' | translate}}</option>
+              <option value="rock">ROCK</option>
+              <option value="pop">POP</option>
+              <option value="ska">SKA</option>
+            </select>
+          </div>
         </div>
       </div>
-      <a *ngIf="steps[0] || steps[1]" class="btn btn-success active float-right" role="button" aria-pressed="true"
+      <div class="col-12" [style.display]="visible[1]">
+        <div class="form-row">
+          <div class="form-group col-6">
+            <select class="custom-select" (change)="datosUbicacion($event)" formControlName="provincia">
+              <option value="">{{'formulario.provincia' | translate}}</option>
+              <option *ngFor="let item of provinciaArray" [value]="item">{{item}}</option>
+            </select>
+          </div>
+          <div class="form-group col-6">
+            <select class="custom-select" [disabled]="habilitado" (change)="datosLocalidad($event)"
+              formControlName="localidad">
+              <option value="">{{'formulario.localidad' | translate}}</option>
+              <option *ngFor="let item of localidadArray" [value]="item.poblacion">{{item.poblacion}}</option>
+            </select>
+          </div>
+          <div class="form-group col-12">
+            <app-mapagral [localizacion]="latlng"></app-mapagral>
+          </div>
+          <div class="form-group col-6">
+            <input type="text" class="form-control form-control-sm" formControlName="lat" placeholder="Latitud"
+              [value]="latitud" disabled>
+          </div>
+          <div class="form-group col-6">
+            <input type="text" class="form-control form-control-sm" formControlName="lng" placeholder="Longitud"
+              [value]="longitud" disabled>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-12" [style.display]="visible[2]">
+        <h1>prueba 2</h1>
+      </div>
+
+      <a *ngIf="steps[0] || steps[1]" class="btn btn-success active float-right boton" role="button" aria-pressed="true"
         (click)="adelante()">{{'formulario.siguiente' | translate}}</a>
-      <a *ngIf="steps[1] || steps[2]" class="btn btn-warning active float-left" role="button" aria-pressed="true"
+      <a *ngIf="steps[1] || steps[2]" class="btn btn-warning active float-left boton" role="button" aria-pressed="true"
         (click)="atras()">{{'formulario.atras' | translate}}</a>
       <input *ngIf="steps[2]" class="btn btn-primary float-right" type="submit"
         [value]="'formulario.enviar' | translate">
     </form>
+
   </div>
