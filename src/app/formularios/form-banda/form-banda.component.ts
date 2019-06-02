@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import * as $ from 'jquery';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators'
 @Component({
   selector: 'app-form-banda',
   templateUrl: './form-banda.component.html',
@@ -20,9 +23,12 @@ export class FormBandaComponent implements OnInit {
   longitud: number;
   latlng: any;
   habilitado: boolean;
+  uploadPercent: Observable<number>
+  imagenO: any;
+  logoO: any;
 
   prueba: string;
-  constructor() {
+  constructor(private storage: AngularFireStorage) {
     this.latlng = {};
     this.localizacion = {}
     this.provinciaArray = [];
@@ -51,11 +57,25 @@ export class FormBandaComponent implements OnInit {
       ]),
       lng: new FormControl('', [
       ]),
+      imagen: new FormControl('', [
+      ]),
+      logo: new FormControl('', [
+      ]),
     })
   }
 
   ngOnInit() {
   }
+
+  onChangeLogo(e) {
+    console.log(e)
+    this.logoO = e.target.files[0];
+  }
+  onChangeImg(e) {
+    console.log(e)
+    this.imagenO = e.target.files[0];
+  }
+
   cambioSteps(valor) {
     for (let el = 0; el < this.steps.length; el++) {
       this.steps[el] = false;
@@ -147,6 +167,10 @@ export class FormBandaComponent implements OnInit {
     let objeto = JSON.parse(newValor);
     this.latitud = parseFloat(objeto.Latitud);
     this.longitud = parseFloat(objeto.Longitud);
+    this.formulario.value.lat = this.latitud;
+    this.formulario['lat'] = this.latitud;
+    this.formulario.value.lng = this.longitud;
+    this.formulario['lng'] = this.longitud;
     this.latlng = { lat: this.latitud, lng: this.longitud }
 
   }
@@ -156,31 +180,38 @@ export class FormBandaComponent implements OnInit {
       this.control = true;
     } else {
       this.control = false;
-      this.tratarLogin();
+      this.subirImagen(this.imagenO, 'imagen')
+      this.subirImagen(this.logoO, 'logo')
     }
   }
-  tratarLogin() {
+  subirImagen(valImg, tipo) {
+    const filePath = 'imagenes/' + valImg.name;
+    const fileRef = this.storage.ref(filePath);
+    const tarea = this.storage.upload(filePath, valImg);
+    // tarea.percentageChanges().subscribe(percent => {
+    //   console.log(percent)
+    // })
+    this.uploadPercent = tarea.percentageChanges();
 
-    // TO DO
-    // Validación en servicio con el servidor. 
-    // Tratar y devolver error en caso de que no se pueda registrar. En caso correcto pasar a la opción del radio
-    // Quitar opción de abajo de volver a login cuando registre 
+    tarea.snapshotChanges().pipe(
+      finalize(() => {
+        fileRef.getDownloadURL().subscribe(url => {
+          console.log('URL: ', url);
 
-    // console.log('FORMULARIO: ', this.formulario.value.rolradio);
-
-    //si valida el alta de usuario y no coincide con ninguno dado de alta pase al siguiente paso. Puede saltarse estos pasos. Por defecto estará desactivado el perfil si no complimenta los campos de registro.
-    switch (this.formulario.value.rolradio) {
-      case 'user':
-        break;
-      case 'banda':
-        break;
-      case 'sala':
-        break;
-      default:
-        break;
-    }
+          // Aquí guardaría en el array la url de la imagen para meterla en bbdd
+          if (tipo == 'imagen') {
+            this.formulario.value.imagen = url;
+            this.formulario['imagen'] = filePath;
+          } else if (tipo == 'logo') {
+            this.formulario.value.logo = url;
+            this.formulario['logo'] = filePath;
+          }
 
 
+          // console.log('FORMULARIO: ', this.formulario);
+        })
+      })
+    ).subscribe()
   }
 
 }

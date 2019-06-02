@@ -72,7 +72,6 @@ export class MapagralComponent implements OnInit {
     let marker = new google.maps.Marker({
       position: propsMap.center,
       map: this.map,
-      title: '!!Estamos aquí',
       animation: google.maps.Animation.DROP
     })
     this.markers.push(marker);

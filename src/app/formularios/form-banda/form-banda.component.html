@@ -29,10 +29,25 @@
             <small *ngIf="formulario.controls['nombre'].errors && control" id="errorNombre"
               class="form-text text-muted">{{'formulario.valusuario' | translate}}</small>
           </div>
-          <div class="form-group col-4" style="background-color: red; height: 20px">ICONO</div>
-          <div class="form-group col-8" style="background-color: green; height: 20px">FOTO</div>
+          <!-- <div class="form-group col-4" style="background-color: red; height: 20px">ICONO</div> -->
+          <div class="form-group col-6 custom-file">
+            <input type="file" class="custom-file-input" [placeholder]="'formulario.logo' | translate"
+              formControlName="logo" (change)="onChangeLogo($event)">
+            <label class="custom-file-label" for="customFileLang">{{'formulario.icono' | translate}}</label>
+            <small *ngIf="formulario.errors && formulario.errors['url'] && control"
+              class="form-text text-muted">{{formulario.errors['url']}}</small>
+          </div>
+          <div class="form-group col-6 custom-file">
+            <input type="file" class="custom-file-input" [placeholder]="'formulario.imagen' | translate"
+              formControlName="logo" (change)="onChangeImg($event)">
+            <label class="custom-file-label" for="customFileLang">{{'formulario.imagen' | translate}}</label>
+            <small *ngIf="formulario.errors && formulario.errors['url'] && control"
+              class="form-text text-muted">{{formulario.errors['url']}}</small>
+          </div>
+          <br><br>
+          <!-- <div class="form-group col-8" style="background-color: green; height: 20px">FOTO</div> -->
           <!-- imagenes logo e imagen de grupo -->
-          <div class="form-group col-12">
+          <div class="form-group col-12 mt-2">
             <textarea rows="4" class="form-control form-control-sm" formControlName="bio"
               [placeholder]="'formulario.bio' | translate">
             </textarea>
@@ -43,6 +58,7 @@
             <input type="number" class="form-control form-control-sm" formControlName="componentes"
               [placeholder]="'formulario.componentes' | translate">
           </div>
+          <br>
           <div class="form-group col-6">
             <select class="custom-select" multiple formControlName="tipo">
               <option selected>{{'formulario.multiple' | translate}}</option>
@@ -72,12 +88,12 @@
             <app-mapagral [localizacion]="latlng"></app-mapagral>
           </div>
           <div class="form-group col-6">
-            <input type="text" class="form-control form-control-sm" formControlName="lat" placeholder="Latitud"
-              [value]="latitud" disabled>
+            <input type="text" class="form-control form-control-sm" formControlName="lat"
+              [placeholder]="'formulario.latitud' | translate" [value]="latitud" disabled>
           </div>
           <div class="form-group col-6">
-            <input type="text" class="form-control form-control-sm" formControlName="lng" placeholder="Longitud"
-              [value]="longitud" disabled>
+            <input type="text" class="form-control form-control-sm" formControlName="lng"
+              [placeholder]="'formulario.longitud' | translate" [value]="longitud" disabled>
           </div>
         </div>
 
