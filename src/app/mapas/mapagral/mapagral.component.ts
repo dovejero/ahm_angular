@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, Input, SimpleChanges } from '@angular/core';
 
+declare var google;
+
 @Component({
   selector: 'app-mapagral',
   templateUrl: './mapagral.component.html',
