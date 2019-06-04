@@ -6,10 +6,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./mapa-eventos.component.css']
 })
 export class MapaEventosComponent implements OnInit {
-
-  constructor() { }
+  datosLoc: any[];
+  constructor() {
+    this.datosLoc = [];
+  }
 
   ngOnInit() {
+    this.datosLoc = [
+      {
+        "poblacion": "Abla",
+        "Latitud": 37.14114,
+        "Longitud": -2.780104
+      },
+      {
+        "poblacion": "Abrucena",
+        "Latitud": 37.13305,
+        "Longitud": -2.797098
+      }]
   }
 
 }

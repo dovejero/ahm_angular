@@ -40,6 +40,7 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { FormUserComponent } from './formularios/form-user/form-user.component';
 import { FormEventosComponent } from './formularios/form-eventos/form-eventos.component';
 import { MapagralComponent } from './mapas/mapagral/mapagral.component';
+import { MapaEventComponent } from './mapas/mapa-event/mapa-event.component';
 
 
 
@@ -73,7 +74,8 @@ import { MapagralComponent } from './mapas/mapagral/mapagral.component';
     GralEventosComponent,
     FormUserComponent,
     FormEventosComponent,
-    MapagralComponent
+    MapagralComponent,
+    MapaEventComponent
   ],
   imports: [
     BrowserModule,
