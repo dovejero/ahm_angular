@@ -50,8 +50,7 @@ export class MapaEventComponent implements OnInit {
 
       (function (marker, data) {
         google.maps.event.addListener(marker, "click", function (e) {
-          //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
-          infowindow.setContent(`<div class="card"><img src="..." class="card-img-top" alt="..."><div class="card-body"><h5 class="card-title">${data.poblacion}</h5><p class="card-text">lat ${data.Latitud}  Lng: ${data.Longitud} </p><a href="#" class="btn btn-primary">Ir al evento</a></div></div>`);
+          infowindow.setContent(`<div class="card"><img src="..." class="card-img-top" alt="..."><div class="card-body"><h5 class="card-title">${data.poblacion}</h5><p class="card-text">lat ${data.Latitud}  Lng: ${data.Longitud} </p><a _ngcontent-sdw-c1="" class="btn btn-primary" ng-reflect-router-link="/eventos" href="/eventos"> Eventos </a></div></div>`);
           infowindow.open(this.map, marker);
         });
       })(marker, data);
