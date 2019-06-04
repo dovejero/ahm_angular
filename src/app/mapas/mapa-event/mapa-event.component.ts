@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, Input, SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 
 declare var google;
 
@@ -14,7 +15,7 @@ export class MapaEventComponent implements OnInit {
   map: any;
   markers: any[];
 
-  constructor() {
+  constructor(private router: Router) {
     this.markers = [];
   }
 
@@ -48,12 +49,22 @@ export class MapaEventComponent implements OnInit {
         map: this.map,
       });
 
-      (function (marker, data) {
+      (function (marker, data, pThis) {
         google.maps.event.addListener(marker, "click", function (e) {
-          infowindow.setContent(`<div class="card"><img src="..." class="card-img-top" alt="..."><div class="card-body"><h5 class="card-title">${data.poblacion}</h5><p class="card-text">lat ${data.Latitud}  Lng: ${data.Longitud} </p><a _ngcontent-sdw-c1="" class="btn btn-primary" ng-reflect-router-link="/eventos" href="/eventos"> Eventos </a></div></div>`);
+          infowindow.setContent(`<div class="card"><img src="..." class="card-img-top" alt="..."><div class="card-body"><h5 class="card-title">${data.poblacion}</h5><p class="card-text">lat ${data.Latitud}  Lng: ${data.Longitud} </p><button id="clickableItem">Click me</button>`);
           infowindow.open(this.map, marker);
+
+          google.maps.event.addListener(infowindow, 'domready', () => {
+            //now my elements are ready for dom manipulation
+            var clickableItem = document.getElementById('clickableItem');
+            clickableItem.addEventListener('click', () => {
+
+              pThis.router.navigate(['/'+data.poblacion]);
+              console.log(data.poblacion)
+            });
+          });
         });
-      })(marker, data);
+      })(marker, data, this);
 
       this.markers.push(marker);
 
