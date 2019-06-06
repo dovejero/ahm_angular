@@ -55,11 +55,10 @@ export class MapaEventComponent implements OnInit {
           infowindow.open(this.map, marker);
 
           google.maps.event.addListener(infowindow, 'domready', () => {
-            //now my elements are ready for dom manipulation
             var clickableItem = document.getElementById('clickableItem');
             clickableItem.addEventListener('click', () => {
-
-              pThis.router.navigate(['/'+data.poblacion]);
+              pThis.prueba(data)
+              // pThis.router.navigate(['/'+data.poblacion]);
               console.log(data.poblacion)
             });
           });
@@ -70,6 +69,10 @@ export class MapaEventComponent implements OnInit {
 
     }
 
+  }
+
+  prueba(val) {
+    console.log('VAL: ', val)
   }
 
   showError(error) {

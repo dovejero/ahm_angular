@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-lista-salas',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./lista-salas.component.css']
 })
 export class ListaSalasComponent implements OnInit {
-
-  constructor() { }
+  parametro: number;
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+    this.parametro = 0;
+  }
 
   ngOnInit() {
+    this.activatedRoute.parent.params.subscribe(params => {
+      console.log('PARAMS PADRE: ', params.id);
+      this.parametro = params.id;
+    })
   }
 
 }
