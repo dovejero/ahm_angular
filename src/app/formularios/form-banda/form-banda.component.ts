@@ -11,6 +11,10 @@ import { finalize } from 'rxjs/operators'
 })
 export class FormBandaComponent implements OnInit {
 
+  imagePath;
+  imgURL: any;
+  message: string;
+
   formulario: FormGroup;
   control: boolean;
   visible: string[];
@@ -67,10 +71,24 @@ export class FormBandaComponent implements OnInit {
   ngOnInit() {
   }
 
-  onChangeLogo(e) {
+  onChangeLogo(e, files) {
     console.log(e)
+    if (files.length === 0)
+      return;
+    var mimeType = files[0].type;
+    if (mimeType.match(/image\/*/) == null) {
+      this.message = "Only images are supported.";
+      return;
+    }
+    var reader = new FileReader();
+    this.imagePath = files;
+    reader.readAsDataURL(files[0]);
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
+    }
     this.logoO = e.target.files[0];
   }
+
   onChangeImg(e) {
     console.log(e)
     this.imagenO = e.target.files[0];
