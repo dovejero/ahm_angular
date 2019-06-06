@@ -1,5 +1,7 @@
 import { Component, OnInit, ViewChild, Input, SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
+import { EventosService } from '../../servicios/eventos.service';
+
 
 declare var google;
 
@@ -15,12 +17,16 @@ export class MapaEventComponent implements OnInit {
   map: any;
   markers: any[];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, private eventosService: EventosService) {
     this.markers = [];
   }
 
   ngOnInit() {
     this.showPosition(this.localizacion);
+
+    this.eventosService.getUsuarios().then((res) => {
+      console.log(res)
+    });
   }
 
   showPosition(position) {
