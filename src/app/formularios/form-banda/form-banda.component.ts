@@ -11,7 +11,9 @@ import { finalize } from 'rxjs/operators'
 })
 export class FormBandaComponent implements OnInit {
 
-  imagePath;
+  pathLogo;
+  pathImagen
+  logoURL: any;
   imgURL: any;
   message: string;
 
@@ -72,25 +74,27 @@ export class FormBandaComponent implements OnInit {
   }
 
   onChangeLogo(e, files) {
-    console.log(e)
+    console.log('LOGO ', files)
     if (files.length === 0)
       return;
-    var mimeType = files[0].type;
-    if (mimeType.match(/image\/*/) == null) {
-      this.message = "Only images are supported.";
-      return;
-    }
     var reader = new FileReader();
-    this.imagePath = files;
+    // this.pathLogo = files;
     reader.readAsDataURL(files[0]);
     reader.onload = (_event) => {
-      this.imgURL = reader.result;
+      this.logoURL = reader.result;
     }
     this.logoO = e.target.files[0];
   }
 
-  onChangeImg(e) {
-    console.log(e)
+  onChangeImg(e, files2) {
+    // console.log('IMG ', files2)
+    if (files2.length === 0)
+      return;
+    var reader = new FileReader();
+    reader.readAsDataURL(files2[0]);
+    reader.onload = (_event) => {
+      this.imgURL = reader.result;
+    }
     this.imagenO = e.target.files[0];
   }
 
