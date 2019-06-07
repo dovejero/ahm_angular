@@ -11,7 +11,7 @@ export class LoginService {
   }
 
 
-  getUsuarios() {
-    return this.httpClient.get(this.serverApi + 'api/getAllUsers').toPromise();
-  }
+  // getUsuarios() {
+  //   return this.httpClient.get(this.serverApi + 'api/getAllUsers').toPromise();
+  // }
 }

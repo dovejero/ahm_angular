@@ -5,7 +5,13 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class SalasService {
-
+  serverApi: string;
   constructor(private httpClient: HttpClient) {
+    this.serverApi = 'http://localhost:3003/'
+  }
+
+
+  getRandomId() {
+    return this.httpClient.get(this.serverApi + 'api/salas/getRandomId').toPromise();
   }
 }

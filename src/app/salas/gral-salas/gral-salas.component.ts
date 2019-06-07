@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SalasService } from '../../servicios/salas.service';
 
 @Component({
   selector: 'app-gral-salas',
@@ -8,15 +9,19 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class GralSalasComponent implements OnInit {
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute) { }
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private salasService: SalasService) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
-      console.log('PARAMS: ', params.id);
+      // console.log('PARAMS: ', params.id);
       if (params.id == undefined) {
-        this.router.navigate(['/salas/1']);
+        this.salasService.getRandomId().then((res) => {
+          let idRandom = res['id']
+          this.router.navigate([`/salas/${idRandom}`]);
+        }).catch((err) => {
+          this.router.navigate([`/salas/1`]);
+        });
       }
-
     })
   }
 

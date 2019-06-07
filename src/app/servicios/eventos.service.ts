@@ -11,7 +11,7 @@ export class EventosService {
     this.serverApi = 'http://localhost:3003/'
   }
 
-  getUsuarios() {
-    return this.httpClient.get(this.serverApi + 'api/usuarios/getAllUsers').toPromise();
+  getRandomId() {
+    return this.httpClient.get(this.serverApi + 'api/eventos/getRandomId').toPromise();
   }
 }

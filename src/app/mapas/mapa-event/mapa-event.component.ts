@@ -23,10 +23,6 @@ export class MapaEventComponent implements OnInit {
 
   ngOnInit() {
     this.showPosition(this.localizacion);
-
-    this.eventosService.getUsuarios().then((res) => {
-      console.log(res)
-    });
   }
 
   showPosition(position) {
