@@ -30,7 +30,10 @@
               class="form-text text-muted">{{'formulario.valusuario' | translate}}</small>
           </div>
           <!-- <div class="form-group col-4" style="background-color: red; height: 20px">ICONO</div> -->
-          <div class="form-group col-12">
+
+
+          <div class="upload form-group col-12">
+            <button type="button" class="btn btn-outline-info boton">{{'formulario.subirlogo' | translate}}</button>
             <input #file type="file" accept='image/*' class="form-control" [placeholder]="'formulario.logo' | translate"
               formControlName="logo" (change)="onChangeLogo($event, file.files)">
             <img [src]="imgURL" height="200" *ngIf="imgURL">
