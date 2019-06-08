@@ -52,6 +52,8 @@
         "redessoc": "Redes Sociales",
         "enviar": "Enviar",
         "subirlogo": "Subir Logo",
-        "subirimagen": "Subir Imagen"
+        "subirimagen": "Subir Imagen",
+        "latitud": "Latitud",
+        "longitud": "Longitud"
     }
 }
