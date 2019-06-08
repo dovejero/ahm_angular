@@ -70,14 +70,14 @@
       <div class="col-12" [style.display]="visible[1]">
         <div class="form-row">
           <div class="form-group col-6">
-            <select class="custom-select" (change)="datosLocalidad($event)" formControlName="provincia">
+            <select class="custom-select" (change)="datosLocalidad($event)">
               <option disabled selected value="">{{'formulario.provincia' | translate}}</option>
               <option *ngFor="let item of provinciaArray" [value]="[item.idProvincia, item.nombre]">{{item.nombre}}
               </option>
             </select>
           </div>
           <div class="form-group col-6">
-            <select class="custom-select" (change)="datosLatLng($event)" formControlName="localidad">
+            <select class="custom-select" (change)="datosLatLng($event)">
               <option disabled selected>{{'formulario.localidad' | translate}}</option>
               <option *ngFor="let item of localidadArray" [value]="[item.nombre, item.lat, item.lng]">
                 {{item.nombre}}</option>
@@ -93,6 +93,12 @@
           <div class="form-group col-6">
             <input type="text" class="form-control form-control-sm" formControlName="lng"
               [placeholder]="'formulario.longitud' | translate" [value]="longitud" disabled>
+          </div>
+          <div class="form-group col-6">
+            <input type="hidden" class="form-control form-control-sm" formControlName="provincia" [value]="provincia">
+          </div>
+          <div class="form-group col-6">
+            <input type="hidden" class="form-control form-control-sm" formControlName="localidad" [value]="localidad">
           </div>
         </div>
 

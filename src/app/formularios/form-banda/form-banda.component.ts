@@ -27,6 +27,8 @@ export class FormBandaComponent implements OnInit {
   localidadArray: any;
   latitud: number;
   longitud: number;
+  provincia: string;
+  localidad: string;
   latlng: any;
   habilitado: boolean;
   uploadPercent: Observable<number>
@@ -41,6 +43,8 @@ export class FormBandaComponent implements OnInit {
     this.localidadArray = [];
     this.latitud = null;
     this.longitud = null;
+    this.provincia = null;
+    this.localidad = null;
     this.habilitado = true;
     this.posicion = 0;
     this.steps = [true, false, false]
@@ -166,12 +170,15 @@ export class FormBandaComponent implements OnInit {
     }).catch((err) => {
 
     });
-    console.log('ARRAYLOCALIDADES: ', arrayLocalidades)
-    // this.formulario.value.provincia = arrayLocalidades[1];
+    this.provincia = arrayLocalidades[1];
+    this.formulario.value.provincia = arrayLocalidades[1];
+    this.formulario['provincia'] = arrayLocalidades[1];
   }
   datosLatLng(plocalidad) {
     let arrayLocalidades = plocalidad.target.value.split(',')
+    this.localidad = arrayLocalidades[0];
     this.formulario.value.localidad = arrayLocalidades[0];
+    this.formulario['localidad'] = arrayLocalidades[0];
     this.latitud = parseFloat(arrayLocalidades[1]);
     this.longitud = parseFloat(arrayLocalidades[2]);
     this.formulario.value.lat = this.latitud;
