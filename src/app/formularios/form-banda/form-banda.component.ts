@@ -153,14 +153,6 @@ export class FormBandaComponent implements OnInit {
 
     });
   }
-  // datosUbicacion(idProvincia) {
-  //   // console.log(provincia.target.value);
-  //   for (let item in this.localizacion) {
-  //     if (item == provincia.target.value) {
-  //       this.localidadArray = this.localizacion[item]
-  //     }
-  //   }
-  // }
   datosLocalidad(plocalidad) {
     // console.log(plocalidad.target.value)
     let arrayLocalidades = plocalidad.target.value.split(',')
@@ -198,33 +190,36 @@ export class FormBandaComponent implements OnInit {
     }
   }
   subirImagen(valImg, tipo) {
-    const filePath = 'imagenes/' + valImg.name;
-    const fileRef = this.storage.ref(filePath);
-    const tarea = this.storage.upload(filePath, valImg);
-    // tarea.percentageChanges().subscribe(percent => {
-    //   console.log(percent)
-    // })
-    this.uploadPercent = tarea.percentageChanges();
+    console.log(valImg)
+    if (valImg) {
+      const filePath = 'imagenes/' + valImg.name;
+      const fileRef = this.storage.ref(filePath);
+      const tarea = this.storage.upload(filePath, valImg);
+      // tarea.percentageChanges().subscribe(percent => {
+      //   console.log(percent)
+      // })
+      this.uploadPercent = tarea.percentageChanges();
 
-    tarea.snapshotChanges().pipe(
-      finalize(() => {
-        fileRef.getDownloadURL().subscribe(url => {
-          // console.log('URL: ', url);
+      tarea.snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe(url => {
+            console.log('URL: ', url);
 
-          // Aquí guardaría en el array la url de la imagen para meterla en bbdd
-          if (tipo == 'imagen') {
-            this.formulario.value.imagen = url;
-            this.formulario['imagen'] = filePath;
-          } else if (tipo == 'logo') {
-            this.formulario.value.logo = url;
-            this.formulario['logo'] = filePath;
-          }
+            // Aquí guardaría en el array la url de la imagen para meterla en bbdd
+            if (tipo == 'imagen') {
+              this.formulario.value.imagen = url;
+              this.formulario['imagen'] = filePath;
+            } else if (tipo == 'logo') {
+              this.formulario.value.logo = url;
+              this.formulario['logo'] = filePath;
+            }
 
 
-          // console.log('FORMULARIO: ', this.formulario);
+            // console.log('FORMULARIO: ', this.formulario);
+          })
         })
-      })
-    ).subscribe()
+      ).subscribe()
+    }
   }
 
 }
