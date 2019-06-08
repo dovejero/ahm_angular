@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
@@ -10,7 +10,7 @@ import { BandasService } from '../../servicios/bandas.service';
   styleUrls: ['./form-banda.component.css']
 })
 export class FormBandaComponent implements OnInit {
-
+  @Input() idUsuario: number;
   pathLogo;
   pathImagen
   logoURL: any;
@@ -180,13 +180,15 @@ export class FormBandaComponent implements OnInit {
     this.latlng = { lat: this.latitud, lng: this.longitud }
   }
   tratarSubmit() {
-    console.log(this.formulario.value);
+
     if (!this.formulario.valid) {
       this.control = true;
     } else {
       this.control = false;
       this.subirImagen(this.imagenO, 'imagen')
       this.subirImagen(this.logoO, 'logo')
+      this.formulario.value.idUsuario = this.idUsuario;
+      console.log(this.formulario.value);
     }
   }
   subirImagen(valImg, tipo) {
@@ -204,8 +206,6 @@ export class FormBandaComponent implements OnInit {
         finalize(() => {
           fileRef.getDownloadURL().subscribe(url => {
             console.log('URL: ', url);
-
-            // Aquí guardaría en el array la url de la imagen para meterla en bbdd
             if (tipo == 'imagen') {
               this.formulario.value.imagen = url;
               this.formulario['imagen'] = filePath;
@@ -213,9 +213,6 @@ export class FormBandaComponent implements OnInit {
               this.formulario.value.logo = url;
               this.formulario['logo'] = filePath;
             }
-
-
-            // console.log('FORMULARIO: ', this.formulario);
           })
         })
       ).subscribe()

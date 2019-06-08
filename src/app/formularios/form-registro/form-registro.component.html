@@ -16,6 +16,8 @@
           [placeholder]="'formulario.mail' | translate">
         <small *ngIf="formulario.controls['mail'].errors && control" id="errorMail"
           class="form-text text-muted">{{'formulario.valmail' | translate}}</small>
+        <small *ngIf="noAlta" id="errorMail"
+          class="form-text text-muted">{{'formulario.yaregistrado' | translate}}</small>
       </div>
       <div class="form-group">
         <input type="password" class="form-control form-control-sm" formControlName="password"
@@ -59,7 +61,7 @@
       <input class="btn btn-lg btn-success btn-block" type="submit" [value]="'formulario.registro' | translate">
     </form>
   </div>
-  <app-form-user *ngIf="opc1"></app-form-user>
-  <app-form-banda *ngIf="opc2"></app-form-banda>
-  <app-form-sala *ngIf="opc3"></app-form-sala>
+  <!-- <app-form-user [idUsuario]="userId" *ngIf="opc1"></app-form-user> -->
+  <app-form-banda [idUsuario]="userId" *ngIf="opc2"></app-form-banda>
+  <!-- <app-form-sala [idUsuario]="userId" *ngIf="opc3"></app-form-sala> -->
 </div>
