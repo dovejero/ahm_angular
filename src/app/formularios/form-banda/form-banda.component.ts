@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators'
+import { BandasService } from '../../servicios/bandas.service';
 @Component({
   selector: 'app-form-banda',
   templateUrl: './form-banda.component.html',
@@ -22,8 +23,8 @@ export class FormBandaComponent implements OnInit {
   steps: boolean[];
   posicion: number;
   localizacion: any;
-  provinciaArray: string[];
-  localidadArray: string[];
+  provinciaArray: any;
+  localidadArray: any;
   latitud: number;
   longitud: number;
   latlng: any;
@@ -33,7 +34,7 @@ export class FormBandaComponent implements OnInit {
   logoO: any;
 
   prueba: string;
-  constructor(private storage: AngularFireStorage) {
+  constructor(private storage: AngularFireStorage, private bandasService: BandasService) {
     this.latlng = {};
     this.localizacion = {}
     this.provinciaArray = [];
@@ -70,10 +71,11 @@ export class FormBandaComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.listaProvicias();
   }
 
   onChangeLogo(e, files) {
-    console.log('LOGO ', files)
+    // console.log('LOGO ', files)
     if (files.length === 0)
       return;
     var reader = new FileReader();
@@ -118,13 +120,13 @@ export class FormBandaComponent implements OnInit {
     this.cambioDisplay(valor);
     this.posicion = valor;
     if (this.posicion == 1) {
-      this.datosLocalizacion();
+      this.listaProvicias();
     }
   }
   adelante() {
     this.posicion += 1;
     if (this.posicion == 1) {
-      this.datosLocalizacion();
+      this.listaProvicias();
     }
     // console.log('Datos', this.provinciaArray);
     this.cambioSteps(this.posicion);
@@ -133,67 +135,50 @@ export class FormBandaComponent implements OnInit {
   atras() {
     this.posicion -= 1;
     if (this.posicion == 1) {
-      this.datosLocalizacion();
+      this.listaProvicias();
     }
     this.cambioSteps(this.posicion);
     this.cambioDisplay(this.posicion);
 
   }
-  datosLocalizacion() {
-    this.localizacion = {
-      "Almería": [
-        {
-          "poblacion": "Abla",
-          "Latitud": 37.14114,
-          "Longitud": -2.780104
-        },
-        {
-          "poblacion": "Abrucena",
-          "Latitud": 37.13305,
-          "Longitud": -2.797098
-        }],
-      "Madrid": [
-        {
-          "poblacion": "Fuenlabrada",
-          "Latitud": 37.14114,
-          "Longitud": -2.780104
-        },
-        {
-          "poblacion": "Leganés",
-          "Latitud": 37.13305,
-          "Longitud": -2.797098
-        }]
-    }
-    this.provinciaArray = [];
-    let provincia = Object.keys(this.localizacion);
-    for (let prop of provincia) {
-      this.provinciaArray.push(prop)
-    }
+  listaProvicias() {
+    this.bandasService.getProvincias().then((res) => {
+      this.provinciaArray = res;
+
+    }).catch((err) => {
+
+    });
   }
-  datosUbicacion(provincia) {
-    // console.log(provincia.target.value);
-    for (let item in this.localizacion) {
-      if (item == provincia.target.value) {
-        this.localidadArray = this.localizacion[item]
-      }
-    }
-    this.habilitado = false;
-  }
+  // datosUbicacion(idProvincia) {
+  //   // console.log(provincia.target.value);
+  //   for (let item in this.localizacion) {
+  //     if (item == provincia.target.value) {
+  //       this.localidadArray = this.localizacion[item]
+  //     }
+  //   }
+  // }
   datosLocalidad(plocalidad) {
-    function local(dato) {
-      return dato.poblacion == plocalidad.target.value;
-    }
-    let valor = this.localidadArray.find(local);
-    let newValor = JSON.stringify(valor);
-    let objeto = JSON.parse(newValor);
-    this.latitud = parseFloat(objeto.Latitud);
-    this.longitud = parseFloat(objeto.Longitud);
+    // console.log(plocalidad.target.value)
+    let arrayLocalidades = plocalidad.target.value.split(',')
+    this.bandasService.getLocalidades(arrayLocalidades[0]).then((res) => {
+      this.localidadArray = res;
+
+    }).catch((err) => {
+
+    });
+    console.log('ARRAYLOCALIDADES: ', arrayLocalidades)
+    // this.formulario.value.provincia = arrayLocalidades[1];
+  }
+  datosLatLng(plocalidad) {
+    let arrayLocalidades = plocalidad.target.value.split(',')
+    this.formulario.value.localidad = arrayLocalidades[0];
+    this.latitud = parseFloat(arrayLocalidades[1]);
+    this.longitud = parseFloat(arrayLocalidades[2]);
     this.formulario.value.lat = this.latitud;
     this.formulario['lat'] = this.latitud;
     this.formulario.value.lng = this.longitud;
     this.formulario['lng'] = this.longitud;
     this.latlng = { lat: this.latitud, lng: this.longitud }
-
   }
   tratarSubmit() {
     console.log(this.formulario.value);
@@ -217,7 +202,7 @@ export class FormBandaComponent implements OnInit {
     tarea.snapshotChanges().pipe(
       finalize(() => {
         fileRef.getDownloadURL().subscribe(url => {
-          console.log('URL: ', url);
+          // console.log('URL: ', url);
 
           // Aquí guardaría en el array la url de la imagen para meterla en bbdd
           if (tipo == 'imagen') {
