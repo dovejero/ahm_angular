@@ -4,6 +4,10 @@ import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators'
 import { BandasService } from '../../servicios/bandas.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { Router } from '@angular/router';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-form-banda',
   templateUrl: './form-banda.component.html',
@@ -40,7 +44,7 @@ export class FormBandaComponent implements OnInit {
   redesSociales: Object = {
     redes: []
   }
-  constructor(private storage: AngularFireStorage, private bandasService: BandasService) {
+  constructor(private storage: AngularFireStorage, private bandasService: BandasService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.logoURL = "https://image.flaticon.com/icons/svg/15/15081.svg"
     this.imgURL = "http://pluspng.com/img-png/music-band-png-hd-bands-1200.jpg"
     this.latlng = {};
@@ -270,7 +274,17 @@ export class FormBandaComponent implements OnInit {
     }
   }
   enviarFormulario() {
-    this.bandasService.addPerfil(this.formulario.value);
+    try {
+      this.bandasService.addPerfil(this.formulario.value);
+      // $(document).ready(function () {
+      //   (<any>$(".toast")).toast({ autohide: false });
+      //   (<any>$(".toast")).toast("show");
+      // });
+      // this.router.navigate(['/eventos'])
+    } catch (err) {
+      console.log(err)
+    }
+    this.router.navigate(['/']);
   }
 
 }
