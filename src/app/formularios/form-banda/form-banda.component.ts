@@ -47,8 +47,8 @@ export class FormBandaComponent implements OnInit {
     this.localidad = null;
     this.habilitado = true;
     this.posicion = 0;
-    this.steps = [true, false, false]
-    this.visible = ['block', 'none', 'none']
+    this.steps = [true, false, false, false]
+    this.visible = ['block', 'none', 'none', 'none']
     this.control = false;
     this.formulario = new FormGroup({
       nombre: new FormControl('', [
@@ -129,7 +129,7 @@ export class FormBandaComponent implements OnInit {
   }
   adelante() {
     this.posicion += 1;
-    if (this.posicion == 1) {
+    if (this.posicion == 2) {
       this.listaProvicias();
     }
     // console.log('Datos', this.provinciaArray);
@@ -138,7 +138,7 @@ export class FormBandaComponent implements OnInit {
   }
   atras() {
     this.posicion -= 1;
-    if (this.posicion == 1) {
+    if (this.posicion == 2) {
       this.listaProvicias();
     }
     this.cambioSteps(this.posicion);

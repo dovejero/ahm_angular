@@ -11,18 +11,12 @@ import { LoginService } from '../../servicios/login.service';
 export class FormRegistroComponent implements OnInit {
   formulario: FormGroup;
   control: boolean;
-  opc0: boolean;
-  opc1: boolean;
-  opc2: boolean;
-  opc3: boolean;
+  opc: boolean[];
   userId: number;
   noAlta: boolean;
   constructor(private loginService: LoginService) {
     this.noAlta = false;
-    this.opc0 = true;
-    this.opc1 = false;
-    this.opc2 = false;
-    this.opc3 = false;
+    this.opc = [true, false, false, false]
     this.control = false;
     this.formulario = new FormGroup({
       usuario: new FormControl('user', [
@@ -69,16 +63,16 @@ export class FormRegistroComponent implements OnInit {
       if (!res['ko']) {
         this.userId = res[0].id;
         this.noAlta = false;
-        this.opc0 = false;
+        this.opc[0] = false;
         switch (this.formulario.value.rolradio) {
           case 'user':
-            this.opc1 = true;
+            this.opc[1] = true;
             break;
           case 'banda':
-            this.opc2 = true;
+            this.opc[2] = true;
             break;
           case 'sala':
-            this.opc3 = true;
+            this.opc[3] = true;
             break;
           default:
             break;
