@@ -14,4 +14,8 @@ export class SalasService {
   getRandomId() {
     return this.httpClient.get(this.serverApi + 'api/salas/getRandomId').toPromise();
   }
+
+  addPerfil(perfil) {
+    return this.httpClient.post(this.serverApi + 'api/salas/addPerfil', perfil).toPromise();
+  }
 }

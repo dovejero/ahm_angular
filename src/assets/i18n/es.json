@@ -60,6 +60,7 @@
         "latitud": "Latitud",
         "longitud": "Longitud",
         "yaregistrado": "Mail ya registrado",
-        "localizacion": "Dirección de ubicación"
+        "localizacion": "Dirección de ubicación",
+        "verubicacion": "Introduce una dirección"
     }
 }

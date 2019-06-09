@@ -3,8 +3,9 @@ import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators'
-import { BandasService } from '../../servicios/bandas.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { SalasService } from '../../servicios/salas.service';
+import { BandasService } from '../../servicios/bandas.service';
 
 @Component({
   selector: 'app-form-sala',
@@ -39,7 +40,7 @@ export class FormSalaComponent implements OnInit {
   redesSociales: Object = {
     redes: []
   }
-  constructor(private storage: AngularFireStorage, private bandasService: BandasService, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private storage: AngularFireStorage, private bandasService: BandasService, private salasService: SalasService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.logoURL = "https://image.flaticon.com/icons/svg/15/15081.svg"
     this.imgURL = "http://pluspng.com/img-png/music-band-png-hd-bands-1200.jpg"
     this.latlng = {};
@@ -237,7 +238,6 @@ export class FormSalaComponent implements OnInit {
     } else {
       this.control = false;
       this.formulario.value.idUsuario = this.idUsuario;
-      this.formulario.value.tipo = this.formulario.value.tipo.toString()
       this.formulario.value.redes = this.formulario.value.redes.toString()
       await this.subirImagen(this.imagenO, 'imagen');
       await this.subirImagen(this.logoO, 'logo');
@@ -248,7 +248,7 @@ export class FormSalaComponent implements OnInit {
   }
   enviarFormulario() {
     try {
-      this.bandasService.addPerfil(this.formulario.value);
+      this.salasService.addPerfil(this.formulario.value);
     } catch (err) {
       console.log(err)
     }
