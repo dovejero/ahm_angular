@@ -5,9 +5,6 @@ import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators'
 import { BandasService } from '../../servicios/bandas.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
-import { Router } from '@angular/router';
-import { Router } from '@angular/router';
 @Component({
   selector: 'app-form-banda',
   templateUrl: './form-banda.component.html',
@@ -19,7 +16,6 @@ export class FormBandaComponent implements OnInit {
   pathImagen
   logoURL: any;
   imgURL: any;
-  message: string;
 
   formulario: FormGroup;
 
