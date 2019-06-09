@@ -32,9 +32,11 @@ export class FormBandaComponent implements OnInit {
   localidad: string;
   latlng: any;
   habilitado: boolean;
-  uploadPercent: Observable<number>
+  uploadPercentImagen: Observable<number>
+  uploadPercentDosier: Observable<number>
   imagenO: any;
   logoO: any;
+  dosierO: any
   redesSociales: Object = {
     redes: []
   }
@@ -79,6 +81,12 @@ export class FormBandaComponent implements OnInit {
       redes: new FormArray([
         new FormControl('', [])
       ]),
+      activado: new FormControl(false, [
+      ]),
+      dosier: new FormControl('', [
+      ]),
+      comentario: new FormControl('', [
+      ]),
     })
   }
 
@@ -115,6 +123,12 @@ export class FormBandaComponent implements OnInit {
     }
     this.imagenO = e.target.files[0];
   }
+
+  onChangeDosier(e) {
+    this.dosierO = e.target.files[0];
+  }
+
+
 
   cambioSteps(valor) {
     for (let el = 0; el < this.steps.length; el++) {
@@ -192,16 +206,40 @@ export class FormBandaComponent implements OnInit {
     this.formulario['lng'] = this.longitud;
     this.latlng = { lat: this.latitud, lng: this.longitud }
   }
-  tratarSubmit() {
+
+  async tratarSubmit() {
 
     if (!this.formulario.valid) {
       this.control = true;
     } else {
       this.control = false;
-      this.subirImagen(this.imagenO, 'imagen')
-      this.subirImagen(this.logoO, 'logo')
+      await this.subirImagen(this.imagenO, 'imagen');
+      await this.subirImagen(this.logoO, 'logo');
+      await this.subirDosier(this.dosierO);
       this.formulario.value.idUsuario = this.idUsuario;
+      this.formulario.value.tipo = this.formulario.value.tipo.toString()
+      this.formulario.value.redes = this.formulario.value.redes.toString()
+
       console.log(this.formulario.value);
+
+    }
+  }
+  subirDosier(valDosier) {
+    if (valDosier) {
+      const filePath = 'documentos/' + this.dosierO.name;
+      const fileRef = this.storage.ref(filePath);
+      const tarea = this.storage.upload(filePath, this.dosierO);
+
+      tarea.snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe(url => {
+            console.log('URL: ', url);
+
+            this.formulario.value.dosier = url;
+            this.formulario['dosier'] = filePath;
+          })
+        })
+      ).subscribe()
     }
   }
   subirImagen(valImg, tipo) {
@@ -213,7 +251,7 @@ export class FormBandaComponent implements OnInit {
       // tarea.percentageChanges().subscribe(percent => {
       //   console.log(percent)
       // })
-      this.uploadPercent = tarea.percentageChanges();
+      // this.uploadPercentImagen = tarea.percentageChanges();
 
       tarea.snapshotChanges().pipe(
         finalize(() => {
