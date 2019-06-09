@@ -17,7 +17,9 @@ export class BandasService {
   }
   getLocalidades(pidProvincia) {
     let provincia = { idProvincia: pidProvincia }
-    console.log('IDPROVINCIAAAAA: ', provincia)
     return this.httpClient.post(this.serverApi + 'api/bandas/getLocalidades', provincia).toPromise();
+  }
+  addPerfil(perfil) {
+    return this.httpClient.post(this.serverApi + 'api/bandas/addPerfil', perfil).toPromise();
   }
 }

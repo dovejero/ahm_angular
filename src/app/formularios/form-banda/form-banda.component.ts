@@ -62,7 +62,7 @@ export class FormBandaComponent implements OnInit {
       ]),
       bio: new FormControl('', [
       ]),
-      componentes: new FormControl('', [
+      componentes: new FormControl(0, [
       ]),
       tipo: new FormControl('', [
       ]),
@@ -207,23 +207,6 @@ export class FormBandaComponent implements OnInit {
     this.latlng = { lat: this.latitud, lng: this.longitud }
   }
 
-  async tratarSubmit() {
-
-    if (!this.formulario.valid) {
-      this.control = true;
-    } else {
-      this.control = false;
-      await this.subirImagen(this.imagenO, 'imagen');
-      await this.subirImagen(this.logoO, 'logo');
-      await this.subirDosier(this.dosierO);
-      this.formulario.value.idUsuario = this.idUsuario;
-      this.formulario.value.tipo = this.formulario.value.tipo.toString()
-      this.formulario.value.redes = this.formulario.value.redes.toString()
-
-      console.log(this.formulario.value);
-
-    }
-  }
   subirDosier(valDosier) {
     if (valDosier) {
       const filePath = 'documentos/' + this.dosierO.name;
@@ -268,6 +251,26 @@ export class FormBandaComponent implements OnInit {
         })
       ).subscribe()
     }
+  }
+  async tratarSubmit() {
+
+    if (!this.formulario.valid) {
+      this.control = true;
+    } else {
+      this.control = false;
+      this.formulario.value.idUsuario = this.idUsuario;
+      this.formulario.value.tipo = this.formulario.value.tipo.toString()
+      this.formulario.value.redes = this.formulario.value.redes.toString()
+      await this.subirImagen(this.imagenO, 'imagen');
+      await this.subirImagen(this.logoO, 'logo');
+      await this.subirDosier(this.dosierO);
+      console.log(this.formulario.value);
+      this.enviarFormulario()
+
+    }
+  }
+  enviarFormulario() {
+    this.bandasService.addPerfil(this.formulario.value);
   }
 
 }
