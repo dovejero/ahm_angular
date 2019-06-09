@@ -38,13 +38,15 @@
         "icono": "Icono",
         "imagen": "Imagen",
         "bio": "Bio",
+        "info": "Info",
+        "horario": "Horario",
+        "aforo": "Aforo",
         "comentario": "Comentarios",
         "componentes": "Nº de Componentes",
         "estilo": "Estilo",
         "provincia": "Provincia",
         "localidad": "Localidad",
         "redes": "Redes",
-        "comentario": "Comentarios",
         "multiple": "Selección múltiple",
         "siguiente": "Siguiente",
         "atras": "Atrás",
@@ -57,6 +59,7 @@
         "subirimagen": "Subir Imagen",
         "latitud": "Latitud",
         "longitud": "Longitud",
-        "yaregistrado": "Mail ya registrado"
+        "yaregistrado": "Mail ya registrado",
+        "localizacion": "Dirección de ubicación"
     }
 }

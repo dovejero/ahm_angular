@@ -41,6 +41,7 @@ import { FormUserComponent } from './formularios/form-user/form-user.component';
 import { FormEventosComponent } from './formularios/form-eventos/form-eventos.component';
 import { MapagralComponent } from './mapas/mapagral/mapagral.component';
 import { MapaEventComponent } from './mapas/mapa-event/mapa-event.component';
+import { MapalatlngComponent } from './mapas/mapalatlng/mapalatlng.component';
 
 
 
@@ -76,7 +77,8 @@ import { MapaEventComponent } from './mapas/mapa-event/mapa-event.component';
     FormUserComponent,
     FormEventosComponent,
     MapagralComponent,
-    MapaEventComponent
+    MapaEventComponent,
+    MapalatlngComponent
   ],
   imports: [
     BrowserModule,

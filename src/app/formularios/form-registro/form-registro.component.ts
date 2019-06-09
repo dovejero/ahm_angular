@@ -84,7 +84,7 @@ export class FormRegistroComponent implements OnInit {
       this.noAlta = true;
     });
 
-    console.log('FORMULARIO: ', this.formulario.value);
+    // console.log('FORMULARIO: ', this.formulario.value);
 
 
 

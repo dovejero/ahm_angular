@@ -76,10 +76,10 @@ export class FormUserComponent implements OnInit {
       const filePath = 'imagenes/' + valImg.name;
       const fileRef = this.storage.ref(filePath);
       const tarea = this.storage.upload(filePath, valImg);
-      // tarea.percentageChanges().subscribe(percent => {
-      //   console.log(percent)
-      // })
-      // this.uploadPercentImagen = tarea.percentageChanges();
+      tarea.percentageChanges().subscribe(percent => {
+        console.log(percent)
+      })
+      this.uploadPercentImagen = tarea.percentageChanges();
 
       tarea.snapshotChanges().pipe(
         finalize(() => {
@@ -106,14 +106,18 @@ export class FormUserComponent implements OnInit {
       this.formulario.value.idUsuario = this.idUsuario;
       await this.subirImagen(this.imagenO, 'imagen');
       await this.subirImagen(this.logoO, 'logo');
-      console.log(this.formulario.value);
-      this.enviarFormulario()
+
+
+      setTimeout(() => {
+        this.enviarFormulario()
+      }, 5000);
 
     }
   }
   enviarFormulario() {
     try {
       this.usuariosService.addPerfil(this.formulario.value);
+      console.log(this.formulario.value);
     } catch (err) {
       console.log(err)
     }
