@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormArray } from '@angular/forms';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators'
@@ -18,6 +18,7 @@ export class FormBandaComponent implements OnInit {
   message: string;
 
   formulario: FormGroup;
+
   control: boolean;
   visible: string[];
   steps: boolean[];
@@ -34,9 +35,12 @@ export class FormBandaComponent implements OnInit {
   uploadPercent: Observable<number>
   imagenO: any;
   logoO: any;
-
-  prueba: string;
+  redesSociales: Object = {
+    redes: []
+  }
   constructor(private storage: AngularFireStorage, private bandasService: BandasService) {
+    this.logoURL = "https://image.flaticon.com/icons/svg/15/15081.svg"
+    this.imgURL = "http://pluspng.com/img-png/music-band-png-hd-bands-1200.jpg"
     this.latlng = {};
     this.localizacion = {}
     this.provinciaArray = [];
@@ -50,6 +54,7 @@ export class FormBandaComponent implements OnInit {
     this.steps = [true, false, false, false]
     this.visible = ['block', 'none', 'none', 'none']
     this.control = false;
+
     this.formulario = new FormGroup({
       nombre: new FormControl('', [
       ]),
@@ -71,11 +76,19 @@ export class FormBandaComponent implements OnInit {
       ]),
       logo: new FormControl('', [
       ]),
+      redes: new FormArray([
+        new FormControl('', [])
+      ]),
     })
   }
 
   ngOnInit() {
     this.listaProvicias();
+  }
+  agregarRedes() {
+    (<FormArray>this.formulario.controls['redes']).push(
+      new FormControl('', [])
+    );
   }
 
   onChangeLogo(e, files) {
