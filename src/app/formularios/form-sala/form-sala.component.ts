@@ -18,6 +18,7 @@ export class FormSalaComponent implements OnInit {
   pathImagen
   logoURL: any;
   imgURL: any;
+  botonActivo: boolean;
 
   formulario: FormGroup;
 
@@ -56,7 +57,7 @@ export class FormSalaComponent implements OnInit {
     this.steps = [true, false, false, false]
     this.visible = ['block', 'none', 'none', 'none']
     this.control = false;
-
+    this.botonActivo = false;
     this.formulario = new FormGroup({
       nombre: new FormControl('', [
       ]),
@@ -241,9 +242,11 @@ export class FormSalaComponent implements OnInit {
       this.formulario.value.redes = this.formulario.value.redes.toString()
       await this.subirImagen(this.imagenO, 'imagen');
       await this.subirImagen(this.logoO, 'logo');
-      console.log(this.formulario.value);
-      this.enviarFormulario()
-
+      // console.log(this.formulario.value);
+      this.botonActivo = true;
+      setTimeout(() => {
+        this.enviarFormulario()
+      }, 5000);
     }
   }
   enviarFormulario() {
@@ -252,7 +255,7 @@ export class FormSalaComponent implements OnInit {
     } catch (err) {
       console.log(err)
     }
-    // this.router.navigate(['/']);
+    this.router.navigate(['/']);
   }
 
 }

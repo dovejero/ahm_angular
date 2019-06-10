@@ -18,7 +18,7 @@ export class FormBandaComponent implements OnInit {
   imgURL: any;
 
   formulario: FormGroup;
-
+  botonActivo: boolean;
   control: boolean;
   visible: string[];
   steps: boolean[];
@@ -56,7 +56,7 @@ export class FormBandaComponent implements OnInit {
     this.steps = [true, false, false, false]
     this.visible = ['block', 'none', 'none', 'none']
     this.control = false;
-
+    this.botonActivo = false;
     this.formulario = new FormGroup({
       nombre: new FormControl('', [
       ]),
@@ -265,18 +265,17 @@ export class FormBandaComponent implements OnInit {
       await this.subirImagen(this.logoO, 'logo');
       await this.subirDosier(this.dosierO);
       console.log(this.formulario.value);
-      this.enviarFormulario()
+      this.botonActivo = true;
+      setTimeout(() => {
+        this.enviarFormulario()
+      }, 5000);
 
     }
   }
   enviarFormulario() {
+
     try {
       this.bandasService.addPerfil(this.formulario.value);
-      // $(document).ready(function () {
-      //   (<any>$(".toast")).toast({ autohide: false });
-      //   (<any>$(".toast")).toast("show");
-      // });
-      // this.router.navigate(['/eventos'])
     } catch (err) {
       console.log(err)
     }

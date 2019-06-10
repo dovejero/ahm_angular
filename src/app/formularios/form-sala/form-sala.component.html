@@ -121,8 +121,10 @@
         aria-pressed="true" (click)="adelante()">{{'formulario.siguiente' | translate}}</a>
       <a *ngIf="steps[1] || steps[2] || steps[3]" class="btn btn-warning active float-left boton" role="button"
         aria-pressed="true" (click)="atras()">{{'formulario.atras' | translate}}</a>
-      <input *ngIf="steps[3]" class="btn btn-primary float-right" type="submit"
+      <input *ngIf="steps[3] && !botonActivo" class="btn btn-primary float-right" type="submit"
         [value]="'formulario.enviar' | translate">
+      <input *ngIf="steps[3] && botonActivo" disabled class="btn btn-primary float-right" type="submit"
+        [value]="'formulario.enviando' | translate">
     </form>
 
   </div>

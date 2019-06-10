@@ -23,14 +23,14 @@ export class FormUserComponent implements OnInit {
   uploadPercentDosier: Observable<number>
   imagenO: any;
   logoO: any;
-
+  botonActivo: boolean;
 
 
   constructor(private storage: AngularFireStorage, private usuariosService: UsuariosService, private router: Router, private activatedRoute: ActivatedRoute) {
     this.logoURL = "https://image.flaticon.com/icons/svg/15/15081.svg"
     this.imgURL = "http://pluspng.com/img-png/music-band-png-hd-bands-1200.jpg"
     this.control = false;
-
+    this.botonActivo = false;
     this.formulario = new FormGroup({
       nombre: new FormControl('', [
       ]),
@@ -106,12 +106,10 @@ export class FormUserComponent implements OnInit {
       this.formulario.value.idUsuario = this.idUsuario;
       await this.subirImagen(this.imagenO, 'imagen');
       await this.subirImagen(this.logoO, 'logo');
-
-
+      this.botonActivo = true;
       setTimeout(() => {
         this.enviarFormulario()
       }, 5000);
-
     }
   }
   enviarFormulario() {
@@ -121,7 +119,7 @@ export class FormUserComponent implements OnInit {
     } catch (err) {
       console.log(err)
     }
-    // this.router.navigate(['/']);
+    this.router.navigate(['/']);
   }
 
 }
