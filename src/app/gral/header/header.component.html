@@ -39,7 +39,8 @@
           </a>
           <div class="dropdown-menu dropdown-menu-right dropdown-default">
             <a *ngIf="!utilService.isLogued()" class="dropdown-item" (click)="abrir()">{{ 'nav.login' | translate }}</a>
-            <a *ngIf="utilService.isLogued()" class="dropdown-item" href="#">{{ 'nav.salir' | translate }}</a>
+            <a *ngIf="utilService.isLogued()" class="dropdown-item"
+              [routerLink]="['/salir']">{{ 'nav.salir' | translate }}</a>
           </div>
         </li>
       </ul>

@@ -6,8 +6,7 @@ import { CanActivate, Router } from '@angular/router';
 })
 export class caEventos implements CanActivate {
     canActivate() {
-        console.log('accede al guard');
-        // this.router.navigate(['/eventos/1']);
+        localStorage.removeItem('tokenAHM');
         return true;
     }
 

@@ -37,6 +37,7 @@ export class FormGralComponent implements OnInit {
     console.log('URL: ', this.activatedRoute.parent)
     // let url = this.router.url.split('(');
     // console.log('lll: ', url[0])
+    this.ngRedux.dispatch({ type: UPDATE_LOGIN })
     this.router.navigate([{ outlets: { modal: null } }], { relativeTo: this.activatedRoute.parent })
   }
   cambioOpcionesLogin() {

@@ -10,6 +10,7 @@ import { ListaEventosComponent } from './eventos/lista-eventos/lista-eventos.com
 import { ListaSalasComponent } from './salas/lista-salas/lista-salas.component';
 import { ListaBandasComponent } from './bandas/lista-bandas/lista-bandas.component';
 import { caEventos } from './canActivate/caEventos';
+import { caCerrar } from './canActivate/caCerrar';
 
 const routes: Routes = [
   {
@@ -50,6 +51,8 @@ const routes: Routes = [
       { path: 'registro', component: FormRegistroComponent }
     ]
   },
+  { path: 'salir', component: GralEventosComponent, canActivate: [caEventos] },
+  { path: 'cerrar', component: GralEventosComponent, canActivate: [caCerrar] },
   { path: '**', redirectTo: "/eventos" }
 ];
 
