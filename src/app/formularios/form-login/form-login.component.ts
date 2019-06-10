@@ -38,6 +38,7 @@ export class FormLoginComponent implements OnInit {
     console.log('FORMULARIO: ', this.formulario);
     this.usuariosService.login(this.formulario.value).then((res) => {
       console.log(res);
+      localStorage.setItem('tokenAHM', res['token']);
     }).catch((err) => {
       console.log('{error: err}')
     })

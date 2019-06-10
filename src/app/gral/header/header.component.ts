@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { UtilService } from '../../servicios/util.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,7 @@ export class HeaderComponent implements OnInit {
   url: string;
   idioma: string;
   @Output() cambioIdioma = new EventEmitter();
-  constructor(private router: Router) {
+  constructor(private router: Router, public utilService: UtilService) {
     this.abiertoCerrado = false;
   }
   ngOnInit() {

@@ -18,6 +18,10 @@
         <li class="nav-item">
           <a class="nav-link" [routerLink]="['/bandas']"> {{ 'nav.grupos' | translate }}</a>
         </li>
+        <li class="nav-item">
+          <a *ngIf="utilService.isLogued()" class="nav-link" [routerLink]="['/bandas']">
+            {{ 'nav.areapersonal' | translate }}</a>
+        </li>
       </ul>
       <ul class="navbar-nav ml-auto nav-flex-icons">
         <li class="nav-item dropdown boton">
@@ -34,8 +38,8 @@
             <i class="fas fa-user"> Usuario 1 </i>
           </a>
           <div class="dropdown-menu dropdown-menu-right dropdown-default">
-            <a class="dropdown-item" (click)="abrir()">{{ 'nav.login' | translate }}</a>
-            <a class="dropdown-item" href="#">{{ 'nav.salir' | translate }}</a>
+            <a *ngIf="!utilService.isLogued()" class="dropdown-item" (click)="abrir()">{{ 'nav.login' | translate }}</a>
+            <a *ngIf="utilService.isLogued()" class="dropdown-item" href="#">{{ 'nav.salir' | translate }}</a>
           </div>
         </li>
       </ul>

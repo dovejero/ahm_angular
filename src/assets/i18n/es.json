@@ -7,7 +7,8 @@
         "grupos": "Grupos",
         "usuario": "Usuario",
         "login": "Login/Registro",
-        "salir": "Salir"
+        "salir": "Salir",
+        "areapersonal": "Área Personal"
     },
     "modal": {
         "login": "Login",
