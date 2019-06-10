@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UsuariosService } from '../../servicios/usuarios.service';
 
 @Component({
   selector: 'app-form-login',
@@ -9,10 +10,10 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 export class FormLoginComponent implements OnInit {
   formulario: FormGroup;
   control: boolean;
-  constructor() {
+  constructor(private usuariosService: UsuariosService) {
     this.control = false;
     this.formulario = new FormGroup({
-      usuario: new FormControl('', [
+      mail: new FormControl('', [
         Validators.required
       ]),
       password: new FormControl('', [
@@ -35,6 +36,11 @@ export class FormLoginComponent implements OnInit {
   }
   tratarLogin() {
     console.log('FORMULARIO: ', this.formulario);
+    this.usuariosService.login(this.formulario.value).then((res) => {
+      console.log(res);
+    }).catch((err) => {
+      console.log('{error: err}')
+    })
 
     // TO DO
     // Validación en servicio con el servidor. 
