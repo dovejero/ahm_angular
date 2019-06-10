@@ -6,6 +6,10 @@ import { finalize } from 'rxjs/operators'
 import { Router, ActivatedRoute } from '@angular/router';
 import { UsuariosService } from '../../servicios/usuarios.service';
 
+import { NgRedux, NgReduxModule, select } from '@angular-redux/store';
+import { IAppState, rootReducer } from '../../store/store';
+import { INCREMENT, UPDATE_LOGIN } from '../../store/actions';
+
 @Component({
   selector: 'app-form-user',
   templateUrl: './form-user.component.html',
@@ -26,7 +30,7 @@ export class FormUserComponent implements OnInit {
   botonActivo: boolean;
 
 
-  constructor(private storage: AngularFireStorage, private usuariosService: UsuariosService, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private storage: AngularFireStorage, private usuariosService: UsuariosService, private router: Router, private activatedRoute: ActivatedRoute, private ngRedux: NgRedux<IAppState>) {
     this.logoURL = "https://image.flaticon.com/icons/svg/15/15081.svg"
     this.imgURL = "http://pluspng.com/img-png/music-band-png-hd-bands-1200.jpg"
     this.control = false;
@@ -119,6 +123,7 @@ export class FormUserComponent implements OnInit {
     } catch (err) {
       console.log(err)
     }
+    this.ngRedux.dispatch({ type: UPDATE_LOGIN })
     this.router.navigate(['/']);
   }
 
