@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { UsuariosService } from '../../servicios/usuarios.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-form-login',
@@ -10,7 +11,7 @@ import { UsuariosService } from '../../servicios/usuarios.service';
 export class FormLoginComponent implements OnInit {
   formulario: FormGroup;
   control: boolean;
-  constructor(private usuariosService: UsuariosService) {
+  constructor(private usuariosService: UsuariosService, private router: Router) {
     this.control = false;
     this.formulario = new FormGroup({
       mail: new FormControl('', [
@@ -39,13 +40,9 @@ export class FormLoginComponent implements OnInit {
     this.usuariosService.login(this.formulario.value).then((res) => {
       console.log(res);
       localStorage.setItem('tokenAHM', res['token']);
+      this.router.navigate(['/cerrar']);
     }).catch((err) => {
       console.log('{error: err}')
     })
-
-    // TO DO
-    // Validación en servicio con el servidor. 
-    // Error si no es correcto encima del botón acceder eje error usu y pass
-    // Cerrar ventana al logarse. Poner nombre usu en el nav. 
   }
 }

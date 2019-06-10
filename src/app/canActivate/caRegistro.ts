@@ -8,10 +8,9 @@ import { UPDATE_LOGIN } from '../store/actions';
 @Injectable({
     providedIn: 'root'
 })
-export class caCerrar implements CanActivate {
+export class caRegistro implements CanActivate {
     canActivate() {
-        // this.ngRedux.dispatch({ type: UPDATE_LOGIN })
-        this.router.navigate(['/']);
+        this.router.navigate([{ outlets: { modal: 'formIn/registro' } }], { skipLocationChange: true })
         return true;
     }
 

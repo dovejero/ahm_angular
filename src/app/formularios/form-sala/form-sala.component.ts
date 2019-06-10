@@ -260,7 +260,7 @@ export class FormSalaComponent implements OnInit {
       console.log(err)
     }
     this.ngRedux.dispatch({ type: UPDATE_LOGIN })
-    this.router.navigate(['/']);
+    this.router.navigate(['/cerrar']);
   }
 
 }

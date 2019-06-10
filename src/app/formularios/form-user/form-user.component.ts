@@ -123,20 +123,8 @@ export class FormUserComponent implements OnInit {
     } catch (err) {
       console.log(err)
     }
-    this.router.navigate(
-      [
-        "/cerrar",
-        {
-          outlets: {
-            chat: null
-          }
-        }
-      ],
-      {
-        relativeTo: this.activatedRoute
-      }
-    );
-    // this.router.navigate(['/cerrar']);
+    this.ngRedux.dispatch({ type: UPDATE_LOGIN })
+    this.router.navigate(['/cerrar']);
   }
 
 }

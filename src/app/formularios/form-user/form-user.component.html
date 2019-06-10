@@ -38,7 +38,6 @@
           <input type="checkbox" formControlName="activado">
           <span class="slider round"></span>
         </label>
-        {{botonActivo}}
         <input *ngIf="!botonActivo" class="btn btn-primary float-right" type="submit"
           [value]="'formulario.enviar' | translate">
         <input *ngIf="botonActivo" disabled class="btn btn-primary float-right" type="submit"

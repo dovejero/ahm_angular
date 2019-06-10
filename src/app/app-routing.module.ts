@@ -11,6 +11,8 @@ import { ListaSalasComponent } from './salas/lista-salas/lista-salas.component';
 import { ListaBandasComponent } from './bandas/lista-bandas/lista-bandas.component';
 import { caEventos } from './canActivate/caEventos';
 import { caCerrar } from './canActivate/caCerrar';
+import { caLogin } from './canActivate/caLogin';
+import { caRegistro } from './canActivate/caRegistro';
 
 const routes: Routes = [
   {
@@ -40,7 +42,8 @@ const routes: Routes = [
       { path: '', component: ListaEventosComponent },
     ]
   },
-  { path: 'login', redirectTo: '/eventos(modal:formIn/login)' },
+  { path: 'login', component: GralEventosComponent, canActivate: [caLogin] },
+  { path: 'registro', component: GralEventosComponent, canActivate: [caRegistro] },
 
   {
     path: "formIn",
