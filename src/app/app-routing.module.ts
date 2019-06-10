@@ -12,7 +12,9 @@ import { ListaBandasComponent } from './bandas/lista-bandas/lista-bandas.compone
 import { caEventos } from './canActivate/caEventos';
 import { caCerrar } from './canActivate/caCerrar';
 import { caLogin } from './canActivate/caLogin';
+import { caPersonal } from './canActivate/caPersonal';
 import { caRegistro } from './canActivate/caRegistro';
+import { APersonalComponent } from './personal/a-personal/a-personal.component';
 
 const routes: Routes = [
   {
@@ -32,6 +34,10 @@ const routes: Routes = [
     children: [
       { path: '', component: ListaSalasComponent }
     ]
+  },
+
+  {
+    path: 'personal', component: APersonalComponent, canActivate: [caPersonal]
   },
   {
     path: 'eventos', component: GralEventosComponent

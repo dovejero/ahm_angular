@@ -46,6 +46,7 @@ import { MapalatlngComponent } from './mapas/mapalatlng/mapalatlng.component';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { NgRedux, NgReduxModule } from '@angular-redux/store';
 import { IAppState, rootReducer, INITIAL_STATE } from './store/store';
+import { APersonalComponent } from './personal/a-personal/a-personal.component';
 
 @NgModule({
   declarations: [
@@ -79,7 +80,8 @@ import { IAppState, rootReducer, INITIAL_STATE } from './store/store';
     FormEventosComponent,
     MapagralComponent,
     MapaEventComponent,
-    MapalatlngComponent
+    MapalatlngComponent,
+    APersonalComponent
   ],
   imports: [
     BrowserModule,

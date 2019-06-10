@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { CanActivate, Router } from '@angular/router';
+import { UtilService } from '../servicios/util.service';
 
 @Injectable({
     providedIn: 'root'
@@ -7,10 +8,12 @@ import { CanActivate, Router } from '@angular/router';
 export class caEventos implements CanActivate {
     canActivate() {
         localStorage.removeItem('tokenAHM');
+        localStorage.removeItem('idAHM');
+        localStorage.removeItem('usuarioAHM');
         return true;
     }
 
-    constructor(private router: Router) {
+    constructor(private router: Router, private utilService: UtilService) {
 
     }
 

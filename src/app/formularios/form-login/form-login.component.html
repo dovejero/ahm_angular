@@ -11,20 +11,24 @@
           <input type="text" class="form-control form-control-sm" formControlName="mail"
             [placeholder]="'formulario.mail' | translate">
           <small *ngIf="formulario.controls['mail'].errors && control" id="errorMail"
-            class="form-text text-muted">{{'formulario.valmail' | translate}}</small>
+            class="form-text">{{'formulario.valmail' | translate}}</small>
         </div>
         <div class="form-group">
           <input type="password" class="form-control form-control-sm" formControlName="password"
             [placeholder]="'formulario.pass' | translate">
           <small *ngIf="formulario.controls['password'].errors && control" id="errorNombre"
-            class="form-text text-muted">{{'formulario.valpassword' | translate}}</small>
+            class="form-text">{{'formulario.valpassword' | translate}}</small>
         </div>
         <!-- <a class="">{{'formulario.olvido' | translate}}</a> -->
         <div class="checkbox">
-          <label><input name="remember" type="checkbox" value="Remember Me">
+          <label class="float-left"><input name="remember" type="checkbox" value="Remember Me">
             {{'formulario.recordar'| translate}}</label>
+
+          <small *ngIf="errorlogin" id="errorLogin"
+            class="form-text float-right">{{'formulario.errorlogin' | translate}}</small>
         </div>
         <input class="btn btn-lg btn-success btn-block" type="submit" [value]="'formulario.login' | translate">
+
       </form>
     </div>
 

@@ -35,7 +35,7 @@
         </li>
         <li class="nav-item dropdown boton">
           <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-user"> Usuario 1 </i>
+            <i class="fas fa-user"> {{utilService.getUsuario()}} </i>
           </a>
           <div class="dropdown-menu dropdown-menu-right dropdown-default">
             <a *ngIf="!utilService.isLogued()" class="dropdown-item" (click)="abrir()">{{ 'nav.login' | translate }}</a>

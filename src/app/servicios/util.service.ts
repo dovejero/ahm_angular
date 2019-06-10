@@ -4,9 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UtilService {
-  compToken: boolean;
   constructor() {
-    this.compToken = false;
   }
 
   isLogued() {
@@ -14,6 +12,20 @@ export class UtilService {
       return true;
     } else {
       return false;
+    }
+  }
+  getIdUsuario() {
+    if (localStorage.getItem('idAHM')) {
+      return localStorage.getItem('id');
+    } else {
+      return undefined;
+    }
+  }
+  getUsuario() {
+    if (localStorage.getItem('usuarioAHM')) {
+      return localStorage.getItem('usuarioAHM');
+    } else {
+      return 'No Login';
     }
   }
 }

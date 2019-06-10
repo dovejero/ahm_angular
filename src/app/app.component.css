@@ -5,3 +5,7 @@
     display: block; 
     padding-right: 15px;
 } */
+
+small{
+    color: red !important;
+}
