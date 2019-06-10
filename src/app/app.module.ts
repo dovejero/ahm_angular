@@ -47,6 +47,9 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { NgRedux, NgReduxModule } from '@angular-redux/store';
 import { IAppState, rootReducer, INITIAL_STATE } from './store/store';
 import { APersonalComponent } from './personal/a-personal/a-personal.component';
+import { PerfilBandaComponent } from './personal/perfil-banda/perfil-banda.component';
+import { PerfilUsuarioComponent } from './personal/perfil-usuario/perfil-usuario.component';
+import { PerfilSalaComponent } from './personal/perfil-sala/perfil-sala.component';
 
 @NgModule({
   declarations: [
@@ -81,7 +84,10 @@ import { APersonalComponent } from './personal/a-personal/a-personal.component';
     MapagralComponent,
     MapaEventComponent,
     MapalatlngComponent,
-    APersonalComponent
+    APersonalComponent,
+    PerfilBandaComponent,
+    PerfilUsuarioComponent,
+    PerfilSalaComponent
   ],
   imports: [
     BrowserModule,

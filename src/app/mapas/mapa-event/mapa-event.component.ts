@@ -26,9 +26,9 @@ export class MapaEventComponent implements OnInit {
   }
 
   showPosition(position) {
-    console.log('POSICION', position[0]);
-    console.log(navigator);
-    console.log(this.divMap)
+    // console.log('POSICION', position[0]);
+    // console.log(navigator);
+    // console.log(this.divMap)
 
 
     let propsMap = {
