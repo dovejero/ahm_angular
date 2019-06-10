@@ -1,14 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BandasService } from '../../servicios/bandas.service'
+
+import { NgRedux, NgReduxModule, select } from '@angular-redux/store';
+import { IAppState, rootReducer } from '../../store/store';
+import { INCREMENT, UPDATE_LOGIN } from '../../store/actions';
+
 @Component({
   selector: 'app-gral-bandas',
   templateUrl: './gral-bandas.component.html',
   styleUrls: ['./gral-bandas.component.css']
 })
 export class GralBandasComponent implements OnInit {
+  counter = 0;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private bandasService: BandasService) { }
+  @select() noLogin: boolean
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private bandasService: BandasService, private ngRedux: NgRedux<IAppState>) {
+
+    ngRedux.subscribe(() => {
+      let store = ngRedux.getState()
+      console.log(ngRedux.getState().noLogin)
+      this.counter = store.counter
+    })
+  }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -22,5 +37,9 @@ export class GralBandasComponent implements OnInit {
       }
 
     })
+  }
+  increment() {
+    this.ngRedux.dispatch({ type: INCREMENT })
+    this.ngRedux.dispatch({ type: UPDATE_LOGIN })
   }
 }

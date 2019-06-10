@@ -34,17 +34,18 @@ import { GralSalasComponent } from './salas/gral-salas/gral-salas.component';
 import { GralEventosComponent } from './eventos/gral-eventos/gral-eventos.component';
 
 // Importación modulo traducción
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+
 import { FormUserComponent } from './formularios/form-user/form-user.component';
 import { FormEventosComponent } from './formularios/form-eventos/form-eventos.component';
 import { MapagralComponent } from './mapas/mapagral/mapagral.component';
 import { MapaEventComponent } from './mapas/mapa-event/mapa-event.component';
 import { MapalatlngComponent } from './mapas/mapalatlng/mapalatlng.component';
-
-
-
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { NgRedux, NgReduxModule } from '@angular-redux/store';
+import { IAppState, rootReducer, INITIAL_STATE } from './store/store';
 
 @NgModule({
   declarations: [
@@ -86,6 +87,7 @@ import { MapalatlngComponent } from './mapas/mapalatlng/mapalatlng.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgReduxModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -99,7 +101,14 @@ import { MapalatlngComponent } from './mapas/mapalatlng/mapalatlng.component';
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(ngredux: NgRedux<IAppState>) {
+    ngredux.configureStore(rootReducer, INITIAL_STATE)
+  }
+
+}
+
+
 
 //Exportar función traducción
 

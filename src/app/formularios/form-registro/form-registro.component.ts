@@ -3,18 +3,26 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { LoginService } from '../../servicios/login.service';
 
 
+import { NgRedux, NgReduxModule, select } from '@angular-redux/store';
+import { IAppState, rootReducer } from '../../store/store';
+import { INCREMENT, UPDATE_LOGIN } from '../../store/actions';
+
+
 @Component({
   selector: 'app-form-registro',
   templateUrl: './form-registro.component.html',
   styleUrls: ['./form-registro.component.css']
 })
 export class FormRegistroComponent implements OnInit {
+
+  @select() noLogin: boolean
+
   formulario: FormGroup;
   control: boolean;
   opc: boolean[];
   userId: number;
   noAlta: boolean;
-  constructor(private loginService: LoginService) {
+  constructor(private loginService: LoginService, private ngRedux: NgRedux<IAppState>) {
     this.noAlta = false;
     this.opc = [true, false, false, false]
     this.control = false;
@@ -61,6 +69,7 @@ export class FormRegistroComponent implements OnInit {
   tratarLogin() {
     this.loginService.registro(this.formulario.value).then((res) => {
       if (!res['ko']) {
+        this.ngRedux.dispatch({ type: UPDATE_LOGIN })
         this.userId = res[0].id;
         this.noAlta = false;
         this.opc[0] = false;
