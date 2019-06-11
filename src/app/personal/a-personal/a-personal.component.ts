@@ -8,19 +8,19 @@ import { UsuariosService } from '../../servicios/usuarios.service';
   styleUrls: ['./a-personal.component.css']
 })
 export class APersonalComponent implements OnInit {
-
+  perfil: any;
   constructor(private utilService: UtilService, private usuariosService: UsuariosService) {
-    let idUsuario = { idUsuario: this.utilService.getIdUsuario() }
-    console.log('IDUSUARIO: ', idUsuario)
-    this.usuariosService.getPerfil(idUsuario).then((row) => {
-      console.log('ROW PERFIL: ', row)
-    }).catch((err) => {
-      console.log(err)
-    })
 
   }
 
   ngOnInit() {
+    let idUsuario = { idUsuario: this.utilService.getIdUsuario() }
+    this.usuariosService.getPerfil(idUsuario).then((row) => {
+      console.log('ROW PERFIL: ', row)
+      this.perfil = row
+    }).catch((err) => {
+      console.log(err)
+    })
   }
 
 }
