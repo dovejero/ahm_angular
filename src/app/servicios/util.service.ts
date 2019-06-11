@@ -16,7 +16,7 @@ export class UtilService {
   }
   getIdUsuario() {
     if (localStorage.getItem('idAHM')) {
-      return localStorage.getItem('id');
+      return localStorage.getItem('idAHM');
     } else {
       return undefined;
     }

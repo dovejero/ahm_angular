@@ -10,8 +10,10 @@ import { UsuariosService } from '../../servicios/usuarios.service';
 export class APersonalComponent implements OnInit {
 
   constructor(private utilService: UtilService, private usuariosService: UsuariosService) {
-    this.usuariosService.getPerfil(this.utilService.getIdUsuario).then((row) => {
-      console.log(row)
+    let idUsuario = { idUsuario: this.utilService.getIdUsuario() }
+    console.log('IDUSUARIO: ', idUsuario)
+    this.usuariosService.getPerfil(idUsuario).then((row) => {
+      console.log('ROW PERFIL: ', row)
     }).catch((err) => {
       console.log(err)
     })
