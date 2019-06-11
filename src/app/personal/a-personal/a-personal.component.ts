@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UtilService } from '../../servicios/util.service';
 import { UsuariosService } from '../../servicios/usuarios.service';
+import { User } from '../../models/user.model'
 
 @Component({
   selector: 'app-a-personal',
@@ -17,7 +18,13 @@ export class APersonalComponent implements OnInit {
     let idUsuario = { idUsuario: this.utilService.getIdUsuario() }
     this.usuariosService.getPerfil(idUsuario).then((row) => {
       console.log('ROW PERFIL: ', row)
-      this.perfil = row
+      if (row['fk_usuario']) {
+        this.perfil = new User(row['rol'], row['nombre'], row['logo'], row['imagen'], row['activado'], row['fk_usuario']);
+      } else {
+        this.perfil = new User(row['rol']);
+      }
+      console.log('PERFILLLL: ', this.perfil)
+
     }).catch((err) => {
       console.log(err)
     })
