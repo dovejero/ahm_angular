@@ -6,9 +6,9 @@
 
 <div *ngIf="perfil && perfil.rol=='sala'">
   <h1>SALA</h1>
-  <!-- <app-perfil-sala [objPerfil]="perfil"></app-perfil-sala>></app-perfil-sala> -->
+  <!-- <app-perfil-sala [objPerfil]="perfil"></app-perfil-sala> -->
 </div>
 <div *ngIf="perfil && perfil.rol=='banda'">
   <h1>BANDA</h1>
-  <!-- <app-perfil-banda [objPerfil]="perfil"></app-perfil-banda>></app-perfil-banda> -->
+  <app-perfil-banda [objPerfil]="perfil"></app-perfil-banda>
 </div>

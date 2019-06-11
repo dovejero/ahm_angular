@@ -222,7 +222,7 @@ export class FormBandaComponent implements OnInit {
       tarea.snapshotChanges().pipe(
         finalize(() => {
           fileRef.getDownloadURL().subscribe(url => {
-            console.log('URL: ', url);
+
 
             this.formulario.value.dosier = url;
             this.formulario['dosier'] = filePath;
@@ -232,7 +232,6 @@ export class FormBandaComponent implements OnInit {
     }
   }
   subirImagen(valImg, tipo) {
-    console.log(valImg)
     if (valImg) {
       const filePath = 'imagenes/' + valImg.name;
       const fileRef = this.storage.ref(filePath);
@@ -245,7 +244,6 @@ export class FormBandaComponent implements OnInit {
       tarea.snapshotChanges().pipe(
         finalize(() => {
           fileRef.getDownloadURL().subscribe(url => {
-            console.log('URL: ', url);
             if (tipo == 'imagen') {
               this.formulario.value.imagen = url;
               this.formulario['imagen'] = filePath;
@@ -270,7 +268,6 @@ export class FormBandaComponent implements OnInit {
       await this.subirImagen(this.imagenO, 'imagen');
       await this.subirImagen(this.logoO, 'logo');
       await this.subirDosier(this.dosierO);
-      console.log(this.formulario.value);
       this.botonActivo = true;
       setTimeout(() => {
         this.enviarFormulario()
@@ -281,6 +278,7 @@ export class FormBandaComponent implements OnInit {
   enviarFormulario() {
 
     try {
+      console.log('FORMULARIO ENVIADO: ', this.formulario.value)
       this.bandasService.addPerfil(this.formulario.value);
     } catch (err) {
       console.log(err)
