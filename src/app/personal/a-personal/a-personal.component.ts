@@ -11,19 +11,22 @@ import { User } from '../../models/user.model'
 export class APersonalComponent implements OnInit {
   perfil: any;
   constructor(private utilService: UtilService, private usuariosService: UsuariosService) {
-
+    this.perfil = null;
   }
 
   ngOnInit() {
     let idUsuario = { idUsuario: this.utilService.getIdUsuario() }
     this.usuariosService.getPerfil(idUsuario).then((row) => {
       console.log('ROW PERFIL: ', row)
+
       if (row['fk_usuario']) {
         this.perfil = new User(row['rol'], row['nombre'], row['logo'], row['imagen'], row['activado'], row['fk_usuario']);
+        console.log('PERFILLLL: ', this.perfil)
       } else {
         this.perfil = new User(row['rol']);
+        console.log('PERFILLLL: ', this.perfil)
       }
-      console.log('PERFILLLL: ', this.perfil)
+
 
     }).catch((err) => {
       console.log(err)

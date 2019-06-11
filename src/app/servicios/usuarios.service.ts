@@ -14,6 +14,9 @@ export class UsuariosService {
   addPerfil(perfil) {
     return this.httpClient.post(this.serverApi + 'api/usuarios/addPerfil', perfil).toPromise();
   }
+  updPerfil(perfil) {
+    return this.httpClient.put(this.serverApi + 'api/usuarios/updPerfil', perfil).toPromise();
+  }
   login(perfil) {
     return this.httpClient.post(this.serverApi + 'api/usuarios/login', perfil).toPromise();
   }
