@@ -22,4 +22,7 @@ export class BandasService {
   addPerfil(perfil) {
     return this.httpClient.post(this.serverApi + 'api/bandas/addPerfil', perfil).toPromise();
   }
+  updPerfil(perfil) {
+    return this.httpClient.put(this.serverApi + 'api/bandas/updPerfil', perfil).toPromise();
+  }
 }

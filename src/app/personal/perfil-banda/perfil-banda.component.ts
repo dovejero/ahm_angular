@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { finalize } from 'rxjs/operators'
 import { BandasService } from '../../servicios/bandas.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { UtilService } from '../../servicios/util.service';
 
 
 @Component({
@@ -41,8 +42,10 @@ export class PerfilBandaComponent implements OnInit {
   redesSociales: Object = {
     redes: []
   }
+  update: boolean;
 
-  constructor(private storage: AngularFireStorage, private bandasService: BandasService, private router: Router, private activatedRoute: ActivatedRoute) {
+  constructor(private storage: AngularFireStorage, private bandasService: BandasService, private router: Router, private activatedRoute: ActivatedRoute, private utilService: UtilService) {
+    this.update = true;
     this.logoURL = ''
     this.imgURL = ''
     this.latlng = {};
@@ -86,7 +89,7 @@ export class PerfilBandaComponent implements OnInit {
       logo: new FormControl('', [
       ]),
       redes: new FormArray([
-        new FormControl(this.objPerfil.redes, [])
+        new FormControl(this.objPerfil.redes[0], [])
       ]),
       activado: new FormControl(this.objPerfil.activado, [
       ]),
@@ -99,11 +102,24 @@ export class PerfilBandaComponent implements OnInit {
     this.longitud = this.objPerfil.lng;
     this.localidad = this.objPerfil.localidad;
     this.provincia = this.objPerfil.provincia;
+    if (this.objPerfil.redes.length > 1) {
+      for (let i = 1; i < this.objPerfil.redes.length; i++) {
+        this.agregarRedesN(this.objPerfil.redes[i])
+      }
+    }
+
     this.latlng = { lat: this.latitud, lng: this.longitud }
     setTimeout(() => {
       this.latlng = { lat: this.latitud, lng: this.longitud }
+      if (this.objPerfil.length < 1)
+        this.update = false;
     }, 1000);
     this.listaProvicias();
+  }
+  agregarRedesN(item) {
+    (<FormArray>this.formulario.controls['redes']).push(
+      new FormControl(item, [])
+    );
   }
   agregarRedes() {
     (<FormArray>this.formulario.controls['redes']).push(
@@ -141,6 +157,7 @@ export class PerfilBandaComponent implements OnInit {
   }
 
   listaProvicias() {
+
     this.bandasService.getProvincias().then((res) => {
       this.provinciaArray = res;
 
@@ -149,6 +166,7 @@ export class PerfilBandaComponent implements OnInit {
     });
   }
   datosLocalidad(plocalidad) {
+    this.update = true;
     // console.log(plocalidad.target.value)
     let arrayLocalidades = plocalidad.target.value.split(',')
     this.bandasService.getLocalidades(arrayLocalidades[0]).then((res) => {
@@ -243,10 +261,17 @@ export class PerfilBandaComponent implements OnInit {
 
     }
   }
-  enviarFormulario() {
 
+  enviarFormulario() {
     try {
-      this.bandasService.addPerfil(this.formulario.value);
+
+      if (this.objPerfil['fk_usuario'] == 0) {
+        this.formulario.value.idUsuario = parseInt(this.utilService.getIdUsuario())
+        this.bandasService.addPerfil(this.formulario.value);
+      } else {
+        this.bandasService.updPerfil(this.formulario.value);
+      }
+      console.log(this.formulario.value);
     } catch (err) {
       console.log(err)
     }
