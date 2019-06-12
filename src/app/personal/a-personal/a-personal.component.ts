@@ -18,7 +18,6 @@ export class APersonalComponent implements OnInit {
   ngOnInit() {
     let idUsuario = { idUsuario: this.utilService.getIdUsuario() }
     this.usuariosService.getPerfil(idUsuario).then((row) => {
-      console.log('ROW PERFIL: ', row)
 
       switch (row['rol']) {
 
@@ -32,20 +31,15 @@ export class APersonalComponent implements OnInit {
         case 'banda':
           if (row['fk_usuario']) {
             this.perfil = new Banda(row['rol'], row['nombre'], row['logo'], row['imagen'], row['bio'], row['componentes'], row['tipo'], row['provincia'], row['localidad'], row['lat'], row['lng'], row['dosier'], row['redes'], row['comentario'], row['activado'], row['fk_usuario']);
-            console.log('PERFILLLL: ', this.perfil)
           } else {
             this.perfil = new Banda(row['rol']);
-            console.log('PERFILLLL: ', this.perfil)
           }
           break;
         case 'sala':
           if (row['fk_usuario']) {
-            console.log('roooooow: ', row)
             this.perfil = new Sala(row['rol'], row['nombre'], row['logo'], row['imagen'], row['info'], row['horario'], row['aforo'], row['provincia'], row['localidad'], row['localizacion'], row['lat'], row['lng'], row['redes'], row['comentario'], row['activado'], row['fk_usuario']);
-            console.log('PEPEPEPEPEPE: ', this.perfil)
           } else {
             this.perfil = new Sala(row['rol']);
-            console.log('PERFILLLL: ', this.perfil)
           }
           break;
       }

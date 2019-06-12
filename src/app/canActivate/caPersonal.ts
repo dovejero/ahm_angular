@@ -7,7 +7,6 @@ import { UtilService } from '../servicios/util.service';
 })
 export class caPersonal implements CanActivate {
     canActivate() {
-        console.log('AAAAAAA', this.utilService.isLogued())
         if (localStorage.getItem('tokenAHM')) {
             return true;
         } else {

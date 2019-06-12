@@ -44,8 +44,12 @@ export class PerfilSalaComponent implements OnInit {
     redes: []
   }
   update: boolean;
+  cambioimagen: boolean;
+  cambiologo: boolean;
 
   constructor(private storage: AngularFireStorage, private bandasService: BandasService, private salasService: SalasService, private router: Router, private activatedRoute: ActivatedRoute, private utilService: UtilService) {
+    this.cambioimagen = false;
+    this.cambiologo = false;
     this.logoURL = ""
     this.imgURL = ""
     this.latlng = {};
@@ -74,7 +78,7 @@ export class PerfilSalaComponent implements OnInit {
       ]),
       info: new FormControl(this.objPerfil.info, [
       ]),
-      aforo: new FormControl(0, [
+      aforo: new FormControl(this.objPerfil.aforo, [
       ]),
       horario: new FormControl(this.objPerfil.horario, [
       ]),
@@ -95,11 +99,12 @@ export class PerfilSalaComponent implements OnInit {
       redes: new FormArray([
         new FormControl(this.objPerfil.redes[0], [])
       ]),
-      activado: new FormControl(false, [
+      activado: new FormControl(this.objPerfil.activado, [
       ]),
       comentario: new FormControl(this.objPerfil.comentario, [
       ])
     })
+    console.log('FORMULARIO.VALUE: ', this.formulario.value)
     this.latitud = this.objPerfil.lat;
     this.longitud = this.objPerfil.lng;
     this.localidad = this.objPerfil.localidad;
@@ -118,7 +123,7 @@ export class PerfilSalaComponent implements OnInit {
 
       }
 
-    }, 3000);
+    }, 2000);
     this.listaProvicias();
   }
   agregarRedes() {
@@ -142,6 +147,7 @@ export class PerfilSalaComponent implements OnInit {
       this.logoURL = reader.result;
     }
     this.logoO = e.target.files[0];
+    this.cambiologo = true;
   }
 
   onChangeImg(e, files2) {
@@ -154,6 +160,7 @@ export class PerfilSalaComponent implements OnInit {
       this.imgURL = reader.result;
     }
     this.imagenO = e.target.files[0];
+    this.cambioimagen = true;
   }
   listaProvicias() {
     this.bandasService.getProvincias().then((res) => {
@@ -235,13 +242,18 @@ export class PerfilSalaComponent implements OnInit {
       this.formulario.value.localidad = this.localidad;
       this.formulario.value.lat = this.latitud;
       this.formulario.value.lng = this.longitud;
-      await this.subirImagen(this.imagenO, 'imagen');
-      await this.subirImagen(this.logoO, 'logo');
+      this.formulario.value.imagen = this.objPerfil.imagen;
+      this.formulario.value.logo = this.objPerfil.logo;
+      if (this.cambioimagen)
+        await this.subirImagen(this.imagenO, 'imagen');
+      if (this.cambiologo)
+        await this.subirImagen(this.logoO, 'logo');
       // console.log(this.formulario.value);
       this.botonActivo = true;
       setTimeout(() => {
         this.enviarFormulario()
       }, 5000);
+      console.log('IMAGENNNNN: ', this.formulario.value.logo)
     }
   }
   enviarFormulario() {
@@ -253,7 +265,7 @@ export class PerfilSalaComponent implements OnInit {
       } else {
         this.salasService.updPerfil(this.formulario.value);
       }
-      console.log(this.formulario.value);
+      console.log('FORMULARIO ENVIADO: ', this.formulario.value);
     } catch (err) {
       console.log(err)
     }

@@ -35,14 +35,13 @@ export class MapalatlngComponent implements OnInit {
       if (propName == 'localizacion') {
         this.showPosition2(change.currentValue)
       }
-      console.log('PROPNAME', change.currentValue);
     }
   }
 
   showPosition(position) {
-    console.log(position);
-    console.log(navigator);
-    console.log(this.divMap)
+    // console.log(position);
+    // console.log(navigator);
+    // console.log(this.divMap)
 
     let propsMap = {
       center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
@@ -82,15 +81,14 @@ export class MapalatlngComponent implements OnInit {
         direPrueba.push(place.address_components[i]['long_name'])
       }
       this.direccion = direPrueba.toString()
-      console.log('DIRE DIRE DIRE: ', this.direccion)
       this.located.emit(this.direccion);
     })
   }
 
   showPosition2(position) {
-    console.log(position);
-    console.log(navigator);
-    console.log(this.divMap)
+    // console.log(position);
+    // console.log(navigator);
+    // console.log(this.divMap)
 
     let propsMap = {
       center: new google.maps.LatLng(position.lat, position.lng),
