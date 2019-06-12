@@ -110,9 +110,13 @@ export class PerfilBandaComponent implements OnInit {
 
     this.latlng = { lat: this.latitud, lng: this.longitud }
     setTimeout(() => {
-      this.latlng = { lat: this.latitud, lng: this.longitud }
-      if (this.objPerfil.length < 1)
+
+      if (this.objPerfil.length < 1) {
         this.update = false;
+        this.latlng = { lat: this.latitud, lng: this.longitud }
+
+      }
+
     }, 1000);
     this.listaProvicias();
   }
