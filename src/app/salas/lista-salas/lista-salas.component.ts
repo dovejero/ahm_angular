@@ -13,10 +13,10 @@ export class ListaSalasComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activatedRoute.parent.params.subscribe(params => {
-      console.log('PARAMS PADRE: ', params.id);
-      this.parametro = params.id;
-    })
+    // this.activatedRoute.parent.params.subscribe(params => {
+    //   console.log('PARAMS PADRE: ', params.id);
+    //   this.parametro = params.id;
+    // })
   }
 
 }
