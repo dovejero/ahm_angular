@@ -236,6 +236,9 @@ export class FormSalaComponent implements OnInit {
     this.formulario['lng'] = this.localizacion.lng;
 
   }
+  verdireccion(dire) {
+    this.formulario.value.localizacion = dire;
+  }
   async tratarSubmit() {
 
     if (!this.formulario.valid) {

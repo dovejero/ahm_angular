@@ -10,11 +10,11 @@
     </label>
     <label [ngClass]="{active: steps[2]}" class="btn btn-secondary progress-bar boton" role="progressbar"
       style="width: 25%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" (click)="cambioOpcion(2)">
-      <input type="radio" name="options" id="option2" autocomplete="off"> {{'formulario.ubicacion' | translate}}
+      <input type="radio" name="options" id="option2" autocomplete="off"> {{'formulario.redessoc' | translate}}
     </label>
     <label [ngClass]="{active: steps[3]}" class="btn btn-secondary progress-bar boton" role="progressbar"
       style="width: 25%" aria-valuenow="15" aria-valuemin="0" aria-valuemax="100" (click)="cambioOpcion(3)">
-      <input type="radio" name="options" id="option3" autocomplete="off"> {{'formulario.redessoc' | translate}}
+      <input type="radio" name="options" id="option3" autocomplete="off"> {{'formulario.ubicacion' | translate}}
     </label>
   </div>
   <hr>
@@ -73,7 +73,7 @@
           </div>
         </div>
       </div>
-      <div class="col-12" [style.display]="visible[2]">
+      <div class="col-12" [style.display]="visible[3]">
         <div class="form-row">
           <div class="form-group col-6">
             <select class="custom-select" (change)="datosLocalidad($event)">
@@ -109,7 +109,7 @@
         </div>
 
       </div>
-      <div class="col-12" [style.display]="visible[3]">
+      <div class="col-12" [style.display]="visible[2]">
         <div class="col-md-6" formArrayName="redes">
           <input class="form-control" type="text"
             *ngFor="let item of formulario.controls['redes'].controls; let i=index" [formControlName]="i">

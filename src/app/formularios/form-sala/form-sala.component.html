@@ -79,7 +79,8 @@
             </select>
           </div>
           <div class="form-group col-12">
-            <app-mapalatlng (latlng)="verlocalizacion($event)"></app-mapalatlng>
+            <app-mapalatlng [localizacion]="latlng" (latlng)="verlocalizacion($event)" (located)="verdireccion($event)">
+            </app-mapalatlng>
           </div>
           <div class="form-group col-6">
             <input type="text" class="form-control form-control-sm" formControlName="lat"

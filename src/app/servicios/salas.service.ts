@@ -18,4 +18,8 @@ export class SalasService {
   addPerfil(perfil) {
     return this.httpClient.post(this.serverApi + 'api/salas/addPerfil', perfil).toPromise();
   }
+
+  updPerfil(perfil) {
+    return this.httpClient.post(this.serverApi + 'api/salas/updPerfil', perfil).toPromise();
+  }
 }
