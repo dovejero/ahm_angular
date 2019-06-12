@@ -108,13 +108,11 @@ export class PerfilBandaComponent implements OnInit {
       }
     }
 
-    this.latlng = { lat: this.latitud, lng: this.longitud }
     setTimeout(() => {
 
-      if (this.objPerfil.length < 1) {
-        this.update = false;
+      if (this.objPerfil.fk_usuario != 0) {
         this.latlng = { lat: this.latitud, lng: this.longitud }
-
+        this.update = false;
       }
 
     }, 1000);
@@ -254,6 +252,10 @@ export class PerfilBandaComponent implements OnInit {
       this.formulario.value.dosier = this.objPerfil.dosier;
       this.formulario.value.tipo = this.formulario.value.tipo.toString()
       this.formulario.value.redes = this.formulario.value.redes.toString()
+      this.formulario.value.provincia = this.provincia;
+      this.formulario.value.localidad = this.localidad;
+      this.formulario.value.lat = this.latitud;
+      this.formulario.value.lng = this.longitud;
       await this.subirImagen(this.imagenO, 'imagen');
       await this.subirImagen(this.logoO, 'logo');
       await this.subirDosier(this.dosierO);

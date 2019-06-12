@@ -197,19 +197,19 @@ export class FormBandaComponent implements OnInit {
     });
     this.provincia = arrayLocalidades[1];
     this.formulario.value.provincia = arrayLocalidades[1];
-    this.formulario['provincia'] = arrayLocalidades[1];
+    // this.formulario['provincia'] = arrayLocalidades[1];
   }
   datosLatLng(plocalidad) {
     let arrayLocalidades = plocalidad.target.value.split(',')
     this.localidad = arrayLocalidades[0];
     this.formulario.value.localidad = arrayLocalidades[0];
-    this.formulario['localidad'] = arrayLocalidades[0];
+    // this.formulario['localidad'] = arrayLocalidades[0];
     this.latitud = parseFloat(arrayLocalidades[1]);
     this.longitud = parseFloat(arrayLocalidades[2]);
+    this.formulario.value.provincia = this.provincia;
+    this.formulario.value.localidad = this.localidad;
     this.formulario.value.lat = this.latitud;
-    this.formulario['lat'] = this.latitud;
     this.formulario.value.lng = this.longitud;
-    this.formulario['lng'] = this.longitud;
     this.latlng = { lat: this.latitud, lng: this.longitud }
   }
 
