@@ -9,7 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 export class ListaSalasComponent implements OnInit {
   parametro: number;
   constructor(private router: Router, private activatedRoute: ActivatedRoute) {
-    this.parametro = 0;
+
   }
 
   ngOnInit() {
