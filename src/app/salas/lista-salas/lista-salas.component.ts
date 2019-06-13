@@ -53,7 +53,11 @@ export class ListaSalasComponent implements OnInit {
   }
 
   datosLocalidad(plocalidad) {
-    console.log(plocalidad.target.value)
+
+    console.log('ytytytyt: ', plocalidad.target.value)
+    if (plocalidad == undefined || plocalidad == null) {
+      this.formulario.value.provincia = "";
+    }
     let arrayLocalidades = plocalidad.target.value.split(',')
     this.bandasService.getLocalidades(arrayLocalidades[0]).then((res) => {
       this.localidadArray = res;
@@ -67,12 +71,25 @@ export class ListaSalasComponent implements OnInit {
     let arrayLocalidades = plocalidad.target.value.split(',')
     this.formulario.value.localidad = arrayLocalidades[0];
   }
-
+  resetearForm() {
+    // this.formulario.reset();
+    this.formulario.value.localidad = ""
+    this.formulario.value.provincia = ""
+    this.formulario.value.aforo = ""
+    this.formulario.value.nombre = ""
+  }
   enviarFormulario() {
-    try {
-      console.log(this.formulario.value)
-    } catch (err) {
-      console.log(err)
+
+    if (this.formulario.value.provincia == undefined || this.formulario.value.localidad == undefined) {
+      this.formulario.value.provincia = "";
+      this.formulario.value.localidad = "";
     }
+    console.log('FORMU: ', this.formulario.value)
+    this.salasService.getFiltroSalas(this.formulario.value).then((res) => {
+      console.log('RESDKAÑSLKDF: ', res)
+      // this.listaFiltrada = res;
+    }).catch((err) => {
+      console.log(err)
+    })
   }
 }

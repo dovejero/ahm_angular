@@ -7,28 +7,31 @@
       </div>
       <div class="form-group">
         <select class="custom-select" (change)="datosLocalidad($event)">
-          <option disabled selected value="">{{'formulario.provincia' | translate}}</option>
+          <option selected value="">{{'formulario.provincia' | translate}}</option>
           <option *ngFor="let item of provinciaArray" [value]="[item.idProvincia, item.nombre]">{{item.nombre}}
           </option>
         </select>
       </div>
       <div class="form-group">
         <select class="custom-select" (change)="datosLatLng($event)">
-          <option disabled selected>{{'formulario.localidad' | translate}}</option>
+          <option selected value="">{{'formulario.localidad' | translate}}</option>
           <option *ngFor="let item of localidadArray" [value]="[item.nombre, item.lat, item.lng]">
             {{item.nombre}}</option>
         </select>
       </div>
       <div class="form-group">
         <select class="custom-select" formControlName="aforo">
-          <option disabled selected value="">{{'formulario.aforo' | translate}}</option>
+          <option selected value="">{{'formulario.aforo' | translate}}</option>
           <option value=0>{{'formulario.todos' | translate}}</option>
           <option value=50>{{'formulario.mascincuenta' | translate}}</option>
           <option value=100>{{'formulario.mascien' | translate}}</option>
           <option value=200>{{'formulario.masdoscientas' | translate}}</option>
         </select>
       </div>
-      <input class="btn btn-primary float-right" type="submit" [value]="'formulario.filtrar' | translate">
+      <div>
+        <input class="btn btn-primary float-right" type="submit" [value]="'formulario.filtrar' | translate">
+      </div>
+
     </form>
   </div>
   <div class="col-8">

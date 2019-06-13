@@ -69,6 +69,7 @@
         "todos": "Todos",
         "mascincuenta": "> 50 personas",
         "mascien": "> 100 personas",
-        "masdoscientas": "> 200 personas"
+        "masdoscientas": "> 200 personas",
+        "resetear": "Resetear"
     }
 }
