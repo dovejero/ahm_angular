@@ -22,4 +22,9 @@ export class SalasService {
   updPerfil(perfil) {
     return this.httpClient.post(this.serverApi + 'api/salas/updPerfil', perfil).toPromise();
   }
+
+  getFichaSala(idSala) {
+    return this.httpClient.get(this.serverApi + 'api/salas/getFichaSala/' + idSala).toPromise();
+  }
 }
+

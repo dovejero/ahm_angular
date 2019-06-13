@@ -1,7 +1,7 @@
 <div class="container">
   <div class="card text-center">
     <div class="card-header">
-      <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
         <li class="nav-item">
           <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
             aria-selected="true">Home</a>
@@ -12,14 +12,12 @@
         </li>
       </ul>
     </div>
-    <div class="card-body">
-      <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-          <app-lista-eventos></app-lista-eventos>
-        </div>
-        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-          <app-mapa-eventos></app-mapa-eventos>
-        </div>
+    <div class="card-bodytab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <app-lista-salas></app-lista-salas>
+      </div>
+      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <app-mapa-salas></app-mapa-salas>
       </div>
     </div>
   </div>

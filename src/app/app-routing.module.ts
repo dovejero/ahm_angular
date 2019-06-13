@@ -15,6 +15,7 @@ import { caLogin } from './canActivate/caLogin';
 import { caPersonal } from './canActivate/caPersonal';
 import { caRegistro } from './canActivate/caRegistro';
 import { APersonalComponent } from './personal/a-personal/a-personal.component';
+import { FichaSalasComponent } from './salas/ficha-salas/ficha-salas.component';
 
 const routes: Routes = [
   {
@@ -32,7 +33,7 @@ const routes: Routes = [
   {
     path: 'salas/:id', component: GralSalasComponent,
     children: [
-      { path: '', component: ListaSalasComponent }
+      { path: '', component: FichaSalasComponent }
     ]
   },
 

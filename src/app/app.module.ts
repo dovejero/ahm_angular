@@ -50,6 +50,7 @@ import { APersonalComponent } from './personal/a-personal/a-personal.component';
 import { PerfilBandaComponent } from './personal/perfil-banda/perfil-banda.component';
 import { PerfilUsuarioComponent } from './personal/perfil-usuario/perfil-usuario.component';
 import { PerfilSalaComponent } from './personal/perfil-sala/perfil-sala.component';
+import { HeroePersonalComponent } from './personal/heroe-personal/heroe-personal.component';
 
 @NgModule({
   declarations: [
@@ -87,7 +88,8 @@ import { PerfilSalaComponent } from './personal/perfil-sala/perfil-sala.componen
     APersonalComponent,
     PerfilBandaComponent,
     PerfilUsuarioComponent,
-    PerfilSalaComponent
+    PerfilSalaComponent,
+    HeroePersonalComponent
   ],
   imports: [
     BrowserModule,

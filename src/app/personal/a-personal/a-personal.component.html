@@ -1,14 +1,35 @@
-<div *ngIf="perfil && perfil.rol=='user'">
-  <h1>USER</h1>
-  <app-perfil-usuario [objPerfil]="perfil"></app-perfil-usuario>
-  <h1>USER</h1>
+<div>
+  <app-heroe-personal></app-heroe-personal>
 </div>
-
-<div *ngIf="perfil && perfil.rol=='sala'">
-  <h1>SALA</h1>
-  <app-perfil-sala [objPerfil]="perfil"></app-perfil-sala>
-</div>
-<div *ngIf="perfil && perfil.rol=='banda'">
-  <h1>BANDA</h1>
-  <app-perfil-banda [objPerfil]="perfil"></app-perfil-banda>
+<div class="container">
+  <div class="card text-center">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+            aria-selected="true">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+            aria-selected="false">Profile</a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-bodytab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <app-lista-eventos></app-lista-eventos>
+      </div>
+      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div *ngIf="perfil && perfil.rol=='user'">
+          <app-perfil-usuario [objPerfil]="perfil"></app-perfil-usuario>
+        </div>
+        <div *ngIf="perfil && perfil.rol=='sala'">
+          <app-perfil-sala [objPerfil]="perfil"></app-perfil-sala>
+        </div>
+        <div *ngIf="perfil && perfil.rol=='banda'">
+          <app-perfil-banda [objPerfil]="perfil"></app-perfil-banda>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
