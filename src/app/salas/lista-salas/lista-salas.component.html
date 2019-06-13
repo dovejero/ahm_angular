@@ -2,6 +2,10 @@
   <div class="col-4">
     <form novalidate [formGroup]="formulario" (ngSubmit)='enviarFormulario()'>
       <div class="form-group">
+        <input type="text" class="form-control form-control-sm" formControlName="nombre"
+          [placeholder]="'formulario.nombre' | translate">
+      </div>
+      <div class="form-group">
         <select class="custom-select" (change)="datosLocalidad($event)">
           <option disabled selected value="">{{'formulario.provincia' | translate}}</option>
           <option *ngFor="let item of provinciaArray" [value]="[item.idProvincia, item.nombre]">{{item.nombre}}
@@ -28,6 +32,11 @@
     </form>
   </div>
   <div class="col-8">
+    <div *ngIf="listaFiltrada">
+      <div *ngFor="let item of listaFiltrada">
+        {{item.nombre}}
+      </div>
+    </div>
 
   </div>
 
