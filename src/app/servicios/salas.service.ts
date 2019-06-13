@@ -26,5 +26,8 @@ export class SalasService {
   getFichaSala(idSala) {
     return this.httpClient.get(this.serverApi + 'api/salas/getFichaSala/' + idSala).toPromise();
   }
+  getAllSalas() {
+    return this.httpClient.get(this.serverApi + 'api/salas/getAllSalas').toPromise();
+  }
 }
 

@@ -1,12 +1,20 @@
-<div class="container">
+<div *ngIf="datosSala" class="container">
   <div class="card">
     <div class="card-header">
-      Featured
+      <div class="float-left">
+        <h3>{{datosSala.nombre}}</h3>
+      </div>
+      <div class="float-right"> <img class="tamlogo" [src]="datosSala.logo" alt=""></div>
     </div>
     <div class="card-body">
-      <h5 class="card-title">Special title treatment</h5>
-      <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <div class="row">
+        <div class="col-6">
+          <img class="tamimg" [src]="datosSala.imagen">
+        </div>
+        <div class="col-6">
+          <app-salamapa [localizacion]="latlng"></app-salamapa>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -9,6 +9,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class FichaSalasComponent implements OnInit {
   datosSala: any;
+  latlng: any;
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private salasService: SalasService) { }
 
   ngOnInit() {
@@ -20,6 +21,7 @@ export class FichaSalasComponent implements OnInit {
   fichaSala(idSala) {
     this.salasService.getFichaSala(idSala).then((res) => {
       this.datosSala = res;
+      this.latlng = { lat: this.datosSala.lat, lng: this.datosSala.lng };
       console.log('DATOS SALAAAAAA: ', this.datosSala)
     }).catch((err) => {
       this.router.navigate([`/eventos`]);

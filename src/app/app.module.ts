@@ -51,6 +51,8 @@ import { PerfilBandaComponent } from './personal/perfil-banda/perfil-banda.compo
 import { PerfilUsuarioComponent } from './personal/perfil-usuario/perfil-usuario.component';
 import { PerfilSalaComponent } from './personal/perfil-sala/perfil-sala.component';
 import { HeroePersonalComponent } from './personal/heroe-personal/heroe-personal.component';
+import { SalamapaComponent } from './mapas/salamapa/salamapa.component';
+import { SalamapaallComponent } from './mapas/salamapaall/salamapaall.component';
 
 @NgModule({
   declarations: [
@@ -89,7 +91,9 @@ import { HeroePersonalComponent } from './personal/heroe-personal/heroe-personal
     PerfilBandaComponent,
     PerfilUsuarioComponent,
     PerfilSalaComponent,
-    HeroePersonalComponent
+    HeroePersonalComponent,
+    SalamapaComponent,
+    SalamapaallComponent
   ],
   imports: [
     BrowserModule,

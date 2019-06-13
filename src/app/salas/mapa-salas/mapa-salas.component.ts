@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SalasService } from '../../servicios/salas.service';
 
 @Component({
   selector: 'app-mapa-salas',
@@ -7,9 +8,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapaSalasComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private salasService: SalasService) { }
+  datosLoc: any;
   ngOnInit() {
+    this.salasService.getAllSalas().then((res) => {
+      this.datosLoc = res;
+    }).catch((err) => {
+
+    })
   }
 
 }
