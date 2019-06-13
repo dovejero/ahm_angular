@@ -65,6 +65,10 @@
         "localizacion": "Dirección de ubicación",
         "verubicacion": "Introduce una dirección",
         "errorlogin": "Usuario o contraseña incorrecta",
-        "filtrar": "Filtrar"
+        "filtrar": "Filtrar",
+        "todos": "Todos",
+        "mascincuenta": "> 50 personas",
+        "mascien": "> 100 personas",
+        "masdoscientas": "> 200 personas"
     }
 }

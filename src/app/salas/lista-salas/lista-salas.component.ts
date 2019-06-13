@@ -26,7 +26,7 @@ export class ListaSalasComponent implements OnInit {
     this.formulario = new FormGroup({
       nombre: new FormControl('', [
       ]),
-      aforo: new FormControl(0, [
+      aforo: new FormControl('', [
       ]),
       provincia: new FormControl('', [
       ]),
@@ -59,5 +59,13 @@ export class ListaSalasComponent implements OnInit {
   datosLatLng(plocalidad) {
     let arrayLocalidades = plocalidad.target.value.split(',')
     this.formulario.value.localidad = arrayLocalidades[0];
+  }
+
+  enviarFormulario() {
+    try {
+      console.log(this.formulario.value)
+    } catch (err) {
+      console.log(err)
+    }
   }
 }
