@@ -22,13 +22,18 @@ export class SalamapaallComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.showPosition(this.localizacion);
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.showPosition.bind(this), this.showError)
+    } else {
+      console.log('Navegador inválido con Geolocalización')
+    }
+    // this.showPosition(this.localizacion);
   }
 
   showPosition(position) {
 
     let propsMap = {
-      center: new google.maps.LatLng(position[0].lat, position[0].lng),
+      center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
       zoom: 17,
       mapTypeId: google.maps.MapTypeId.HYBRID
     }
@@ -37,10 +42,19 @@ export class SalamapaallComponent implements OnInit {
     this.map = new google.maps.Map(this.divMap.nativeElement, propsMap)
     var infowindow = new google.maps.InfoWindow();
 
-    for (let i = 0; i < position.length; i++) {
-      var data = position[i];
-
+    for (let i = 0; i < this.localizacion.length; i++) {
+      var data = this.localizacion[i];
+      console.log(data)
       var myLatlng = new google.maps.LatLng(data.lat, data.lng);
+
+      let input = document.getElementById('inputPlace');
+      let autocomplete = new google.maps.places.Autocomplete(input);
+      autocomplete.setFields(['address_components', 'geometry', 'icon', 'name'])
+
+      autocomplete.addListener('place_changed', () => {
+        let place = autocomplete.getPlace()
+        this.map.setCenter(place.geometry.location)
+      })
 
       var marker = new google.maps.Marker({
         position: myLatlng,
