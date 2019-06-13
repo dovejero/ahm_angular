@@ -64,6 +64,7 @@
         "yaregistrado": "Mail ya registrado",
         "localizacion": "Dirección de ubicación",
         "verubicacion": "Introduce una dirección",
-        "errorlogin": "Usuario o contraseña incorrecta"
+        "errorlogin": "Usuario o contraseña incorrecta",
+        "filtrar": "Filtrar"
     }
 }
