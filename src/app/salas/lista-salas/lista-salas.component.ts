@@ -11,9 +11,11 @@ import { SalasService } from '../../servicios/salas.service';
 })
 export class ListaSalasComponent implements OnInit {
   parametro: number;
-  page = 1;
+  page: number;
+  total: number;
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private bandasService: BandasService, private salasService: SalasService) {
-
+    this.page = 1;
+    this.total = 0;
   }
   formulario: FormGroup;
   provinciaArray: any;
@@ -36,13 +38,19 @@ export class ListaSalasComponent implements OnInit {
       localidad: new FormControl('', [
       ])
     })
-    this.listaProvicias()
-    this.salasService.getAllSalas().then((res) => {
-      this.listaFiltrada = res;
-    }).catch((err) => {
+    // this.envPaginado();
+    this.enviarFormulario();
+    this.listaProvicias();
 
-    })
   }
+  // envPaginado() {
+  //   let paginado = { page: this.page }
+  //   this.salasService.getAllSalasPag(paginado).then((res) => {
+  //     this.listaFiltrada = res;
+  //   }).catch((err) => {
+
+  //   })
+  // }
 
   listaProvicias() {
     this.bandasService.getProvincias().then((res) => {
@@ -75,6 +83,8 @@ export class ListaSalasComponent implements OnInit {
     console.log('2- ', this.formulario.value.provincia)
   }
   resetearForm() {
+    this.page = 1;
+    this.total = 0;
     // this.formulario.reset();
     this.formulario = new FormGroup({
       nombre: new FormControl('', [
@@ -110,9 +120,11 @@ export class ListaSalasComponent implements OnInit {
       // this.formulario.value.localidad = ;
     }
     console.log('ENVIO FORMULARIO: ', this.formulario.value)
-    this.salasService.getFiltroSalas(this.formulario.value).then((res) => {
+    let envioDatos = { pagina: this.page, datos: this.formulario.value }
+    this.salasService.getFiltroSalas(envioDatos).then((res) => {
       console.log('RESPUESTA FILTRO: ', res)
-      // this.listaFiltrada = res;
+      this.listaFiltrada = res['datos'];
+      this.total = res['total'];
     }).catch((err) => {
       console.log(err)
     })

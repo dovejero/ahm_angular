@@ -29,9 +29,13 @@ export class SalasService {
   getAllSalas() {
     return this.httpClient.get(this.serverApi + 'api/salas/getAllSalas').toPromise();
   }
+  getAllSalasPag(pagina) {
+    return this.httpClient.post(this.serverApi + 'api/salas/getAllSalasPag', pagina).toPromise();
+  }
   getFiltroSalas(datosFiltrar) {
     return this.httpClient.post(this.serverApi + 'api/salas/getFiltroSalas', datosFiltrar).toPromise();
   }
+
 
 }
 
