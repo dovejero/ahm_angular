@@ -53,8 +53,6 @@ export class ListaSalasComponent implements OnInit {
   }
 
   datosLocalidad(plocalidad) {
-
-    console.log('ytytytyt: ', plocalidad.target.value)
     if (plocalidad == undefined || plocalidad == null) {
       this.formulario.value.provincia = "";
     }
@@ -66,27 +64,50 @@ export class ListaSalasComponent implements OnInit {
 
     });
     this.formulario.value.provincia = arrayLocalidades[1];
+    console.log('1- ', this.formulario.value.provincia)
   }
   datosLatLng(plocalidad) {
     let arrayLocalidades = plocalidad.target.value.split(',')
     this.formulario.value.localidad = arrayLocalidades[0];
+    let value = this.formulario.value.provincia.split(',')
+    this.formulario.value.provincia = value[1];
+    console.log('2- ', this.formulario.value.provincia)
   }
   resetearForm() {
     // this.formulario.reset();
-    this.formulario.value.localidad = ""
-    this.formulario.value.provincia = ""
-    this.formulario.value.aforo = ""
-    this.formulario.value.nombre = ""
+    this.formulario = new FormGroup({
+      nombre: new FormControl('', [
+      ]),
+      aforo: new FormControl('', [
+      ]),
+      provincia: new FormControl('', [
+      ]),
+      localidad: new FormControl('', [
+      ])
+    })
+    this.localidadArray = [];
+    this.provinciaArray = [];
+    this.listaProvicias();
+  }
+  datosAforo() {
+    let value = this.formulario.value.provincia.split(',')
+    this.formulario.value.provincia = value[1];
+    let value2 = this.formulario.value.localidad.split(',')
+    this.formulario.value.localidad = value2[0];
   }
   enviarFormulario() {
-
     if (this.formulario.value.provincia == undefined || this.formulario.value.localidad == undefined) {
       this.formulario.value.provincia = "";
       this.formulario.value.localidad = "";
+    } else {
+      console.log('3- ', this.formulario.value.provincia)
+      // let value = this.formulario.value.provincia.split(',')
+      // this.formulario.value.provincia = value[1];
+      // this.formulario.value.localidad = ;
     }
-    console.log('FORMU: ', this.formulario.value)
+    console.log('ENVIO FORMULARIO: ', this.formulario.value)
     this.salasService.getFiltroSalas(this.formulario.value).then((res) => {
-      console.log('RESDKAÑSLKDF: ', res)
+      console.log('RESPUESTA FILTRO: ', res)
       // this.listaFiltrada = res;
     }).catch((err) => {
       console.log(err)
