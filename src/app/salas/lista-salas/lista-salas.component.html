@@ -37,10 +37,22 @@
     </form>
   </div>
   <div class="col-8">
-    <div *ngIf="listaFiltrada">
-      <div *ngFor="let item of listaFiltrada">
-        {{item.nombre}}
+    <div class="row">
+      <div *ngIf="listaFiltrada">
+        <div *ngFor="let item of listaFiltrada">
+          <div class="card col-4 boton" (click)="abrirFicha(item.id)">
+            <img [src]="item.logo" class="card-img-top" alt="...">
+            <div class="card-footer">{{item.nombre}}</div>
+          </div>
+        </div>
       </div>
+
+      <div>
+        <ngb-pagination [collectionSize]="40" [(page)]="page" [maxSize]="5" [rotate]="true" [ellipses]="false"
+          [boundaryLinks]="true"></ngb-pagination>
+
+      </div>
+      <h1>{{page}}</h1>
     </div>
 
   </div>

@@ -11,6 +11,7 @@ import { SalasService } from '../../servicios/salas.service';
 })
 export class ListaSalasComponent implements OnInit {
   parametro: number;
+  page = 1;
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private bandasService: BandasService, private salasService: SalasService) {
 
   }
@@ -94,6 +95,9 @@ export class ListaSalasComponent implements OnInit {
     this.formulario.value.provincia = value[1];
     let value2 = this.formulario.value.localidad.split(',')
     this.formulario.value.localidad = value2[0];
+  }
+  abrirFicha(id) {
+    this.router.navigate(['/salas/' + id])
   }
   enviarFormulario() {
     if (this.formulario.value.provincia == undefined || this.formulario.value.localidad == undefined) {

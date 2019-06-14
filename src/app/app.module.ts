@@ -54,6 +54,10 @@ import { HeroePersonalComponent } from './personal/heroe-personal/heroe-personal
 import { SalamapaComponent } from './mapas/salamapa/salamapa.component';
 import { SalamapaallComponent } from './mapas/salamapaall/salamapaall.component';
 
+//importación módulo bootstrap angular
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -111,6 +115,7 @@ import { SalamapaallComponent } from './mapas/salamapaall/salamapaall.component'
     }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireStorageModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
