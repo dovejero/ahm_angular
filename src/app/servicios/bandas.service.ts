@@ -32,4 +32,7 @@ export class BandasService {
   getFiltroBandas(datosFiltrar) {
     return this.httpClient.post(this.serverApi + 'api/bandas/getFiltroBandas', datosFiltrar).toPromise();
   }
+  getAllBandasForm() {
+    return this.httpClient.get(this.serverApi + 'api/bandas/getAllBandasForm/').toPromise();
+  }
 }

@@ -25,6 +25,7 @@ export class EventoSalaComponent implements OnInit {
   uploadPercentImagen: Observable<number>
   uploadPercentDosier: Observable<number>
   imagenO: any;
+  bandas: any;
 
   constructor(private storage: AngularFireStorage, private bandasService: BandasService, private router: Router, private activatedRoute: ActivatedRoute, private utilService: UtilService) {
 
@@ -36,10 +37,14 @@ export class EventoSalaComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log('OBJETO PERFIL: ', this.objPerfil)
+    this.bandas = []
     this.imgURL = '';
     this.formulario = new FormGroup({
       nombre: new FormControl('', [
+      ]),
+      fk_sala: new FormControl('', [
+      ]),
+      fk_banda: new FormControl('', [
       ]),
       info: new FormControl('', [
       ]),
@@ -55,6 +60,19 @@ export class EventoSalaComponent implements OnInit {
       ]),
       activado: new FormControl(false, [
       ]),
+    })
+    this.getBandas();
+  }
+  cambioFecha(e) {
+    console.log('FECHA: ', e);
+  }
+
+  getBandas() {
+    this.bandasService.getAllBandasForm().then((result) => {
+      console.log(result)
+      this.bandas = result;
+    }).catch((error) => {
+
     })
   }
   onChangeImg(e, files2) {
@@ -102,6 +120,7 @@ export class EventoSalaComponent implements OnInit {
     } else {
       this.control = false;
       await this.subirImagen(this.imagenO, 'imagen');
+      this.formulario.value['fk_sala'] = this.utilService.getIdUsuario();
       console.log(this.formulario.value);
       this.botonActivo = true;
       setTimeout(() => {
@@ -116,10 +135,13 @@ export class EventoSalaComponent implements OnInit {
 
 
       console.log(this.formulario.value);
+      this.router.navigate(['/eventos']);
+
+      this.botonActivo = false;
     } catch (err) {
       console.log(err)
     }
-    this.router.navigate(['/personal']);
+
   }
 
 }

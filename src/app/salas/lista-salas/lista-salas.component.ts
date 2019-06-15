@@ -111,6 +111,12 @@ export class ListaSalasComponent implements OnInit {
   abrirFicha(id) {
     this.router.navigate(['/salas/' + id])
   }
+
+  onPageChange(e) {
+    console.log('CAMBIO PÁGINA', e)
+    this.page = e;
+    this.enviarFormulario();
+  }
   enviarFormulario() {
     if (this.formulario.value.provincia == undefined || this.formulario.value.localidad == undefined) {
       this.formulario.value.provincia = "";
@@ -123,10 +129,11 @@ export class ListaSalasComponent implements OnInit {
     }
     console.log('ENVIO FORMULARIO: ', this.formulario.value)
     let envioDatos = { pagina: this.page, datos: this.formulario.value }
+    console.log(envioDatos)
     this.salasService.getFiltroSalas(envioDatos).then((res) => {
       console.log('RESPUESTA FILTRO: ', res)
       this.listaFiltrada = res['datos'];
-      this.total = res['total'];
+      this.total = 5
     }).catch((err) => {
       console.log(err)
     })

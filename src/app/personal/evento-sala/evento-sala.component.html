@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-3">
-      <app-calendario-eventos></app-calendario-eventos>
+      <app-calendario-eventos (fecha)="cambioFecha($event)"></app-calendario-eventos>
     </div>
     <div class="col-9">
       <div class="text-dark">
@@ -16,9 +16,9 @@
               <input #file2 type="file" accept='image/*' class="form-control" formControlName="imagen"
                 (change)="onChangeImg($event, file2.files)">
             </div>
-            <select class="custom-select">
-              <option disabled selected><span>{{'formulario.banda' | translate}}</span></option>
-              <option *ngFor="let item of bandas" [value]="[item.id, item.nombre]">{{item.nombre}}
+            <select class="custom-select" formControlName="fk_banda">
+              <option disabled selected value=""><span>{{'formulario.banda' | translate}}</span></option>
+              <option *ngFor="let item of bandas" [value]="[item.id]">{{item.nombre}}
               </option>
             </select>
             <textarea rows="4" class="form-control form-control-sm" formControlName="info"
