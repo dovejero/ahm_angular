@@ -17,6 +17,7 @@ import { caRegistro } from './canActivate/caRegistro';
 import { APersonalComponent } from './personal/a-personal/a-personal.component';
 import { FichaSalasComponent } from './salas/ficha-salas/ficha-salas.component';
 import { FichaBandasComponent } from './bandas/ficha-bandas/ficha-bandas.component';
+import { FichaEventosComponent } from './eventos/ficha-eventos/ficha-eventos.component';
 
 const routes: Routes = [
   {
@@ -47,7 +48,7 @@ const routes: Routes = [
   {
     path: 'eventos/:id', component: GralEventosComponent,
     children: [
-      { path: '', component: ListaEventosComponent },
+      { path: '', component: FichaEventosComponent },
     ]
   },
   { path: 'login', component: GralEventosComponent, canActivate: [caLogin] },

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { NgbDateStruct, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-calendario-eventos',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CalendarioEventosComponent implements OnInit {
 
-  constructor() { }
-
+  model: NgbDateStruct;
+  @Output() fecha = new EventEmitter();
+  constructor(private calendar: NgbCalendar) {
+  }
   ngOnInit() {
   }
 
+  selectToday() {
+    this.model = this.calendar.getToday();
+    this.fecha.emit(this.model);
+  }
 }
+
