@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, SimpleChanges } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { BandasService } from '../../servicios/bandas.service';
 import { FormGroup, FormControl } from '@angular/forms';
@@ -13,14 +13,16 @@ export class ListaSalasComponent implements OnInit {
   parametro: number;
   page: number;
   total: number;
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private bandasService: BandasService, private salasService: SalasService) {
-    this.page = 1;
-    this.total = 0;
-  }
   formulario: FormGroup;
   provinciaArray: any;
   localidadArray: any;
   listaFiltrada: any;
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private bandasService: BandasService, private salasService: SalasService) {
+    this.page = 1;
+    this.total = 0;
+  }
+
   ngOnInit() {
     // this.activatedRoute.parent.params.subscribe(params => {
     //   console.log('PARAMS PADRE: ', params.id);

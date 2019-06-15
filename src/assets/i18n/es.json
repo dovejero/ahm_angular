@@ -16,6 +16,10 @@
         "cuenta": "¿Tienes ya una cuenta?",
         "registrar": "¿Aun no estás registrado?"
     },
+    "vista": {
+        "mapa": "Geolocalización",
+        "filtro": "Filtrado"
+    },
     "formulario": {
         "titlogin": "Hola de nuevo! ¿Accedemos? ",
         "usuario": "Usuario",

@@ -1,3 +1,68 @@
-<p>
-  lista-bandas works!
-</p>
+<div class="row">
+  <div class="col-4">
+    <form novalidate [formGroup]="formulario" (ngSubmit)='enviarFormulario()'>
+      <div class="form-group">
+        <input type="text" class="form-control form-control-sm" formControlName="nombre"
+          [placeholder]="'formulario.nombre' | translate">
+      </div>
+      <div class="form-group">
+        <select class="custom-select" (change)="datosLocalidad($event)" formControlName="provincia">
+          <option disabled selected value="">{{'formulario.provincia' | translate}}</option>
+          <option *ngFor="let item of provinciaArray" [value]="[item.idProvincia, item.nombre]">{{item.nombre}}
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <select class="custom-select" (change)="datosLatLng($event)" formControlName="localidad">
+          <option disabled selected value="">{{'formulario.localidad' | translate}}</option>
+          <option *ngFor="let item of localidadArray" [value]="[item.nombre, item.lat, item.lng]">
+            {{item.nombre}}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <select class="custom-select" (change)="datosTipo($event)" formControlName="tipo" size="3">
+          <option disabled selected>{{'formulario.multiple' | translate}}</option>
+          <option value="rock">ROCK</option>
+          <option value="pop">POP</option>
+          <option value="hrock">HARD-ROCK</option>
+          <option value="metal">METAL</option>
+          <option value="heavy">HEAVY</option>
+          <option value="ska">SKA</option>
+          <option value="reggae">REGGAE</option>
+          <option value="fusion">FUSION</option>
+          <option value="jazz">JAZZ</option>
+          <option value="blues">BLUES</option>
+          <option value="hiphop">HIP HOP</option>
+          <option value="electronic">ELECTRONIC</option>
+        </select>
+      </div>
+      <div>
+        <input class="btn btn-primary float-left" (click)="resetearForm()" type="button"
+          [value]="'formulario.resetear' | translate">
+        <input class="btn btn-primary float-right" type="submit" [value]="'formulario.filtrar' | translate">
+      </div>
+
+    </form>
+  </div>
+  <div class="col-8">
+
+    <div *ngIf="listaFiltrada">
+      <div class="row">
+        <div class="col-4" *ngFor="let item of listaFiltrada">
+          <div class="card boton" (click)="abrirFicha(item.id)">
+            <img [src]="item.logo" class="card-img-top" alt="...">
+            <div class="card-footer">{{item.nombre}}</div>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div>
+          <ngb-pagination [collectionSize]="total" [pageSize]="3" [(page)]="page" [maxSize]="3" [rotate]="true"
+            [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>

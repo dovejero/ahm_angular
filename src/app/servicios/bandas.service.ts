@@ -25,4 +25,11 @@ export class BandasService {
   updPerfil(perfil) {
     return this.httpClient.put(this.serverApi + 'api/bandas/updPerfil', perfil).toPromise();
   }
+
+  getFichaBanda(idSala) {
+    return this.httpClient.get(this.serverApi + 'api/bandas/getFichaBanda/' + idSala).toPromise();
+  }
+  getFiltroBandas(datosFiltrar) {
+    return this.httpClient.post(this.serverApi + 'api/bandas/getFiltroBandas', datosFiltrar).toPromise();
+  }
 }
