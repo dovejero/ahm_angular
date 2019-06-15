@@ -57,6 +57,9 @@ import { SalamapaallComponent } from './mapas/salamapaall/salamapaall.component'
 //importación módulo bootstrap angular
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EventoBandaComponent } from './personal/evento-banda/evento-banda.component';
+import { EventoSalaComponent } from './personal/evento-sala/evento-sala.component';
+import { EventoMensajeComponent } from './personal/evento-mensaje/evento-mensaje.component';
 
 @NgModule({
   declarations: [
@@ -97,7 +100,10 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     PerfilSalaComponent,
     HeroePersonalComponent,
     SalamapaComponent,
-    SalamapaallComponent
+    SalamapaallComponent,
+    EventoBandaComponent,
+    EventoSalaComponent,
+    EventoMensajeComponent
   ],
   imports: [
     BrowserModule,

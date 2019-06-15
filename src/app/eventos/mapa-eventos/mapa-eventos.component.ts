@@ -14,14 +14,12 @@ export class MapaEventosComponent implements OnInit {
   ngOnInit() {
     this.datosLoc = [
       {
-        "poblacion": "Abla",
-        "Latitud": 37.14114,
-        "Longitud": -2.780104
+        "lat": 37.14114,
+        "lng": -2.780104
       },
       {
-        "poblacion": "Abrucena",
-        "Latitud": 37.13305,
-        "Longitud": -2.797098
+        "lat": 37.13305,
+        "lng": -2.797098
       }]
   }
 

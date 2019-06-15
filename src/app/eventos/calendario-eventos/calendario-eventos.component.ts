@@ -13,6 +13,7 @@ export class CalendarioEventosComponent implements OnInit {
   constructor(private calendar: NgbCalendar) {
   }
   ngOnInit() {
+    this.selectToday()
   }
 
   selectToday() {

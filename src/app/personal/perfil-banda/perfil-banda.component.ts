@@ -281,7 +281,7 @@ export class PerfilBandaComponent implements OnInit {
     } catch (err) {
       console.log(err)
     }
-    this.router.navigate(['/cerrar']);
+    this.router.navigate(['/personal']);
   }
 
 }
