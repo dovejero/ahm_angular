@@ -7,6 +7,7 @@ import { BandasService } from '../../servicios/bandas.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UtilService } from '../../servicios/util.service';
 import { EventosService } from '../../servicios/eventos.service';
+import { SalasService } from '../../servicios/salas.service';
 
 @Component({
   selector: 'app-evento-sala',
@@ -28,8 +29,9 @@ export class EventoSalaComponent implements OnInit {
   imagenO: any;
   bandas: any;
   newFecha: any;
+  idSala: any;
 
-  constructor(private storage: AngularFireStorage, private bandasService: BandasService, private router: Router, private activatedRoute: ActivatedRoute, private utilService: UtilService, private eventosService: EventosService) {
+  constructor(private storage: AngularFireStorage, private bandasService: BandasService, private router: Router, private activatedRoute: ActivatedRoute, private utilService: UtilService, private eventosService: EventosService, private salasService: SalasService) {
 
     this.imgURL = ''
 
@@ -121,20 +123,26 @@ export class EventoSalaComponent implements OnInit {
     } else {
       this.control = false;
       await this.subirImagen(this.imagenO, 'imagen');
-      this.formulario.value['fk_sala'] = this.utilService.getIdUsuario();
+
       this.formulario.value.year = this.newFecha.year;
       this.formulario.value.month = this.newFecha.month;
       this.formulario.value.day = this.newFecha.day;
-      console.log(this.formulario.value);
-      this.botonActivo = true;
-      setTimeout(() => {
-        this.enviarFormulario()
-      }, 5000);
-
+      let idU = this.utilService.getIdUsuario()
+      let idusu = { id: idU }
+      this.salasService.getIdSala(idusu).then((resul) => {
+        this.idSala = resul[0].id;
+        this.formulario.value['fk_sala'] = this.idSala;
+        this.botonActivo = true;
+        setTimeout(() => {
+          this.enviarFormulario()
+        }, 5000);
+      })
     }
   }
 
   enviarFormulario() {
+
+    // console.log('FORMU FORMU FORMU: ', this.formulario.value)
     this.eventosService.newEvent(this.formulario.value).then((res) => {
       this.botonActivo = false;
       console.log(res)
@@ -142,6 +150,7 @@ export class EventoSalaComponent implements OnInit {
       console.log(err)
       this.botonActivo = false;
     })
+
   }
 
 }

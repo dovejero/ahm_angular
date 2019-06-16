@@ -7,6 +7,7 @@ import { SalasService } from '../../servicios/salas.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UtilService } from '../../servicios/util.service';
 import { EventosService } from '../../servicios/eventos.service';
+import { BandasService } from '../../servicios/bandas.service';
 
 @Component({
   selector: 'app-evento-banda',
@@ -28,8 +29,8 @@ export class EventoBandaComponent implements OnInit {
   imagenO: any;
   salas: any;
   newFecha: any;
-
-  constructor(private storage: AngularFireStorage, private salasService: SalasService, private router: Router, private activatedRoute: ActivatedRoute, private utilService: UtilService, private eventosService: EventosService) {
+  idBanda: any;
+  constructor(private storage: AngularFireStorage, private salasService: SalasService, private router: Router, private activatedRoute: ActivatedRoute, private utilService: UtilService, private eventosService: EventosService, private bandasService: BandasService) {
 
     this.imgURL = ''
 
@@ -121,16 +122,20 @@ export class EventoBandaComponent implements OnInit {
     } else {
       this.control = false;
       await this.subirImagen(this.imagenO, 'imagen');
-      this.formulario.value['fk_banda'] = this.utilService.getIdUsuario();
       this.formulario.value.year = this.newFecha.year;
       this.formulario.value.month = this.newFecha.month;
       this.formulario.value.day = this.newFecha.day;
-      console.log(this.formulario.value);
-      this.botonActivo = true;
-      setTimeout(() => {
-        this.enviarFormulario()
-      }, 5000);
+      let idU = this.utilService.getIdUsuario()
+      let idusu = { id: idU }
+      this.bandasService.getIdBanda(idusu).then((resul) => {
+        this.idBanda = resul[0].id;
 
+        this.formulario.value['fk_banda'] = this.idBanda;
+        this.botonActivo = true;
+        setTimeout(() => {
+          this.enviarFormulario()
+        }, 5000);
+      })
     }
   }
 

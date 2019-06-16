@@ -35,4 +35,8 @@ export class BandasService {
   getAllBandasForm() {
     return this.httpClient.get(this.serverApi + 'api/bandas/getAllBandasForm/').toPromise();
   }
+  getIdBanda(idUser) {
+    console.log('UUUUU ', idUser)
+    return this.httpClient.post(this.serverApi + 'api/bandas/getIdBanda', idUser).toPromise();
+  }
 }

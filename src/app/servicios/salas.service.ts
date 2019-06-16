@@ -38,6 +38,10 @@ export class SalasService {
   getAllSalasForm() {
     return this.httpClient.get(this.serverApi + 'api/salas/getAllSalasForm/').toPromise();
   }
+  getIdSala(idUser) {
+    console.log('UUUUU ', idUser)
+    return this.httpClient.post(this.serverApi + 'api/salas/getIdSala', idUser).toPromise();
+  }
 
 }
 

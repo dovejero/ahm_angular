@@ -8,7 +8,7 @@ import { EventosService } from '../../servicios/eventos.service';
   styleUrls: ['./gral-eventos.component.css']
 })
 export class GralEventosComponent implements OnInit {
-
+  dateInput: any;
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private eventosService: EventosService) { }
 
   ngOnInit() {
@@ -23,6 +23,9 @@ export class GralEventosComponent implements OnInit {
       }
 
     })
+  }
+  cambioFecha(e) {
+    this.dateInput = e;
   }
 
 }

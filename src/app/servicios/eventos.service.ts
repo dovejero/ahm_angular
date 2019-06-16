@@ -17,4 +17,8 @@ export class EventosService {
   newEvent(evento) {
     return this.httpClient.post(this.serverApi + 'api/eventos/newEvent', evento).toPromise();
   }
+  getFiltroEventos(fecha) {
+    return this.httpClient.post(this.serverApi + 'api/eventos/getFiltroEventos', fecha).toPromise();
+  }
+
 }

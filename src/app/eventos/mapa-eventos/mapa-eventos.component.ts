@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, SimpleChanges } from '@angular/core';
+import { EventosService } from '../../servicios/eventos.service';
 
 @Component({
   selector: 'app-mapa-eventos',
@@ -7,11 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MapaEventosComponent implements OnInit {
   datosLoc: any[];
-  constructor() {
+  @Input() fechaInput: any;
+  constructor(private eventosService: EventosService) {
     this.datosLoc = [];
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    for (let propName in changes) {
+      let change = changes[propName];
+
+      if (propName == 'fechaInput') {
+
+      }
+      this.fechaInput = change.currentValue;
+      console.log('PROPNAME', change.currentValue);
+      this.buscar();
+
+    }
+  }
+
   ngOnInit() {
+    console.log('Fecha Inicial', this.fechaInput)
     this.datosLoc = [
       {
         "lat": 37.14114,
@@ -21,6 +38,12 @@ export class MapaEventosComponent implements OnInit {
         "lat": 37.13305,
         "lng": -2.797098
       }]
+  }
+
+  buscar() {
+    this.eventosService.getFiltroEventos(this.fechaInput).then((result) => {
+      console.log('RESULTADO MAPA: ', result)
+    })
   }
 
 }
