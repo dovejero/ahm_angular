@@ -14,11 +14,16 @@ export class CalendarioEventosComponent implements OnInit {
   }
   ngOnInit() {
     this.selectToday()
-  }
 
+  }
+  cambioFecha(e) {
+    this.model = e;
+    this.fecha.emit(this.model);
+  }
   selectToday() {
     this.model = this.calendar.getToday();
     this.fecha.emit(this.model);
+
   }
 }
 

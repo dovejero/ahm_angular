@@ -133,7 +133,7 @@ export class ListaSalasComponent implements OnInit {
     this.salasService.getFiltroSalas(envioDatos).then((res) => {
       console.log('RESPUESTA FILTRO: ', res)
       this.listaFiltrada = res['datos'];
-      this.total = 5
+      this.total = res['total'];
     }).catch((err) => {
       console.log(err)
     })

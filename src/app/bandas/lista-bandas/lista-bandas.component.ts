@@ -39,6 +39,11 @@ export class ListaBandasComponent implements OnInit {
     this.listaProvicias();
 
   }
+  onPageChange(e) {
+    console.log('CAMBIO PÁGINA', e)
+    this.page = e;
+    this.enviarFormulario();
+  }
 
   listaProvicias() {
     this.bandasService.getProvincias().then((res) => {

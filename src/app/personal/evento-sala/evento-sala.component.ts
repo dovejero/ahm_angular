@@ -26,6 +26,7 @@ export class EventoSalaComponent implements OnInit {
   uploadPercentDosier: Observable<number>
   imagenO: any;
   bandas: any;
+  newFecha: any;
 
   constructor(private storage: AngularFireStorage, private bandasService: BandasService, private router: Router, private activatedRoute: ActivatedRoute, private utilService: UtilService) {
 
@@ -65,6 +66,7 @@ export class EventoSalaComponent implements OnInit {
   }
   cambioFecha(e) {
     console.log('FECHA: ', e);
+    this.newFecha = e;
   }
 
   getBandas() {
@@ -121,6 +123,9 @@ export class EventoSalaComponent implements OnInit {
       this.control = false;
       await this.subirImagen(this.imagenO, 'imagen');
       this.formulario.value['fk_sala'] = this.utilService.getIdUsuario();
+      this.formulario.value.year = this.newFecha.year;
+      this.formulario.value.month = this.newFecha.month;
+      this.formulario.value.day = this.newFecha.day;
       console.log(this.formulario.value);
       this.botonActivo = true;
       setTimeout(() => {
