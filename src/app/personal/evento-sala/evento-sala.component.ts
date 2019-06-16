@@ -6,6 +6,7 @@ import { finalize } from 'rxjs/operators'
 import { BandasService } from '../../servicios/bandas.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { UtilService } from '../../servicios/util.service';
+import { EventosService } from '../../servicios/eventos.service';
 
 @Component({
   selector: 'app-evento-sala',
@@ -28,7 +29,7 @@ export class EventoSalaComponent implements OnInit {
   bandas: any;
   newFecha: any;
 
-  constructor(private storage: AngularFireStorage, private bandasService: BandasService, private router: Router, private activatedRoute: ActivatedRoute, private utilService: UtilService) {
+  constructor(private storage: AngularFireStorage, private bandasService: BandasService, private router: Router, private activatedRoute: ActivatedRoute, private utilService: UtilService, private eventosService: EventosService) {
 
     this.imgURL = ''
 
@@ -58,8 +59,6 @@ export class EventoSalaComponent implements OnInit {
       day: new FormControl('', [
       ]),
       imagen: new FormControl('', [
-      ]),
-      activado: new FormControl(false, [
       ]),
     })
     this.getBandas();
@@ -136,17 +135,13 @@ export class EventoSalaComponent implements OnInit {
   }
 
   enviarFormulario() {
-    try {
-
-
-      console.log(this.formulario.value);
-      this.router.navigate(['/eventos']);
-
+    this.eventosService.newEvent(this.formulario.value).then((res) => {
       this.botonActivo = false;
-    } catch (err) {
+      console.log(res)
+    }).catch((err) => {
       console.log(err)
-    }
-
+      this.botonActivo = false;
+    })
   }
 
 }

@@ -1,0 +1,29 @@
+textarea{
+    resize: none;
+}
+
+.upload {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+  }
+.upload input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+  }
+
+  .round-div {
+    width: 40%;
+    height: 40%;  
+  }
+
+  .round-div img {
+    width: 100%;
+    height: 100%;  
+    border-radius:50%;
+    border: solid 2px black;
+
+}

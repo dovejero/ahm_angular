@@ -21,7 +21,7 @@
         "filtro": "Filtrado"
     },
     "formulario": {
-        "titlogin": "Hola de nuevo! ¿Accedemos? ",
+        "titlogin": "Hola de nuevo! ¿Quieres entrar? ",
         "usuario": "Usuario",
         "pass": "Contraseña",
         "olvido": "Olvidaste la contraseña?",
@@ -76,6 +76,7 @@
         "masdoscientas": "> 200 personas",
         "resetear": "Resetear",
         "banda": "Banda participante",
-        "precio": "Precio del evento"
+        "precio": "Precio del evento",
+        "salas": "Sala organizadora"
     }
 }

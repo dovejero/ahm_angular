@@ -14,4 +14,7 @@ export class EventosService {
   getRandomId() {
     return this.httpClient.get(this.serverApi + 'api/eventos/getRandomId').toPromise();
   }
+  newEvent(evento) {
+    return this.httpClient.post(this.serverApi + 'api/eventos/newEvent', evento).toPromise();
+  }
 }

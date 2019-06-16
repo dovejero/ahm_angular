@@ -35,7 +35,9 @@ export class SalasService {
   getFiltroSalas(datosFiltrar) {
     return this.httpClient.post(this.serverApi + 'api/salas/getFiltroSalas', datosFiltrar).toPromise();
   }
-
+  getAllSalasForm() {
+    return this.httpClient.get(this.serverApi + 'api/salas/getAllSalasForm/').toPromise();
+  }
 
 }
 
