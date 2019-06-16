@@ -20,7 +20,16 @@
         "mapa": "Geolocalización",
         "filtro": "Filtrado",
         "salageo": "Quieres localizar alguna Sala? Busca tu dirección y encuentra la más cercana...",
-        "salafiltro": "Quieres localizar alguna Sala? Filtra por tus preferencias y encuentra la más cercana..."
+        "salafiltro": "Quieres localizar alguna Sala? Filtra por tus preferencias y encuentra la más cercana...",
+        "nombre": "Nombre: ",
+        "aforo": "Aforo: ",
+        "horario": "Horario: ",
+        "redes": "Redes Sociales: ",
+        "info": "Información: ",
+        "provincia": "Provincia: ",
+        "localidad": "Localidad: ",
+        "direccion": "Dirección: ",
+        "comentario": "Comentarios: "
     },
     "formulario": {
         "titlogin": "Hola de nuevo! ¿Quieres entrar? ",
