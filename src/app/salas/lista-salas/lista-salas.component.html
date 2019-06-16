@@ -1,6 +1,16 @@
+<div>
+  <p>{{'vista.salafiltro' | translate}}</p>
+</div>
+
 <div class="row">
   <div class="col-4">
+    <div class="margin">
+      <input class="btn btn-warning float-left" (click)="resetearForm()" type="button"
+        [value]="'formulario.resetear' | translate">
+    </div>
+
     <form novalidate [formGroup]="formulario" (ngSubmit)='enviarFormulario()'>
+
       <div class="form-group">
         <input type="text" class="form-control form-control-sm" formControlName="nombre"
           [placeholder]="'formulario.nombre' | translate">
@@ -19,6 +29,7 @@
             {{item.nombre}}</option>
         </select>
       </div>
+
       <div class="form-group">
         <select class="custom-select" formControlName="aforo" (change)="datosAforo($event)">
           <option selected value="">{{'formulario.aforo' | translate}}</option>
@@ -29,8 +40,6 @@
         </select>
       </div>
       <div>
-        <input class="btn btn-primary float-left" (click)="resetearForm()" type="button"
-          [value]="'formulario.resetear' | translate">
         <input class="btn btn-primary float-right" type="submit" [value]="'formulario.filtrar' | translate">
       </div>
 
@@ -40,7 +49,7 @@
 
     <div *ngIf="listaFiltrada">
       <div class="row">
-        <div class="col-4" *ngFor="let item of listaFiltrada">
+        <div class="col-sm-12 col-md-6 col-lg-4" *ngFor="let item of listaFiltrada">
           <div class="card boton" (click)="abrirFicha(item.id)">
             <img [src]="item.logo" class="card-img-top" alt="...">
             <div class="card-footer">{{item.nombre}}</div>
@@ -49,10 +58,9 @@
       </div>
 
       <div>
-        <div class="">
-          <ngb-pagination (pageChange)="onPageChange($event)" [collectionSize]="total" [pageSize]="3" [(page)]="page"
-            [maxSize]="3" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
-        </div>
+
+        <ngb-pagination (pageChange)="onPageChange($event)" [collectionSize]="total" [pageSize]="3" [(page)]="page"
+          [maxSize]="3" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
 
       </div>
     </div>

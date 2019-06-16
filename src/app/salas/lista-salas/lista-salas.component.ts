@@ -86,7 +86,7 @@ export class ListaSalasComponent implements OnInit {
   }
   resetearForm() {
     this.page = 1;
-    this.total = 0;
+    // this.total = 0;
     // this.formulario.reset();
     this.formulario = new FormGroup({
       nombre: new FormControl('', [
