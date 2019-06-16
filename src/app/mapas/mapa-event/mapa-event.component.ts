@@ -28,24 +28,41 @@ export class MapaEventComponent implements OnInit {
     } else {
       console.log('Navegador inválido con Geolocalización')
     }
+
     // this.showPosition(this.localizacion);
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    for (let propName in changes) {
+      let change = changes[propName];
+
+      if (propName == 'localizacion') {
+        this.localizacion = change.currentValue;
+        navigator.geolocation.getCurrentPosition(this.showPosition.bind(this), this.showError)
+        console.log('THISLOCALIZACION: ', this.localizacion)
+        setTimeout(() => {
+        }, 1000);
+      }
+
+      // this.showPosition(this.localizacion);
+      console.log('PROPNAME', change.currentValue);
+    }
   }
 
   showPosition(position) {
 
     let propsMap = {
       center: new google.maps.LatLng(position.coords.latitude, position.coords.longitude),
-      zoom: 17,
+      zoom: 10,
       mapTypeId: google.maps.MapTypeId.HYBRID
     }
 
 
     this.map = new google.maps.Map(this.divMap.nativeElement, propsMap)
     var infowindow = new google.maps.InfoWindow();
-
     for (let i = 0; i < this.localizacion.length; i++) {
       var data = this.localizacion[i];
-      console.log(data)
+      console.log('DAAAAATAAAAAA', data)
       var myLatlng = new google.maps.LatLng(data.lat, data.lng);
 
       let input = document.getElementById('inputPlace');

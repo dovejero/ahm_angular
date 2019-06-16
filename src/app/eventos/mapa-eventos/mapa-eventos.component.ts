@@ -7,7 +7,7 @@ import { EventosService } from '../../servicios/eventos.service';
   styleUrls: ['./mapa-eventos.component.css']
 })
 export class MapaEventosComponent implements OnInit {
-  datosLoc: any[];
+  datosLoc: any;
   @Input() fechaInput: any;
   constructor(private eventosService: EventosService) {
     this.datosLoc = [];
@@ -29,20 +29,12 @@ export class MapaEventosComponent implements OnInit {
 
   ngOnInit() {
     console.log('Fecha Inicial', this.fechaInput)
-    this.datosLoc = [
-      {
-        "lat": 37.14114,
-        "lng": -2.780104
-      },
-      {
-        "lat": 37.13305,
-        "lng": -2.797098
-      }]
   }
 
   buscar() {
     this.eventosService.getFiltroEventos(this.fechaInput).then((result) => {
       console.log('RESULTADO MAPA: ', result)
+      this.datosLoc = result;
     })
   }
 
