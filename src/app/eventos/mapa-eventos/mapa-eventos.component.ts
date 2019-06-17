@@ -21,19 +21,19 @@ export class MapaEventosComponent implements OnInit {
 
       }
       this.fechaInput = change.currentValue;
-      console.log('PROPNAME', change.currentValue);
+      // console.log('PROPNAME', change.currentValue);
       this.buscar();
 
     }
   }
 
   ngOnInit() {
-    console.log('Fecha Inicial', this.fechaInput)
+    // console.log('Fecha Inicial', this.fechaInput)
   }
 
   buscar() {
     this.eventosService.getFiltroEventos(this.fechaInput).then((result) => {
-      console.log('RESULTADO MAPA: ', result)
+      // console.log('RESULTADO MAPA: ', result)
       this.datosLoc = result;
     })
   }

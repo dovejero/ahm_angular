@@ -42,7 +42,7 @@ export class MapaEventComponent implements OnInit {
       }
 
       // this.showPosition(this.localizacion);
-      console.log('PROPNAME', change.currentValue);
+      // console.log('PROPNAME', change.currentValue);
     }
   }
 
@@ -59,7 +59,7 @@ export class MapaEventComponent implements OnInit {
     var infowindow = new google.maps.InfoWindow();
     for (let i = 0; i < this.localizacion.length; i++) {
       var data = this.localizacion[i];
-      console.log('DAAAAATAAAAAA', data)
+      // console.log('DAAAAATAAAAAA', data)
       var myLatlng = new google.maps.LatLng(data.lat, data.lng);
 
       let input = document.getElementById('inputPlace');
@@ -73,7 +73,7 @@ export class MapaEventComponent implements OnInit {
 
       var marker = new google.maps.Marker({
         position: myLatlng,
-        map: this.map,
+        map: this.map
       });
 
       (function (marker, data, pThis) {
@@ -85,7 +85,7 @@ export class MapaEventComponent implements OnInit {
             var clickableItem = document.getElementById('clickableItem');
             clickableItem.addEventListener('click', () => {
               pThis.router.navigate(['/eventos/' + data.id]);
-              console.log(data.poblacion)
+              // console.log(data.poblacion)
             });
           });
         });

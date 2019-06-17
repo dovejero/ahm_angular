@@ -18,7 +18,7 @@ export class FichaEventosComponent implements OnInit {
   }
   fichaEvento(idEvento) {
     this.eventoService.getFichaEvento(idEvento).then((res) => {
-      this.datosEvento = res;
+      this.datosEvento = res[0];
       console.log('DATOS EVENTOOOOOOO: ', this.datosEvento)
     }).catch((err) => {
       // this.router.navigate([`/eventos`]);

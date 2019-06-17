@@ -29,7 +29,11 @@
         "provincia": "Provincia: ",
         "localidad": "Localidad: ",
         "direccion": "Dirección: ",
-        "comentario": "Comentarios: "
+        "comentario": "Comentarios: ",
+        "sala": "Sala: ",
+        "grupo": "Grupo: ",
+        "precio": "Precio: ",
+        "fecha": "Fecha: "
     },
     "formulario": {
         "titlogin": "Hola de nuevo! ¿Quieres entrar? ",

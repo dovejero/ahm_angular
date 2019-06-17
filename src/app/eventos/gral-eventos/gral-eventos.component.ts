@@ -18,7 +18,7 @@ export class GralEventosComponent implements OnInit {
           let idRandom = res['id']
           this.router.navigate([`/eventos/${idRandom}`]);
         }).catch((err) => {
-          this.router.navigate([`/eventos/1`]);
+          // this.router.navigate([`/eventos/1`]);
         });
       }
 

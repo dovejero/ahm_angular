@@ -59,10 +59,13 @@ export class ListaEventosComponent implements OnInit {
 
       }
       this.fechaInput = change.currentValue;
-      this.formulario.value.year = this.fechaInput.year;
-      this.formulario.value.month = this.fechaInput.month;
-      this.formulario.value.day = this.fechaInput.day;
-      console.log('PROPNAME', change.currentValue);
+      if (this.formulario) {
+        this.formulario.value.year = this.fechaInput.year;
+        this.formulario.value.month = this.fechaInput.month;
+        this.formulario.value.day = this.fechaInput.day;
+      }
+
+      // console.log('PROPNAME', change.currentValue);
     }
   }
 
@@ -87,14 +90,14 @@ export class ListaEventosComponent implements OnInit {
 
     });
     this.formulario.value.provincia = arrayLocalidades[1];
-    console.log('1- ', this.formulario.value.provincia)
+    // console.log('1- ', this.formulario.value.provincia)
   }
   datosLatLng(plocalidad) {
     let arrayLocalidades = plocalidad.target.value.split(',')
     this.formulario.value.localidad = arrayLocalidades[0];
     let value = this.formulario.value.provincia.split(',')
     this.formulario.value.provincia = value[1];
-    console.log('2- ', this.formulario.value.provincia)
+    // console.log('2- ', this.formulario.value.provincia)
   }
   resetearForm() {
     this.page = 1;
@@ -125,7 +128,7 @@ export class ListaEventosComponent implements OnInit {
   }
 
   onPageChange(e) {
-    console.log('CAMBIO PÁGINA', e)
+    // console.log('CAMBIO PÁGINA', e)
     this.page = e;
     this.enviarFormulario();
   }
@@ -148,11 +151,11 @@ export class ListaEventosComponent implements OnInit {
       // this.formulario.value.provincia = value[1];
       // this.formulario.value.localidad = ;
     }
-    console.log('ENVIO FORMULARIO: ', this.formulario.value)
+    // console.log('ENVIO FORMULARIO: ', this.formulario.value)
     let envioDatos = { pagina: this.page, datos: this.formulario.value }
-    console.log(envioDatos)
+    // console.log(envioDatos)
     this.eventosService.getFiltroEventosPag(envioDatos).then((res) => {
-      console.log('RESPUESTA FILTRO: ', res)
+      // console.log('RESPUESTA FILTRO: ', res)
       this.listaFiltrada = res['datos'];
       this.total = res['total'];
     }).catch((err) => {
