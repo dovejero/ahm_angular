@@ -124,7 +124,7 @@ export class ListaEventosComponent implements OnInit {
   }
 
   abrirFicha(id) {
-    this.router.navigate(['/salas/' + id])
+    this.router.navigate(['/eventos/' + id])
   }
 
   onPageChange(e) {

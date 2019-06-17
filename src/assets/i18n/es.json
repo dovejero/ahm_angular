@@ -46,7 +46,8 @@
         "cgrupos": "Descubre nuevos grupos o no tan nuevos.",
         "personal": "Personal",
         "cpersonal": "Crea nuevos eventos y manten actualizado tu perfil.",
-        "bio": "Biografía: "
+        "bio": "Biografía: ",
+        "tipo": "Tipo Música: "
     },
     "formulario": {
         "titlogin": "Hola de nuevo! ¿Quieres entrar? ",
