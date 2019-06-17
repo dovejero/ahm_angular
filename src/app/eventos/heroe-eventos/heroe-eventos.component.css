@@ -1,0 +1,10 @@
+.jumbotron {
+    background-image: url("https://firebasestorage.googleapis.com/v0/b/aquihaymusica-dov.appspot.com/o/hero%2Faction-3195378_1920.jpg?alt=media&token=2eae98d4-74c1-4a4f-aadb-351b8b1e0b22");
+    background-color: #cccccc;
+    background-position: center;
+    background-repeat: no-repeat; 
+    background-size: cover;
+   }
+   .colorblanco{
+    color: white;
+}

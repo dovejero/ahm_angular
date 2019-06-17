@@ -1,18 +1,47 @@
-<div *ngIf="datosBanda" class="container">
+<div *ngIf="datosBanda" class="container mt-4">
   <div class="card">
     <div class="card-header">
-      <div class="float-left">
-        <h3>{{datosBanda.nombre}}</h3>
+      <div class="float-left mr-4 round-div">
+        <img [src]="datosBanda.logo" alt="">
       </div>
-      <div class="float-right"> <img class="tamlogo" [src]="datosBanda.logo" alt=""></div>
+      <h3>{{datosBanda.nombre}}</h3>
     </div>
     <div class="card-body">
       <div class="row">
-        <div class="col-6">
-          <img class="tamimg" [src]="datosBanda.imagen">
+        <div class="col-sm-12 col-md-6 col-lg-6">
+
+          <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-6">
+              <img class="tamimg" [src]="datosBanda.imagen">
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-6">
+              <p><span class="font-weight-bold"> {{'vista.nombre' | translate}} </span>{{datosBanda.nombre}}</p>
+              <p><span class="font-weight-bold"> {{'vista.componentes' | translate}} </span>{{datosBanda.componentes}}
+              </p>
+              <p><span class="font-weight-bold mb-3"> {{'vista.redes' | translate}}</span> </p>
+              <p *ngFor="let item of redesSociales">
+                <a [href]="item">{{item}}</a>
+              </p>
+            </div>
+          </div>
+
         </div>
-        <div class="col-6">
+        <div class="col-sm-12 col-md-6 col-lg-6">
           <app-salamapa [localizacion]="latlng"></app-salamapa>
+          <p class="mt-4"><span class="font-weight-bold"> {{'vista.provincia' | translate}}
+            </span>{{datosBanda.provincia}}</p>
+          <p><span class="font-weight-bold"> {{'vista.localidad' | translate}} </span>{{datosBanda.localidad}}</p>
+        </div>
+        <div class="col-12">
+          <hr>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-6">
+          <p><span class="font-weight-bold"> {{'vista.bio' | translate}} </span></p>
+          <p class="text-justify">{{datosBanda.bio}}</p>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-6">
+          <p><span class="font-weight-bold"> {{'vista.comentario' | translate}} </span></p>
+          <p class="text-justify">{{datosBanda.comentario}}</p>
         </div>
       </div>
     </div>

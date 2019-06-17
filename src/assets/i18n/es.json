@@ -21,6 +21,9 @@
         "filtro": "Filtrado",
         "salageo": "Quieres localizar alguna Sala? Busca tu dirección y encuentra la más cercana...",
         "salafiltro": "Quieres localizar alguna Sala? Filtra por tus preferencias y encuentra la más cercana...",
+        "eventogeo": "Buscas un evento por tu zona? Busca tu dirección y encuentra el más cercano...",
+        "eventofiltro": "Buscas un evento por tu zona? Filtra por tus preferencias y encuentra el más cercano...",
+        "bandafiltro": "Buscas grupo por tu zona? Filtra por tus preferencias y descubre nuevas bandas...",
         "nombre": "Nombre: ",
         "aforo": "Aforo: ",
         "horario": "Horario: ",
@@ -33,7 +36,15 @@
         "sala": "Sala: ",
         "grupo": "Grupo: ",
         "precio": "Precio: ",
-        "fecha": "Fecha: "
+        "fecha": "Fecha: ",
+        "eventos": "Eventos",
+        "ceventos": "Descubre la música en vivo de tu ciudad.",
+        "salas": "Salas",
+        "csalas": "Conoce tus salas más cercanas.",
+        "grupos": "Grupos",
+        "cgrupos": "Descubre nuevos grupos o no tan nuevos.",
+        "personal": "Personal",
+        "cpersonal": "Crea nuevos eventos y manten actualizado tu perfil."
     },
     "formulario": {
         "titlogin": "Hola de nuevo! ¿Quieres entrar? ",
@@ -92,6 +103,8 @@
         "resetear": "Resetear",
         "banda": "Banda participante",
         "precio": "Precio del evento",
-        "salas": "Sala organizadora"
+        "salas": "Sala organizadora",
+        "nevento": "Nuevo evento",
+        "mensajes": "Mensajes"
     }
 }

@@ -1,0 +1,10 @@
+.jumbotron {
+    background-image: url("https://firebasestorage.googleapis.com/v0/b/aquihaymusica-dov.appspot.com/o/hero%2Fdrum-set-1839383_1920.jpg?alt=media&token=17941edf-9ab6-4a86-8e42-dc8e5613309c");
+    background-color: #cccccc;
+    background-position: center;
+    background-repeat: no-repeat; 
+    background-size: cover;
+   }
+.colorblanco{
+    color: white;
+}

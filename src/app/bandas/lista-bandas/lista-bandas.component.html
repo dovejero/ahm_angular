@@ -1,5 +1,12 @@
+<div>
+  <p>{{'vista.bandafiltro' | translate}}</p>
+</div>
 <div class="row">
   <div class="col-4">
+    <div class="margin">
+      <input class="btn btn-warning float-left" (click)="resetearForm()" type="button"
+        [value]="'formulario.resetear' | translate">
+    </div>
     <form novalidate [formGroup]="formulario" (ngSubmit)='enviarFormulario()'>
       <div class="form-group">
         <input type="text" class="form-control form-control-sm" formControlName="nombre"
@@ -37,17 +44,15 @@
         </select>
       </div>
       <div>
-        <input class="btn btn-primary float-left" (click)="resetearForm()" type="button"
-          [value]="'formulario.resetear' | translate">
         <input class="btn btn-primary float-right" type="submit" [value]="'formulario.filtrar' | translate">
       </div>
 
     </form>
   </div>
-  <div class="col-8">
+  <div class="col-8 mt-2">
 
     <div *ngIf="listaFiltrada">
-      <div class="row">
+      <div class="row d-flex justify-content-center">
         <div class="col-4" *ngFor="let item of listaFiltrada">
           <div class="card boton" (click)="abrirFicha(item.id)">
             <img [src]="item.logo" class="card-img-top" alt="...">
@@ -57,7 +62,7 @@
       </div>
 
       <div>
-        <div>
+        <div class="mt-3 row d-flex justify-content-center">
           <ngb-pagination (pageChange)="onPageChange($event)" [collectionSize]="total" [pageSize]="3" [(page)]="page"
             [maxSize]="3" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"></ngb-pagination>
         </div>
