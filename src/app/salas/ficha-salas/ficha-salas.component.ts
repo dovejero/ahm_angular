@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { SalasService } from '../../servicios/salas.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { EventosService } from 'src/app/servicios/eventos.service';
 
 @Component({
   selector: 'app-ficha-salas',
@@ -11,7 +12,8 @@ export class FichaSalasComponent implements OnInit {
   datosSala: any;
   latlng: any;
   redesSociales: any;
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private salasService: SalasService) { }
+  eventos: any;
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private salasService: SalasService, private eventosService: EventosService) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -26,7 +28,12 @@ export class FichaSalasComponent implements OnInit {
       console.log('DATOS SALAAAAAA: ', this.datosSala)
       this.redesSociales = this.datosSala['redes'].split(',');
     }).catch((err) => {
-      this.router.navigate([`/eventos`]);
+      // this.router.navigate([`/eventos`]);
+    });
+    this.eventosService.getEventosSala(idSala).then((res) => {
+      this.eventos = res
+    }).catch((err) => {
+      console.log(err)
     });
   }
 

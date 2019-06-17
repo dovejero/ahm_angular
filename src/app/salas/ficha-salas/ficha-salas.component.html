@@ -44,7 +44,16 @@
           <p><span class="font-weight-bold"> {{'vista.comentario' | translate}} </span></p>
           <p class="text-justify">{{datosSala.comentario}}</p>
         </div>
+        <div class="col-sm-12 col-md-4 col-lg-4">
+          <p><span class="font-weight-bold"> {{'vista.eventos2' | translate}} </span></p>
+          <div class="scroll">
+            <u *ngFor="let evento of eventos">
+              <a [routerLink]="['/eventos/' + evento.id]">
+                <li>{{evento.titulo}} {{evento.day}}/{{evento.month}}/{{evento.year}} </li>
+              </a>
+            </u>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</div>

@@ -38,13 +38,15 @@
         "precio": "Precio: ",
         "fecha": "Fecha: ",
         "eventos": "Eventos",
+        "eventos2": "Eventos: ",
         "ceventos": "Descubre la música en vivo de tu ciudad.",
         "salas": "Salas",
         "csalas": "Conoce tus salas más cercanas.",
         "grupos": "Grupos",
         "cgrupos": "Descubre nuevos grupos o no tan nuevos.",
         "personal": "Personal",
-        "cpersonal": "Crea nuevos eventos y manten actualizado tu perfil."
+        "cpersonal": "Crea nuevos eventos y manten actualizado tu perfil.",
+        "bio": "Biografía: "
     },
     "formulario": {
         "titlogin": "Hola de nuevo! ¿Quieres entrar? ",

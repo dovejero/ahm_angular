@@ -26,5 +26,11 @@ export class EventosService {
   getFichaEvento(idEvento) {
     return this.httpClient.get(this.serverApi + 'api/eventos/getFichaEvento/' + idEvento).toPromise();
   }
+  getEventosBanda(idBanda) {
+    return this.httpClient.get(this.serverApi + 'api/eventos/getEventosBanda/' + idBanda).toPromise();
+  }
+  getEventosSala(idSala) {
+    return this.httpClient.get(this.serverApi + 'api/eventos/getEventosSala/' + idSala).toPromise();
+  }
 
 }

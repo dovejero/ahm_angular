@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BandasService } from '../../servicios/bandas.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { EventosService } from '../../servicios/eventos.service';
 
 @Component({
   selector: 'app-ficha-bandas',
@@ -11,7 +12,9 @@ export class FichaBandasComponent implements OnInit {
 
   datosBanda: any;
   latlng: any;
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, private bandasService: BandasService) { }
+  eventos: any;
+
+  constructor(private router: Router, private activatedRoute: ActivatedRoute, private bandasService: BandasService, private eventosService: EventosService) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
@@ -25,6 +28,12 @@ export class FichaBandasComponent implements OnInit {
       this.latlng = { lat: this.datosBanda.lat, lng: this.datosBanda.lng };
     }).catch((err) => {
       this.router.navigate([`/eventos`]);
+    });
+    this.eventosService.getEventosBanda(idSala).then((res) => {
+      this.eventos = res
+      console.log('EVENTOS: ', this.eventos)
+    }).catch((err) => {
+      console.log(err)
     });
   }
 

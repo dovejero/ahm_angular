@@ -35,13 +35,25 @@
         <div class="col-12">
           <hr>
         </div>
-        <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="col-sm-12 col-md-4 col-lg-4">
           <p><span class="font-weight-bold"> {{'vista.bio' | translate}} </span></p>
           <p class="text-justify">{{datosBanda.bio}}</p>
         </div>
-        <div class="col-sm-12 col-md-6 col-lg-6">
+        <div class="col-sm-12 col-md-4 col-lg-4">
           <p><span class="font-weight-bold"> {{'vista.comentario' | translate}} </span></p>
           <p class="text-justify">{{datosBanda.comentario}}</p>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4">
+          <p><span class="font-weight-bold"> {{'vista.eventos2' | translate}} </span></p>
+          <div class="scroll">
+            <u *ngFor="let evento of eventos">
+              <a [routerLink]="['/eventos/' + evento.id]">
+                <li>{{evento.titulo}} {{evento.day}}/{{evento.month}}/{{evento.year}} </li>
+              </a>
+
+            </u>
+          </div>
+
         </div>
       </div>
     </div>
