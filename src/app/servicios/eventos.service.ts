@@ -23,5 +23,8 @@ export class EventosService {
   getFiltroEventosPag(datos) {
     return this.httpClient.post(this.serverApi + 'api/eventos/getFiltroEventosPag', datos).toPromise();
   }
+  getFichaEvento(idEvento) {
+    return this.httpClient.get(this.serverApi + 'api/eventos/getFichaEvento/' + idEvento).toPromise();
+  }
 
 }

@@ -78,7 +78,7 @@ export class MapaEventComponent implements OnInit {
 
       (function (marker, data, pThis) {
         google.maps.event.addListener(marker, "click", function (e) {
-          infowindow.setContent(`<div class="card"><img src="..." class="card-img-top" alt="..."><div class="card-body"><h5 class="card-title">${data.titulo}</h5><p class="card-text">Sala: ${data.n_sala}  Banda: ${data.n_banda} </p><button id="clickableItem">Click me</button>`);
+          infowindow.setContent(`<div class="card"><img src="${data.imagen}" class="card-img-top" alt="..."><div class="card-body"><h5 class="card-title">${data.titulo}</h5><p class="card-text">Sala: ${data.n_sala} </p> Banda: ${data.n_banda} </p><button id="clickableItem">Ver/Show</button>`);
           infowindow.open(this.map, marker);
 
           google.maps.event.addListener(infowindow, 'domready', () => {
