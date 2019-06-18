@@ -47,7 +47,10 @@
         "personal": "Personal",
         "cpersonal": "Crea nuevos eventos y manten actualizado tu perfil.",
         "bio": "Biografía: ",
-        "tipo": "Tipo Música: "
+        "tipo": "Tipo Música: ",
+        "comentarios": "Comentarios: ",
+        "ubicacion": "Ubicación: ",
+        "activar": "Activar Perfil: "
     },
     "formulario": {
         "titlogin": "Hola de nuevo! ¿Quieres entrar? ",
