@@ -8,7 +8,9 @@
         "usuario": "User",
         "login": "Login/Register",
         "salir": "Log off",
-        "areapersonal": "Personal area"
+        "areapersonal": "Personal area",
+        "tit": "Aquí Hay Música",
+        "proyecto": "Personal Project Bootcamp FullStack Developer course"
     },
     "modal": {
         "login": "Login",
