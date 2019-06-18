@@ -50,7 +50,9 @@
         "tipo": "Tipo Música: ",
         "comentarios": "Comentarios: ",
         "ubicacion": "Ubicación: ",
-        "activar": "Activar Perfil: "
+        "activar": "Activar Perfil: ",
+        "dosier": "Dosier: ",
+        "componentes": "Nª componentes: "
     },
     "formulario": {
         "titlogin": "Hola de nuevo! ¿Quieres entrar? ",

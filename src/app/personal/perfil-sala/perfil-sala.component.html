@@ -60,13 +60,15 @@
               class="form-text text-muted">{{'formulario.valusuario' | translate}}</small>
           </div>
           <div class="col-12">
-            <span class="float-left mb-2 font-weight-bold">{{'vista.redes' | translate}} </span>
+            <div>
+              <span class="float-left mb-2 font-weight-bold">{{'vista.redes' | translate}} </span>
+              <button class="float-left mb-2 font-weight-bold" *ngIf="formulario.controls['redes'].value.length < 4"
+                type="button" (click)="agregarRedes()" class="btn btn-primary">+</button>
+            </div>
             <div class="" formArrayName="redes">
               <input class="form-control" type="text"
                 *ngFor="let item of formulario.controls['redes'].controls; let i=index" [formControlName]="i">
             </div>
-            <button *ngIf="formulario.controls['redes'].value.length < 4" type="button" (click)="agregarRedes()"
-              class="btn btn-primary">+</button>
           </div>
         </div>
       </div>

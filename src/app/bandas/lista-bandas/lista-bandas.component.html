@@ -52,7 +52,7 @@
   <div class="col-8 mt-2">
 
     <div *ngIf="listaFiltrada">
-      <div class="row d-flex justify-content-center">
+      <div class="row d-flex">
         <div class="col-4" *ngFor="let item of listaFiltrada">
           <div class="card boton" (click)="abrirFicha(item.id)">
             <img [src]="item.logo" class="card-img-top" alt="...">

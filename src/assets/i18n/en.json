@@ -46,8 +46,13 @@
         "cgrupos": "Discover new and old bands.",
         "personal": "Personal",
         "cpersonal": "Create new events and keep your profile updated.",
-        "bio": "Bio: ",
-        "tipo": "Music Style: "
+        "bio": "Biography: ",
+        "tipo": "Music Style: ",
+        "comentarios": "Coments: ",
+        "ubicacion": "Location: ",
+        "activar": "Active Profile: ",
+        "dosier": "Dosier: ",
+        "componentes": "Components: "
     },
     "formulario": {
         "titlogin": "Hi again! Want to come in? ",
