@@ -274,8 +274,10 @@ export class PerfilBandaComponent implements OnInit {
       if (this.objPerfil['fk_usuario'] == 0) {
         this.formulario.value.idUsuario = parseInt(this.utilService.getIdUsuario())
         this.bandasService.addPerfil(this.formulario.value);
+        this.botonActivo = false;
       } else {
         this.bandasService.updPerfil(this.formulario.value);
+        this.botonActivo = false;
       }
       console.log(this.formulario.value);
     } catch (err) {

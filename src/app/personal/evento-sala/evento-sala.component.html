@@ -29,9 +29,9 @@
 
             <input type="number" class="mt-2 form-control form-control-sm" formControlName="precio"
               [placeholder]="'formulario.precio' | translate">
-            <input *ngIf="!botonActivo" class="mt-2 btn btn-primary float-right" type="submit"
+            <input *ngIf="!botonActivo" class="mt-2 btn btn-secondary float-right" type="submit"
               [value]="'formulario.enviar' | translate">
-            <input *ngIf="botonActivo" disabled class="mt-2 btn btn-primary float-right" type="submit"
+            <input *ngIf="botonActivo" disabled class="mt-2 btn btn-secondary float-right" type="submit"
               [value]="'formulario.enviando' | translate">
           </form>
         </div>

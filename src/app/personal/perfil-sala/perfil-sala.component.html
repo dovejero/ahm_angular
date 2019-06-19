@@ -62,8 +62,8 @@
           <div class="col-12">
             <div>
               <span class="float-left mb-2 font-weight-bold">{{'vista.redes' | translate}} </span>
-              <button class="float-left mb-2 font-weight-bold" *ngIf="formulario.controls['redes'].value.length < 4"
-                type="button" (click)="agregarRedes()" class="btn btn-primary">+</button>
+              <button *ngIf="formulario.controls['redes'].value.length < 4" type="button" (click)="agregarRedes()"
+                class="btn btn-secondary btn-sm float-right">+</button>
             </div>
             <div class="" formArrayName="redes">
               <input class="form-control" type="text"
@@ -121,9 +121,9 @@
             class="form-text text-muted">{{'formulario.valcomentario' | translate}}</small>
         </div>
       </div>
-      <input *ngIf="!botonActivo" class="btn btn-primary float-right" type="submit"
+      <input *ngIf="!botonActivo" class="btn btn-secondary float-right" type="submit"
         [value]="'formulario.enviar' | translate">
-      <input *ngIf="botonActivo" disabled class="btn btn-primary float-right" type="submit"
+      <input *ngIf="botonActivo" disabled class="btn btn-secondary float-right" type="submit"
         [value]="'formulario.enviando' | translate">
     </form>
 
