@@ -32,7 +32,7 @@ export class GralBandasComponent implements OnInit {
           let idRandom = res['id']
           this.router.navigate([`/bandas/${idRandom}`]);
         }).catch((err) => {
-          this.router.navigate([`/bandas/1`]);
+          // this.router.navigate([`/bandas/1`]);
         });
       }
 

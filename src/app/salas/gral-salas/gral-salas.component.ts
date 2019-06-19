@@ -19,7 +19,7 @@ export class GralSalasComponent implements OnInit {
           let idRandom = res['id']
           this.router.navigate([`/salas/${idRandom}`]);
         }).catch((err) => {
-          this.router.navigate([`/salas/1`]);
+          // this.router.navigate([`/salas/1`]);
         });
       }
     })

@@ -13,6 +13,7 @@ export class FichaBandasComponent implements OnInit {
   datosBanda: any;
   latlng: any;
   eventos: any;
+  redesSociales: any
 
   constructor(private router: Router, private activatedRoute: ActivatedRoute, private bandasService: BandasService, private eventosService: EventosService) { }
 
@@ -26,6 +27,7 @@ export class FichaBandasComponent implements OnInit {
     this.bandasService.getFichaBanda(idSala).then((res) => {
       this.datosBanda = res;
       this.latlng = { lat: this.datosBanda.lat, lng: this.datosBanda.lng };
+      this.redesSociales = this.datosBanda['redes'].split(',');
     }).catch((err) => {
       this.router.navigate([`/eventos`]);
     });

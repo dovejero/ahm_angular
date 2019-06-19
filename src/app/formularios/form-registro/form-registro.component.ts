@@ -27,22 +27,22 @@ export class FormRegistroComponent implements OnInit {
     this.opc = [true, false, false, false]
     this.control = false;
     this.formulario = new FormGroup({
-      usuario: new FormControl('user', [
+      usuario: new FormControl('', [
         Validators.required
       ]),
-      mail: new FormControl('aaa@aaa.com', [
+      mail: new FormControl('', [
         Validators.required,
         Validators.pattern(/^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/)
       ]),
-      password: new FormControl('asdfasd1', [
+      password: new FormControl('', [
         Validators.required,
         Validators.pattern(/^(?=.*\d).{4,8}$/)
       ]),
-      reppassword: new FormControl('asdfasd1', [
+      reppassword: new FormControl('', [
         Validators.required,
         Validators.pattern(/^(?=.*\d).{4,8}$/)
       ]),
-      rolradio: new FormControl('user'),
+      rolradio: new FormControl(''),
     }, [this.passwordRepeat])
   }
 
