@@ -252,8 +252,10 @@ export class PerfilSalaComponent implements OnInit {
       this.botonActivo = true;
       setTimeout(() => {
         this.enviarFormulario()
+        this.botonActivo = false;
       }, 5000);
       console.log('IMAGENNNNN: ', this.formulario.value.logo)
+
     }
   }
   enviarFormulario() {
@@ -269,7 +271,7 @@ export class PerfilSalaComponent implements OnInit {
     } catch (err) {
       console.log(err)
     }
-    this.router.navigate(['/personal']);
+    // this.router.navigate(['/personal']);
   }
 
 }

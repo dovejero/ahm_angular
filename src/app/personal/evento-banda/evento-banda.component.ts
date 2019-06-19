@@ -133,7 +133,8 @@ export class EventoBandaComponent implements OnInit {
         this.formulario.value['fk_banda'] = this.idBanda;
         this.botonActivo = true;
         setTimeout(() => {
-          this.enviarFormulario()
+          this.enviarFormulario();
+          this.botonActivo = false;
         }, 5000);
       })
     }
@@ -141,11 +142,9 @@ export class EventoBandaComponent implements OnInit {
 
   enviarFormulario() {
     this.eventosService.newEvent(this.formulario.value).then((res) => {
-      this.botonActivo = false;
       console.log(res)
     }).catch((err) => {
       console.log(err)
-      this.botonActivo = false;
     })
   }
 

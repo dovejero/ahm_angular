@@ -73,15 +73,18 @@ export class FormRegistroComponent implements OnInit {
         this.userId = res[0].id;
         this.noAlta = false;
         this.opc[0] = false;
+        console.log(this.opc)
         switch (this.formulario.value.rolradio) {
-          case 'user':
-            this.opc[1] = true;
-            break;
+          // case 'user':
+          //   this.opc[1] = true;
+          //   break;
           case 'banda':
             this.opc[2] = true;
+            console.log('Entra banda')
             break;
           case 'sala':
             this.opc[3] = true;
+            console.log('Entra sala')
             break;
           default:
             break;

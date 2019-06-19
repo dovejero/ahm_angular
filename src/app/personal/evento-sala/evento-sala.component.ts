@@ -135,6 +135,7 @@ export class EventoSalaComponent implements OnInit {
         this.botonActivo = true;
         setTimeout(() => {
           this.enviarFormulario()
+          this.botonActivo = false;
         }, 5000);
       })
     }
@@ -144,11 +145,9 @@ export class EventoSalaComponent implements OnInit {
 
     // console.log('FORMU FORMU FORMU: ', this.formulario.value)
     this.eventosService.newEvent(this.formulario.value).then((res) => {
-      this.botonActivo = false;
       console.log(res)
     }).catch((err) => {
       console.log(err)
-      this.botonActivo = false;
     })
 
   }
