@@ -13,6 +13,7 @@ export class MapaSalasComponent implements OnInit {
   ngOnInit() {
     this.salasService.getAllSalas().then((res) => {
       this.datosLoc = res;
+      console.log('RES RES RES RES RES ', this.datosLoc)
     }).catch((err) => {
 
     })

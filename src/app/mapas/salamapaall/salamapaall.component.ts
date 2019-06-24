@@ -41,10 +41,9 @@ export class SalamapaallComponent implements OnInit {
 
     this.map = new google.maps.Map(this.divMap.nativeElement, propsMap)
     var infowindow = new google.maps.InfoWindow();
-
     for (let i = 0; i < this.localizacion.length; i++) {
       var data = this.localizacion[i];
-      console.log(data)
+
       var myLatlng = new google.maps.LatLng(data.lat, data.lng);
 
       let input = document.getElementById('inputPlace');
@@ -63,7 +62,7 @@ export class SalamapaallComponent implements OnInit {
 
       (function (marker, data, pThis) {
         google.maps.event.addListener(marker, "click", function (e) {
-          infowindow.setContent(`<div class="card"><img src="..." class="card-img-top" alt="..."><div class="card-body"><h5 class="card-title">${data.nombre}</h5><p class="card-text">lat ${data.lat}  Lng: ${data.lng} </p><button id="clickableItem">Click me</button>`);
+          infowindow.setContent(`<div class="card"><div class="card-body"><h5 class="card-title">${data.nombre}</h5><p class="card-text">${data.localizacion}</p><button id="clickableItem">Ver</button>`);
           infowindow.open(this.map, marker);
 
           google.maps.event.addListener(infowindow, 'domready', () => {

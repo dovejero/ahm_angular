@@ -53,7 +53,7 @@
 
     <div *ngIf="listaFiltrada">
       <div class="row d-flex">
-        <div class="col-4" *ngFor="let item of listaFiltrada">
+        <div class="col-sm-12 col-md-6 col-lg-4" *ngFor="let item of listaFiltrada">
           <div class="card boton" (click)="abrirFicha(item.id)">
             <img [src]="item.logo" class="card-img-top" alt="...">
             <div class="card-footer">{{item.nombre}}</div>
