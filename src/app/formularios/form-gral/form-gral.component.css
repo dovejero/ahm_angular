@@ -7,3 +7,5 @@
 .fondo{
     background-color:rgba(0,0,0,0.4);
 }
+
+.modal { overflow-y: auto !important; }

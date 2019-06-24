@@ -1,0 +1,11 @@
+.jumbotron {
+    background-image: url("https://firebasestorage.googleapis.com/v0/b/aquihaymusica-dov.appspot.com/o/hero%2Flive-concert-455762_1920.jpg?alt=media&token=24af46df-6293-4687-8684-d460e04717ab");
+    background-color: #cccccc;
+    background-position: center rigth;
+    background-repeat: no-repeat; 
+    background-size: cover;
+   }
+
+   .colorblanco{
+    color: white;
+}

@@ -6,12 +6,53 @@ import { GralSalasComponent } from './salas/gral-salas/gral-salas.component';
 import { GralEventosComponent } from './eventos/gral-eventos/gral-eventos.component';
 import { FormRegistroComponent } from './formularios/form-registro/form-registro.component';
 import { FormLoginComponent } from './formularios/form-login/form-login.component';
+import { ListaEventosComponent } from './eventos/lista-eventos/lista-eventos.component';
+import { ListaSalasComponent } from './salas/lista-salas/lista-salas.component';
+import { ListaBandasComponent } from './bandas/lista-bandas/lista-bandas.component';
+import { caEventos } from './canActivate/caEventos';
+import { caCerrar } from './canActivate/caCerrar';
+import { caLogin } from './canActivate/caLogin';
+import { caPersonal } from './canActivate/caPersonal';
+import { caRegistro } from './canActivate/caRegistro';
+import { APersonalComponent } from './personal/a-personal/a-personal.component';
+import { FichaSalasComponent } from './salas/ficha-salas/ficha-salas.component';
+import { FichaBandasComponent } from './bandas/ficha-bandas/ficha-bandas.component';
+import { FichaEventosComponent } from './eventos/ficha-eventos/ficha-eventos.component';
 
 const routes: Routes = [
-  { path: 'bandas', component: GralBandasComponent },
-  { path: 'salas', component: GralSalasComponent },
-  { path: 'eventos', component: GralEventosComponent },
-  { path: 'login', redirectTo: '/eventos(modal:formIn/login)' },
+  {
+    path: 'bandas', component: GralBandasComponent,
+  },
+  {
+    path: 'bandas/:id', component: GralBandasComponent,
+    children: [
+      { path: '', component: FichaBandasComponent }
+    ]
+  },
+  {
+    path: 'salas', component: GralSalasComponent
+  },
+  {
+    path: 'salas/:id', component: GralSalasComponent,
+    children: [
+      { path: '', component: FichaSalasComponent }
+    ]
+  },
+
+  {
+    path: 'personal', component: APersonalComponent, canActivate: [caPersonal]
+  },
+  {
+    path: 'eventos', component: GralEventosComponent
+  },
+  {
+    path: 'eventos/:id', component: GralEventosComponent,
+    children: [
+      { path: '', component: FichaEventosComponent },
+    ]
+  },
+  { path: 'login', component: GralEventosComponent, canActivate: [caLogin] },
+  { path: 'registro', component: GralEventosComponent, canActivate: [caRegistro] },
 
   {
     path: "formIn",
@@ -22,6 +63,8 @@ const routes: Routes = [
       { path: 'registro', component: FormRegistroComponent }
     ]
   },
+  { path: 'salir', component: GralEventosComponent, canActivate: [caEventos] },
+  { path: 'cerrar', component: GralEventosComponent, canActivate: [caCerrar] },
   { path: '**', redirectTo: "/eventos" }
 ];
 

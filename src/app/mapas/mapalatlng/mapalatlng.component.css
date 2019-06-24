@@ -1,0 +1,9 @@
+.map{
+    width: 100%;
+    height: 10em;
+    background-color: lightblue;
+}
+#inputPlace{
+    width: 100%;
+    margin-top: 2em;
+}

@@ -1,3 +1,59 @@
-<p>
-  ficha-salas works!
-</p>
+<div *ngIf="datosSala" class="container mt-4">
+  <div class="card">
+    <div class="card-header">
+      <div class="float-left mr-4 round-div">
+        <img [src]="datosSala.logo" alt="">
+      </div>
+      <h3>{{datosSala.nombre}}</h3>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-12 col-md-6 col-lg-6">
+
+          <div class="row">
+            <div class="col-sm-12 col-md-6 col-lg-5">
+              <img class="tamimg" [src]="datosSala.imagen">
+            </div>
+            <div class="col-sm-12 col-md-6 col-lg-7">
+              <p><span class="font-weight-bold"> {{'vista.nombre' | translate}} </span>{{datosSala.nombre}}</p>
+              <p><span class="font-weight-bold"> {{'vista.aforo' | translate}} </span>{{datosSala.aforo}}</p>
+              <p><span class="font-weight-bold"> {{'vista.horario' | translate}} </span>{{datosSala.horario}}</p>
+              <p><span class="font-weight-bold mb-3"> {{'vista.redes' | translate}}</span> </p>
+              <p *ngFor="let item of redesSociales">
+                <a class="font" [href]="item">{{item}}</a>
+              </p>
+            </div>
+          </div>
+
+        </div>
+        <div id="test" class="col-sm-12 col-md-6 col-lg-6">
+          <app-salamapa [localizacion]="latlng"></app-salamapa>
+          <p class="mt-4"><span class="font-weight-bold"> {{'vista.provincia' | translate}}
+            </span>{{datosSala.provincia}}</p>
+          <p><span class="font-weight-bold"> {{'vista.localidad' | translate}} </span>{{datosSala.localidad}}</p>
+          <p><span class="font-weight-bold"> {{'vista.direccion' | translate}} </span>{{datosSala.localizacion}}</p>
+        </div>
+        <div class="col-12">
+          <hr>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4">
+          <p><span class="font-weight-bold"> {{'vista.info' | translate}} </span></p>
+          <p class="text-justify">{{datosSala.info}}</p>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4">
+          <p><span class="font-weight-bold"> {{'vista.comentario' | translate}} </span></p>
+          <p class="text-justify">{{datosSala.comentario}}</p>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-4">
+          <p><span class="font-weight-bold"> {{'vista.eventos2' | translate}} </span></p>
+          <div class="scroll">
+            <u *ngFor="let evento of eventos">
+              <a [routerLink]="['/eventos/' + evento.id]">
+                <li>{{evento.titulo}} {{evento.day}}/{{evento.month}}/{{evento.year}} </li>
+              </a>
+            </u>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

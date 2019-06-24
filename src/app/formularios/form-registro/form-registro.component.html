@@ -1,11 +1,67 @@
-<div class="modal-header">
-  <h5 class="modal-title text-dark">Registro</h5>
-  <!-- <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-    <span aria-hidden="true">&times;</span>
-  </button> -->
-</div>
+<!-- <div class="modal-header">
+</div> -->
 <div class="modal-body text-dark">
-  ...Formulario Registro
+  <div *ngIf="opc[0]">
+    <form novalidate [formGroup]="formulario" (ngSubmit)='tratarSubmit()'>
+      <h5 class="titulo">{{'formulario.titregistro' | translate}}</h5>
+      <hr>
+      <div class="form-group">
+        <input type="text" class="form-control form-control-sm" formControlName="usuario"
+          [placeholder]="'formulario.usuario' | translate">
+        <small *ngIf="formulario.controls['usuario'].errors && control" id="errorUsuario"
+          class="form-text text-muted">{{'formulario.valusuario' | translate}}</small>
+      </div>
+      <div class="form-group">
+        <input type="text" class="form-control form-control-sm" formControlName="mail"
+          [placeholder]="'formulario.mail' | translate">
+        <small *ngIf="formulario.controls['mail'].errors && control" id="errorMail"
+          class="form-text text-muted">{{'formulario.valmail' | translate}}</small>
+        <small *ngIf="noAlta" id="errorMail"
+          class="form-text text-muted">{{'formulario.yaregistrado' | translate}}</small>
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control form-control-sm" formControlName="password"
+          [placeholder]="'formulario.pass' | translate">
+        <small *ngIf="formulario.controls['password'].errors && control" id="errorPassword"
+          class="form-text text-muted">{{'formulario.valpassword' | translate}}</small>
+      </div>
+      <div class="form-group">
+        <input type="password" class="form-control form-control-sm" formControlName="reppassword"
+          [placeholder]="'formulario.reppass' | translate">
+        <small *ngIf="formulario.controls['reppassword'].errors && control" id="errorRepPass"
+          class="form-text text-muted">{{'formulario.valpassword' | translate}}</small>
+        <small *ngIf="formulario.errors && formulario.errors['reppassword'] && control" id="errorRepPass"
+          class="form-text text-muted">{{'formulario.valrepite' | translate}}</small>
+      </div>
+      <div>
+        <p class="text-center">{{'formulario.rol' | translate}}</p>
+      </div>
 
+      <div class="form-group text-center row">
+        <!-- <div class="form-check col-4">
+          <input class="form-check-input" type="radio" id="radiouser" formControlName="rolradio" value="user" checked>
+          <label class="form-check-label" for="radiouser">
+            {{'formulario.roluser' | translate}}
+          </label>
+        </div> -->
+        <div class="form-check col-6">
+          <input class="form-check-input" type="radio" id="radiobanda" formControlName="rolradio" value="banda">
+          <label class="form-check-label" for="radiobanda">
+            {{'formulario.rolbanda' | translate}}
+          </label>
+        </div>
+        <div class="form-check col-6">
+          <input class="form-check-input" type="radio" id="radiosala" formControlName="rolradio" value="sala">
+          <label class="form-check-label" for="radiosala">
+            {{'formulario.rolsala' | translate}}
+          </label>
+        </div>
+      </div>
 
+      <input class="btn btn-lg btn-success btn-block" type="submit" [value]="'formulario.registro' | translate">
+    </form>
+  </div>
+  <!-- <app-form-user [idUsuario]="userId" *ngIf="opc[1]"></app-form-user> -->
+  <app-form-banda [idUsuario]="userId" *ngIf="opc[2]"></app-form-banda>
+  <app-form-sala [idUsuario]="userId" *ngIf="opc[3]"></app-form-sala>
 </div>

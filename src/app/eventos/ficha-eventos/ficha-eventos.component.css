@@ -1,0 +1,20 @@
+.tamimg{
+    height: 12em;
+    width: 12em;
+}
+.tamlogo{
+    height: 3em;
+    width: 3em;
+}
+.round-div {
+    /* width: 40%;
+    height: 40%;   */
+  }
+
+.round-div img {
+    height: 3em;
+    width: 3em;
+    border-radius:50%;
+    /* border: solid 2px black; */
+
+}

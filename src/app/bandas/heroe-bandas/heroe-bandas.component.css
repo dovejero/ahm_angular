@@ -1,0 +1,10 @@
+.jumbotron {
+    background-image: url("https://firebasestorage.googleapis.com/v0/b/aquihaymusica-dov.appspot.com/o/hero%2Fmusician-2708190_1920.jpg?alt=media&token=ed94cfed-b168-4895-9c6b-64e8e1f7c74f");
+    background-color: #cccccc;
+    background-position: center;
+    background-repeat: no-repeat; 
+    background-size: cover;
+   }
+   .colorblanco{
+    color: white;
+}

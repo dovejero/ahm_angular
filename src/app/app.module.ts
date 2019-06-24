@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { environment } from 'src/environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -31,11 +34,32 @@ import { GralSalasComponent } from './salas/gral-salas/gral-salas.component';
 import { GralEventosComponent } from './eventos/gral-eventos/gral-eventos.component';
 
 // Importación modulo traducción
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
+import { FormUserComponent } from './formularios/form-user/form-user.component';
+import { FormEventosComponent } from './formularios/form-eventos/form-eventos.component';
+import { MapagralComponent } from './mapas/mapagral/mapagral.component';
+import { MapaEventComponent } from './mapas/mapa-event/mapa-event.component';
+import { MapalatlngComponent } from './mapas/mapalatlng/mapalatlng.component';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { NgRedux, NgReduxModule } from '@angular-redux/store';
+import { IAppState, rootReducer, INITIAL_STATE } from './store/store';
+import { APersonalComponent } from './personal/a-personal/a-personal.component';
+import { PerfilBandaComponent } from './personal/perfil-banda/perfil-banda.component';
+import { PerfilUsuarioComponent } from './personal/perfil-usuario/perfil-usuario.component';
+import { PerfilSalaComponent } from './personal/perfil-sala/perfil-sala.component';
+import { HeroePersonalComponent } from './personal/heroe-personal/heroe-personal.component';
+import { SalamapaComponent } from './mapas/salamapa/salamapa.component';
+import { SalamapaallComponent } from './mapas/salamapaall/salamapaall.component';
 
+//importación módulo bootstrap angular
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { EventoBandaComponent } from './personal/evento-banda/evento-banda.component';
+import { EventoSalaComponent } from './personal/evento-sala/evento-sala.component';
+import { EventoMensajeComponent } from './personal/evento-mensaje/evento-mensaje.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +88,22 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     FormRegistroComponent,
     GralBandasComponent,
     GralSalasComponent,
-    GralEventosComponent
+    GralEventosComponent,
+    FormUserComponent,
+    FormEventosComponent,
+    MapagralComponent,
+    MapaEventComponent,
+    MapalatlngComponent,
+    APersonalComponent,
+    PerfilBandaComponent,
+    PerfilUsuarioComponent,
+    PerfilSalaComponent,
+    HeroePersonalComponent,
+    SalamapaComponent,
+    SalamapaallComponent,
+    EventoBandaComponent,
+    EventoSalaComponent,
+    EventoMensajeComponent
   ],
   imports: [
     BrowserModule,
@@ -72,18 +111,29 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgReduxModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: createTranslateLoader,
         deps: [HttpClient]
       }
-    })
+    }),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireStorageModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(ngredux: NgRedux<IAppState>) {
+    ngredux.configureStore(rootReducer, INITIAL_STATE)
+  }
+
+}
+
+
 
 //Exportar función traducción
 

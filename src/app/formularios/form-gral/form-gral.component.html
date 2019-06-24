@@ -13,10 +13,12 @@
         <router-outlet></router-outlet>
       </div>
       <div class="modal-footer">
-        <a *ngIf="opciones" class="pull-right text-dark boton" (click)="cambioOpcionesLogin()">
-          {{ 'modal.login' | translate }}</a>
-        <a *ngIf="!opciones" class="pull-right text-dark boton" (click)="cambioOpcionesRegistro()">
-          {{ 'modal.registro' | translate }}</a>
+        <div *ngIf="noLoginCambio">
+          <a *ngIf="opciones" class="pull-right text-dark boton" (click)="cambioOpcionesLogin()">
+            {{ 'modal.cuenta' | translate }}</a>
+          <a *ngIf="!opciones" class="pull-right text-dark boton" (click)="cambioOpcionesRegistro()">
+            {{ 'modal.registrar' | translate }}</a>
+        </div>
       </div>
     </div>
   </div>

@@ -5,3 +5,10 @@
     display: block; 
     padding-right: 15px;
 } */
+
+small{
+    color: red !important;
+}
+.font{
+    font-size: 0.5em;
+}

@@ -1,0 +1,34 @@
+<div class="text-dark">
+  <div>
+    <form novalidate [formGroup]="formulario" (ngSubmit)='tratarSubmit()'>
+      <div class="col-12">
+        <div class="upload form-group col-12">
+          <div class="round-div">
+            <img [src]="logoURL">
+          </div>
+          <input #file type="file" accept='image/*' class="form-control" formControlName="logo"
+            (change)="onChangeLogo($event, file.files)">
+        </div>
+        <div class="form-group col-12">
+          <input type="text" class="form-control form-control-sm" formControlName="nombre"
+            [placeholder]="'formulario.nombre' | translate">
+          <small *ngIf="formulario.controls['nombre'].errors && control" id="errorNombre"
+            class="form-text text-muted">{{'formulario.valusuario' | translate}}</small>
+        </div>
+        <div class="upload form-group col-12">
+          <img [src]="imgURL" height="50">
+          <input #file2 type="file" accept='image/*' class="form-control" formControlName="imagen"
+            (change)="onChangeImg($event, file2.files)">
+        </div>
+        <label class="switch">
+          <input type="checkbox" formControlName="activado">
+          <span class="slider round"></span>
+        </label>
+        <input *ngIf="!botonActivo" class="btn btn-primary float-right" type="submit"
+          [value]="'formulario.enviar' | translate">
+        <input *ngIf="botonActivo" disabled class="btn btn-primary float-right" type="submit"
+          [value]="'formulario.enviando' | translate">
+      </div>
+    </form>
+
+  </div>

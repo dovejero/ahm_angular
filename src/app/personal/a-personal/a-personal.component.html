@@ -1,0 +1,49 @@
+<div>
+  <app-heroe-personal></app-heroe-personal>
+</div>
+<div class="container">
+  <div class="card text-center">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+        <li *ngIf="perfil && (perfil.rol=='banda' || perfil.rol=='sala')" class="nav-item">
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+            aria-selected="true">{{'formulario.nevento' | translate}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile"
+            aria-selected="false">{{'formulario.perfil' | translate}}</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="profile-tab" data-toggle="tab" href="#mensaje" role="tab" aria-controls="profile"
+            aria-selected="false">{{'formulario.mensajes' | translate}}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div *ngIf="perfil && perfil.rol=='sala'">
+          <app-evento-sala></app-evento-sala>
+        </div>
+        <div *ngIf="perfil && perfil.rol=='banda'">
+          <app-evento-banda></app-evento-banda>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+        <div *ngIf="perfil && perfil.rol=='user'">
+          <app-perfil-usuario [objPerfil]="perfil"></app-perfil-usuario>
+        </div>
+        <div *ngIf="perfil && perfil.rol=='sala'">
+          <app-perfil-sala [objPerfil]="perfil"></app-perfil-sala>
+        </div>
+        <div *ngIf="perfil && perfil.rol=='banda'">
+          <app-perfil-banda [objPerfil]="perfil"></app-perfil-banda>
+        </div>
+      </div>
+      <div class="tab-pane fade" id="mensaje" role="tabpanel" aria-labelledby="profile-tab">
+
+        <app-evento-mensaje></app-evento-mensaje>
+
+      </div>
+    </div>
+  </div>
+</div>

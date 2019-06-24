@@ -1,3 +1,17 @@
-<p>
-  filtro-bandas works!
-</p>
+<div class="container">
+  <div class="card text-center">
+    <div class="card-header">
+      <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+        <li class="nav-item">
+          <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home"
+            aria-selected="true">{{'vista.filtro' | translate}}</a>
+        </li>
+      </ul>
+    </div>
+    <div class="card-body tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <app-lista-bandas></app-lista-bandas>
+      </div>
+    </div>
+  </div>
+</div>
